@@ -1,0 +1,11 @@
+# Duong dan publish/functions tinh TU thu muc base ("dashboard").
+[build]
+  base = "dashboard"
+  command = "npm run build"
+  publish = "dist"
+  functions = "netlify/functions"
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200

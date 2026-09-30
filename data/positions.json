@@ -1,0 +1,15 @@
+{
+  "_huong_dan": "Moi khi ban TU VAO LENH tren TradingView, them 1 dong vao mang 'positions'. Xoa dong '_huong_dan' va '_vi_du_1_dong' di, chung chi de giai thich. QUAN TRONG: tu tinh SL_PRICE ngay luc vao lenh (= gia vao +/- ATR(14) hien tai x he so trong bang cong thuc) roi dien thang vao day -- KHONG de script tu tinh lai sau, vi ATR luc do da khac.",
+  "_vi_du_1_dong": {
+    "leg_id": "H1_XAUUSD_Long",
+    "pair": "XAUUSD",
+    "direction": "Long",
+    "entry_date": "2026-09-27T03:00:00+07:00",
+    "entry_price": 1950.35,
+    "sl_price": 1938.22,
+    "tier": "H1",
+    "risk_pct": 0.3
+  },
+  "positions": [
+  ]
+}

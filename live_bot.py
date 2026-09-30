@@ -328,13 +328,13 @@ def pos_floating(p, mark):
 # ------------------------------------------------------------------
 # VAO LENH
 # ------------------------------------------------------------------
-def open_position(state, leg, bar, now, notify, msgs, paused):
+def open_position(state, leg, bar, now, notify, msgs, paused, boot=False):
     sign = 1 if leg["direction"] == "Long" else -1
     entry = float(bar["Close"])
     sl_dist = float(bar["atr"]) * leg["atr_mult"]
     sl = entry - sign * sl_dist
     close_time = bar["Time"] + INTERVAL[leg["tf"]]
-    stale = (now - close_time) > pd.Timedelta(hours=STALE_ENTRY_HOURS[leg["tf"]])
+    stale = (not boot) and (now - close_time) > pd.Timedelta(hours=STALE_ENTRY_HOURS[leg["tf"]])
     day = bar["Date_VN"]
     if paused:
         add_event(state, now, f"Bỏ qua (đang ngắt mạch): {leg['id']} lúc {fmt_vn(close_time)}")
@@ -350,7 +350,7 @@ def open_position(state, leg, bar, now, notify, msgs, paused):
              max_hold=leg["max_hold"], bars_held=0, last_bar=iso(bar["Time"]),
              last_price=entry, missed=bool(stale),
              pip=pip_size(pair), sl_pips=sl_pips, pips_to_sl=sl_pips, pnl_pips=0.0,
-             last_wpr=wpr_now, deadline=iso(deadline), warned=[])
+             last_wpr=wpr_now, deadline=iso(deadline), warned=[], rebuilt=bool(boot))
     state["positions"].append(p)
     icon = "🟢" if leg["direction"] == "Long" else "🔴"
     tfl = TF_LABEL[leg["tf"]]
@@ -389,7 +389,8 @@ def process_entries_h1(state, leg, df, now, notify, msgs):
         if leg["exclude_dow"] is not None and pd.Timestamp(d).dayofweek == leg["exclude_dow"]:
             ok = False
         if ok:
-            open_position(state, leg, bar, now, notify, msgs, paused=not entries_allowed(state, d))
+            open_position(state, leg, bar, now, notify, msgs, paused=not entries_allowed(state, d),
+                          boot=not notify)
 
 
 def process_entries_h4(state, leg, df, now, notify, msgs):
@@ -404,7 +405,8 @@ def process_entries_h4(state, leg, df, now, notify, msgs):
             continue
         ok = bar["wpr"] < leg["threshold"] if leg["direction"] == "Long" else bar["wpr"] > leg["threshold"]
         if ok:
-            open_position(state, leg, bar, now, notify, msgs, paused=not entries_allowed(state, bar["Date_VN"]))
+            open_position(state, leg, bar, now, notify, msgs, paused=not entries_allowed(state, bar["Date_VN"]),
+                          boot=not notify)
 
 
 # ------------------------------------------------------------------
@@ -448,6 +450,8 @@ def update_and_warn(state, p, now, notify, msgs):
     p["pips_to_sl"] = pips(pair, sign * (p["last_price"] - p["sl_price"]))
     left = p["max_hold"] - p["bars_held"]
     p["deadline"] = iso(project_deadline(p["last_bar"], p["tf"], left, pair))
+    if not notify:  # dang khoi dong: chi cap nhat so lieu, de canh bao duoc gui o lan chay that dau tien
+        return
     tfl = TF_LABEL[p["tf"]]
     pnl = f"Tạm tính <b>{fp(pair, p['pnl_pips'], True)}</b>"
     out = []
@@ -468,8 +472,9 @@ def update_and_warn(state, p, now, notify, msgs):
         out.append(title("⚠️", "GẦN CẮT LỖ", pair, p["direction"], p["tier"]) + "\n"
                    f"Còn {fp(pair, max(p['pips_to_sl'], 0))} tới SL {px(p['sl_price'])}\n{pnl}")
     for t in out:
+        t += origin_note(p)
         add_event(state, now, plain(t).replace("\n", " | "))
-        if notify and want_notify(p["leg"]) and not p.get("missed"):
+        if notify and want_notify(p["leg"]):
             msgs.append(t)
 
 
@@ -493,9 +498,18 @@ def close_position(state, p, exit_price, reason, bar, now, notify, msgs):
             f"<b>{fp(pair, pip_res, True)}</b>  ({r_mult:+.2f}R)\n"
             f"Lý do: {why}\n"
             f"{px(p['entry_price'])} → {px(exit_price)} · giữ {p['bars_held']} nến {TF_LABEL[p['tf']]}")
+    text += origin_note(p)
     add_event(state, now, plain(text).replace("\n", " | "))
-    if notify and want_notify(p["leg"]) and not p.get("missed"):
+    if notify and want_notify(p["leg"]):
         msgs.append(text)
+
+
+def origin_note(p):
+    if p.get("rebuilt"):
+        return "\n<i>Lệnh có từ trước khi bot chạy</i>"
+    if p.get("missed"):
+        return "\n<i>Tín hiệu bỏ lỡ lúc bot gián đoạn</i>"
+    return ""
 
 
 def want_notify(leg_id):
@@ -724,6 +738,12 @@ def run(now=None, fetcher=None, send=True, state=None, persist=True):
     state = state if state is not None else load_state()
     msgs = []
     boot = not state.get("boot_done")
+    if state.get("boot_done") and not state.get("boot_fix_v2"):
+        for p in state["positions"] + state["closed"]:
+            if p.get("missed"):
+                p["missed"], p["rebuilt"] = False, True
+                p["warned"] = []  # canh bao da bi danh dau am tham luc khoi dong -> cho gui lai
+        state["boot_fix_v2"] = True
 
     if boot:
         need = {(l["pair"], l["tf"]): "khoi dong" for l in LEGS}
@@ -765,6 +785,7 @@ def run(now=None, fetcher=None, send=True, state=None, persist=True):
 
     if boot and not quota_hit:
         state["boot_done"] = True
+        state["boot_fix_v2"] = True
         state["last_cb_date"] = str(vn_date(now) - timedelta(days=1))
         msgs.append(f"🤖 <b>Bot đã chạy</b>\nĐang theo dõi {len(state['positions'])} lệnh mở của hệ thống "
                     f"(dựng lại từ dữ liệu gần đây). Từ giờ bot báo khi có tín hiệu mới.")

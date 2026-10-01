@@ -105,6 +105,17 @@ OUTPUTSIZE = {"1h": 150, "4h": 150}
 BOOT_OUTPUTSIZE = {"1h": 260, "4h": 150}   # ~10 ngay H1, ~25 ngay H4
 WARMUP_BARS = 40                   # bo qua tin hieu o nhung nen dau chuoi (chi bao chua on dinh)
 STALE_ENTRY_HOURS = {"1h": 2, "4h": 5}  # tin hieu cu hon muc nay -> coi la "bo lo"
+# Lop bao ve thu 2 (kiem chung walk-forward 16 nam): von he thong sut tu dinh -> giam khoi luong lenh moi.
+# Vao bac khi sut >= nguong; ra khoi bac khi hoi con sut <= nguong/2.
+RISK_TIERS = [(12.0, 0.5), (20.0, 0.25)]
+# CHOT HET THEO FLOATING: tong floating (% von) cua cac lenh ban trade >= nguong -> bao chot het.
+# Doi so nay de doi nguong; dat 0 de tat. Chi bao lai khi floating da xuong duoi (nguong - FLOAT_REARM_GAP).
+FLOAT_CLOSE_PCT = 3.0
+FLOAT_REARM_GAP = 1.0
+# Khi cham nguong: giu lai bao nhieu phan khoi luong moi lenh (0.5 = chot mot nua; 0 = chot het).
+# Moi lenh chi bi chot bot 1 lan.
+KEEP_FRACTION = 0.5
+FACTOR_LABEL = {1.0: "bình thường", 0.5: "½", 0.25: "¼"}
 INTERVAL = {"1h": pd.Timedelta(hours=1), "4h": pd.Timedelta(hours=4)}
 VN = pd.Timedelta(hours=VN_OFFSET_HOURS)
 DOW_LABEL = ["T2", "T3", "T4", "T5", "T6", "T7", "CN"]
@@ -343,10 +354,12 @@ def open_position(state, leg, bar, now, notify, msgs, paused, boot=False):
     sl_pips = pips(pair, sl_dist)
     deadline = project_deadline(bar["Time"], leg["tf"], leg["max_hold"], pair)
     wpr_now = None if pd.isna(bar["wpr"]) else float(bar["wpr"])
+    factor = state.get("risk_factor", 1.0)
     p = dict(id=f"{leg['id']}|{iso(bar['Time'])}", leg=leg["id"], tier=leg["tier"], tf=leg["tf"],
              pair=pair, direction=leg["direction"], entry_bar=iso(bar["Time"]),
              entry_time=iso(close_time), entry_date_vn=str(day), entry_price=entry,
-             sl_price=sl, sl_pct=sl_dist / entry * 100, risk=leg["risk"], spread=leg["spread"],
+             sl_price=sl, sl_pct=sl_dist / entry * 100, risk=leg["risk"] * factor, size_factor=factor,
+             spread=leg["spread"],
              max_hold=leg["max_hold"], bars_held=0, last_bar=iso(bar["Time"]),
              last_price=entry, missed=bool(stale),
              pip=pip_size(pair), sl_pips=sl_pips, pips_to_sl=sl_pips, pnl_pips=0.0,
@@ -360,8 +373,10 @@ def open_position(state, leg, bar, now, notify, msgs, paused, boot=False):
            f"SL    {px(sl)}  ({fp(pair, sl_pips)})\n"
            f"Chốt  {cond}{wpr_txt}\n"
            f"Hạn   {fmt_vn(deadline)} · {leg['max_hold']} nến")
+    size_txt = "" if factor >= 1 else (f"\n⚠️ <b>Khối lượng {FACTOR_LABEL.get(factor, factor)} mức thường</b> "
+                                        f"(vốn hệ thống đang sụt {state.get('equity_dd', 0):.1f}%)")
     text = (title(icon, "VÀO", pair, leg["direction"], leg["tier"]) + "\n"
-            f"<pre>{esc(box)}</pre>\nĐặt SL trên sàn ngay khi vào lệnh.")
+            f"<pre>{esc(box)}</pre>{size_txt}\nĐặt SL trên sàn ngay khi vào lệnh.")
     if stale:
         text = (f"⚠️ <b>Tín hiệu cũ</b> (nến đóng {fmt_vn(close_time)}, bot bị gián đoạn) — chỉ để theo dõi\n" + text)
     add_event(state, now, plain(text).replace("\n", " | "))
@@ -483,8 +498,10 @@ def close_position(state, p, exit_price, reason, bar, now, notify, msgs):
     pnl = sign * (exit_price - p["entry_price"]) / p["entry_price"] * 100 - p["spread"]
     r_mult = pnl / p["sl_pct"]
     close_time = bar["Time"] + INTERVAL[p["tf"]]
+    ret = p["risk"] / 100 * r_mult  # loi/lo theo ty le von (da tinh he so khoi luong)
     c = dict(p, exit_price=exit_price, exit_reason=reason, exit_time=iso(close_time),
-             exit_date_vn=str(bar["Date_VN"]), pnl_pct=pnl, r=r_mult)
+             exit_date_vn=str(bar["Date_VN"]), pnl_pct=pnl, r=r_mult, ret=ret)
+    state["realized"] = state.get("realized", 0.0) + ret
     state["positions"] = [x for x in state["positions"] if x["id"] != p["id"]]
     state["closed"].append(c)
     state["closed"] = state["closed"][-300:]
@@ -492,7 +509,9 @@ def close_position(state, p, exit_price, reason, bar, now, notify, msgs):
     pip_res = pips(pair, sign * (exit_price - p["entry_price"]))
     c["pnl_pips"] = pip_res
     why = {"SL": "chạm SL", "WPR": exit_rule(p["direction"]),
-           "Hết giờ": f"hết {p['max_hold']} nến {TF_LABEL[p['tf']]}"}[reason]
+           "Hết giờ": f"hết {p['max_hold']} nến {TF_LABEL[p['tf']]}",
+           "Chốt hết": "chốt hết theo floating",
+           "Chốt một nửa": "chốt một phần theo floating"}[reason]
     icon = "✅" if pnl > 0 else "❌"
     text = (title(icon, "ĐÃ CHỐT", pair, p["direction"], p["tier"]) + "\n"
             f"<b>{fp(pair, pip_res, True)}</b>  ({r_mult:+.2f}R)\n"
@@ -505,11 +524,87 @@ def close_position(state, p, exit_price, reason, bar, now, notify, msgs):
 
 
 def origin_note(p):
+    kept = p.get("kept_frac", 1.0)
+    if kept < 1 and not p.get("is_partial"):
+        return f"\n<i>Phần còn lại {kept * 100:.0f}% khối lượng (đã chốt bớt theo floating)</i>"
     if p.get("rebuilt"):
         return "\n<i>Lệnh có từ trước khi bot chạy</i>"
     if p.get("missed"):
         return "\n<i>Tín hiệu bỏ lỡ lúc bot gián đoạn</i>"
     return ""
+
+
+def cur_price(p):
+    return p.get("mark", p["last_price"])
+
+
+def refresh_marks(state, now, raw, fetcher):
+    """Gia moi nhat (nen H1 da dong) cho MOI cap dang co lenh mo, ke ca lenh 4H, de canh floating moi gio."""
+    from twelvedata_client import DailyQuotaExhausted
+    for pair in sorted({p["pair"] for p in state["positions"]}):
+        try:
+            if pair not in raw:
+                raw[pair] = fetcher(pair, "1h", 12)
+            h1 = drop_weekend(raw[pair])
+            h1 = h1[h1["Time"] + INTERVAL["1h"] <= now]
+            if not len(h1):
+                continue
+            last = h1.iloc[-1]
+        except DailyQuotaExhausted:
+            return False
+        except Exception as e:
+            add_event(state, now, f"Lỗi cập nhật giá {pair}: {e}")
+            continue
+        for p in state["positions"]:
+            if p["pair"] == pair and pd.Timestamp(p["last_bar"]) <= last["Time"] + INTERVAL["1h"]:
+                p["mark"] = float(last["Close"])
+                p["mark_time"] = iso(last["Time"] + INTERVAL["1h"])
+    return True
+
+
+def check_close_all(state, now, msgs):
+    """Tong floating cac lenh ban trade >= FLOAT_CLOSE_PCT -> chot bot (KEEP_FRACTION) hoac chot het.
+    Moi lenh chi bi chot bot 1 lan; phan con lai giu SL va dieu kien thoat cu."""
+    sel = [p for p in state["positions"] if want_notify(p["leg"])]
+    F = sum(pos_floating(p, cur_price(p)) for p in sel)
+    state["floating_sel"] = round(F, 3)
+    if FLOAT_CLOSE_PCT <= 0:
+        return
+    armed = state.get("fc_armed", True)
+    if not armed and F < FLOAT_CLOSE_PCT - FLOAT_REARM_GAP:
+        state["fc_armed"] = armed = True
+    targets = [p for p in sel if p.get("kept_frac", 1.0) >= 1.0]   # chua tung bi chot bot
+    if not armed or not targets or F < FLOAT_CLOSE_PCT:
+        return
+    keep = KEEP_FRACTION if 0 < KEEP_FRACTION < 1 else 0.0
+    rows = []
+    for p in sorted(targets, key=lambda x: (TIER_ORDER[x["tier"]], x["pair"])):
+        sign = 1 if p["direction"] == "Long" else -1
+        pp = pips(p["pair"], sign * (cur_price(p) - p["entry_price"]))
+        rows.append(f"{ARROW[p['direction']]} {p['pair']:<6} {TIER_SHORT[p['tier']]:<4} {pp:>+6.0f}p  {px(cur_price(p))}")
+    for p in targets:
+        mt = pd.Timestamp(p.get("mark_time") or p["last_bar"])
+        bar = {"Time": mt - INTERVAL[p["tf"]], "Date_VN": (mt - INTERVAL["1h"] + VN).date()}
+        if keep == 0:
+            close_position(state, p, cur_price(p), "Chốt hết", bar, now, notify=False, msgs=msgs)
+        else:
+            part = dict(p, id=p["id"] + "|mot_phan", risk=p["risk"] * (1 - keep), is_partial=True)
+            close_position(state, part, cur_price(p), "Chốt một nửa", bar, now, notify=False, msgs=msgs)
+            p["risk"] *= keep
+            p["size_factor"] = p.get("size_factor", 1.0) * keep
+            p["kept_frac"] = keep
+    state["fc_armed"] = False
+    if keep == 0:
+        head = f"💰 <b>CHỐT HẾT — floating {F:+.2f}% vốn</b> (ngưỡng {FLOAT_CLOSE_PCT:.0f}%)\nĐóng toàn bộ {len(targets)} lệnh:"
+        tail = "Tín hiệu mới vẫn vào bình thường, đúng khối lượng hệ thống."
+    else:
+        head = (f"💰 <b>CHỐT {'MỘT NỬA' if keep == 0.5 else f'{(1 - keep) * 100:.0f}%'} — floating {F:+.2f}% vốn</b> "
+                f"(ngưỡng {FLOAT_CLOSE_PCT:.0f}%)\nĐóng <b>{(1 - keep) * 100:.0f}% khối lượng</b> của mỗi lệnh ({len(targets)} lệnh):")
+        tail = ("Phần còn lại giữ nguyên SL và điều kiện thoát — bot vẫn báo thoát như bình thường.\n"
+                "Tín hiệu mới vẫn vào đúng khối lượng hệ thống.")
+    txt = f"{head}\n<pre>{esc(chr(10).join(rows))}</pre>\n{tail}\n<b>Không gỡ, không tăng lot.</b>"
+    msgs.append(txt)
+    add_event(state, now, plain(txt).replace("\n", " | "))
 
 
 def want_notify(leg_id):
@@ -607,7 +702,7 @@ def cb_eval_needed(state, now):
 
 def evaluate_cb(state, now, frames, msgs):
     D = vn_date(now) - timedelta(days=1)
-    total, n = 0.0, 0
+    total, n, float_open = 0.0, 0, 0.0
     for p in state["positions"] + state["closed"]:
         if pd.Timestamp(p["entry_date_vn"]).date() > D:
             continue
@@ -625,10 +720,15 @@ def evaluate_cb(state, now, frames, msgs):
                 if len(sub) == 0:
                     continue  # cap nay khong co nen nao trong ngay D (cuoi tuan) -> backtest cung khong tinh
                 mark = float(sub["Close"].iloc[-1])
-        total += pos_floating(p, mark)
+        v = pos_floating(p, mark)
+        total += v
         n += 1
+        if exit_d != D:
+            float_open += v
     state["last_cb_date"] = str(D)
-    state["floating_history"].append({"date": str(D), "floating": round(total, 3), "n": n})
+    update_equity_tiers(state, now, D, float_open, msgs)
+    state["floating_history"].append({"date": str(D), "floating": round(total, 3), "n": n,
+                                      "equity_dd": round(state.get("equity_dd", 0.0), 2)})
     state["floating_history"] = state["floating_history"][-120:]
     was_paused = not entries_allowed(state, vn_date(now))
     if total < CIRCUIT_BREAKER_TRIGGER:
@@ -647,6 +747,35 @@ def evaluate_cb(state, now, frames, msgs):
         msgs.append(txt)
         add_event(state, now, plain(txt).replace("\n", " | "))
     return total
+
+
+def update_equity_tiers(state, now, D, float_open_pct, msgs):
+    """Von he thong = 1 + loi/lo da chot (tinh den het ngay D) + floating lenh con mo cuoi ngay D.
+    Sut tu dinh >= 12% -> khoi luong 1/2; >= 20% -> 1/4; hoi ve <= nguong/2 thi nang lai 1 bac."""
+    later = sum(c.get("ret", 0.0) for c in state["closed"]
+                if c.get("exit_date_vn") and pd.Timestamp(c["exit_date_vn"]).date() > D)
+    eq = 1.0 + state.get("realized", 0.0) - later + float_open_pct / 100
+    peak = max(state.get("equity_peak") or eq, eq)
+    dd = (1 - eq / peak) * 100
+    state["equity"], state["equity_peak"], state["equity_dd"] = round(eq, 5), round(peak, 5), round(dd, 3)
+    lvl = old = state.get("risk_level", 0)
+    while lvl < len(RISK_TIERS) and dd >= RISK_TIERS[lvl][0]:
+        lvl += 1
+    while lvl > 0 and dd <= RISK_TIERS[lvl - 1][0] / 2:
+        lvl -= 1
+    state["risk_level"] = lvl
+    state["risk_factor"] = RISK_TIERS[lvl - 1][1] if lvl else 1.0
+    if lvl != old:
+        f = FACTOR_LABEL.get(state["risk_factor"], state["risk_factor"])
+        if lvl > old:
+            nxt = RISK_TIERS[lvl - 1][0] / 2
+            txt = (f"⚠️ <b>GIẢM KHỐI LƯỢNG còn {f}</b>\nVốn hệ thống sụt <b>{dd:.1f}%</b> so với đỉnh "
+                   f"(ngưỡng {RISK_TIERS[lvl - 1][0]:.0f}%).\nMọi lệnh mới vào với {f} khối lượng thường "
+                   f"cho đến khi mức sụt về dưới {nxt:.0f}%.")
+        else:
+            txt = (f"▶️ <b>Nâng khối lượng lên {f}</b>\nVốn hệ thống đã hồi, còn sụt {dd:.1f}% so với đỉnh.")
+        msgs.append(txt)
+        add_event(state, now, plain(txt).replace("\n", " | "))
 
 
 # ------------------------------------------------------------------
@@ -672,21 +801,31 @@ def daily_summary(state, now):
     if fh:
         L.append(f"Floating chốt {pd.Timestamp(fh['date']):%d/%m}: <b>{fh['floating']:+.2f}%</b> "
                  f"· ngưỡng {CIRCUIT_BREAKER_TRIGGER:.0f}%")
+    if "equity_dd" in state:
+        fct = state.get("risk_factor", 1.0)
+        L.append(f"Vốn hệ thống sụt {state['equity_dd']:.1f}% so với đỉnh · khối lượng "
+                 + (f"<b>{FACTOR_LABEL.get(fct, fct)}</b>" if fct < 1 else "bình thường")
+                 + f" (giảm ½ khi sụt {RISK_TIERS[0][0]:.0f}%)")
 
     pos = sorted(state["positions"], key=lambda p: (TIER_ORDER[p["tier"]], p["pair"], p["entry_time"]))
     L.append("")
     if pos:
-        total = sum(pos_floating(p, p["last_price"]) for p in pos)
+        total = sum(pos_floating(p, cur_price(p)) for p in pos)
         L.append(f"<b>Đang mở {len(pos)} lệnh</b> · tạm tính {total:+.2f}% vốn")
+        if FLOAT_CLOSE_PCT > 0:
+            fs = sum(pos_floating(p, cur_price(p)) for p in pos if want_notify(p["leg"]))
+            act = "chốt hết" if not (0 < KEEP_FRACTION < 1) else ("chốt một nửa" if KEEP_FRACTION == 0.5 else f"chốt {(1 - KEEP_FRACTION) * 100:.0f}%")
+            L.append(f"Floating các lệnh bạn trade: {fs:+.2f}% · báo {act} ở +{FLOAT_CLOSE_PCT:.0f}%")
         rows = []
         for p in pos:
             sign = 1 if p["direction"] == "Long" else -1
-            pnl_p = pips(p["pair"], sign * (p["last_price"] - p["entry_price"]))
-            to_sl = pips(p["pair"], sign * (p["last_price"] - p["sl_price"]))
+            pnl_p = pips(p["pair"], sign * (cur_price(p) - p["entry_price"]))
+            to_sl = pips(p["pair"], sign * (cur_price(p) - p["sl_price"]))
+            half = "½" if p.get("kept_frac", 1.0) < 1 else " "
             rows.append(f"{ARROW[p['direction']]} {p['pair']:<6} {TIER_SHORT[p['tier']]:<4}"
-                        f"{pnl_p:>+5.0f}p  SL {max(to_sl, 0):>3.0f}p")
+                        f"{pnl_p:>+5.0f}p  SL {max(to_sl, 0):>3.0f}p {half}")
         L.append("<pre>" + esc("\n".join(rows)) + "</pre>")
-        L.append("<i>p = pip đang lãi/lỗ · SL = pip còn tới cắt lỗ</i>")
+        L.append("<i>p = pip đang lãi/lỗ · SL = pip còn tới cắt lỗ · ½ = đã chốt một nửa</i>")
     else:
         L.append("Không có lệnh nào đang mở.")
 
@@ -783,9 +922,15 @@ def run(now=None, fetcher=None, send=True, state=None, persist=True):
         frames[(pair, tf)] = df
         handle(state, pair, tf, df, now, notify=not boot, msgs=msgs)
 
+    if not boot and not quota_hit and state["positions"]:
+        if refresh_marks(state, now, raw, fetcher):
+            check_close_all(state, now, msgs)
+
     if boot and not quota_hit:
         state["boot_done"] = True
         state["boot_fix_v2"] = True
+        state["realized"] = 0.0          # von he thong tinh tu luc bot chay
+        state["equity_peak"] = None
         state["last_cb_date"] = str(vn_date(now) - timedelta(days=1))
         msgs.append(f"🤖 <b>Bot đã chạy</b>\nĐang theo dõi {len(state['positions'])} lệnh mở của hệ thống "
                     f"(dựng lại từ dữ liệu gần đây). Từ giờ bot báo khi có tín hiệu mới.")
@@ -800,7 +945,8 @@ def run(now=None, fetcher=None, send=True, state=None, persist=True):
 
     # thong tin cho app React
     state["legs"] = LEGS
-    state["floating_now"] = round(sum(pos_floating(p, p["last_price"]) for p in state["positions"]), 3)
+    state["floating_now"] = round(sum(pos_floating(p, cur_price(p)) for p in state["positions"]), 3)
+    state["float_close_pct"] = FLOAT_CLOSE_PCT
     state["last_run"] = iso(now)
     state["last_fetch"] = [f"{p}|{t}" for (p, t) in need]
     if persist:

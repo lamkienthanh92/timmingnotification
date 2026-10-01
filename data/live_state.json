@@ -3949,42 +3949,6 @@
  "events": [
   {
    "time": "2026-09-30T13:24:00",
-   "text": "✅ ĐÃ CHỐT · NZDJPY LONG · H1 | +27.2 pip  (+0.22R) | Lý do: WPR vượt lên trên -20 | 89.650 → 89.922 · giữ 32 nến H1"
-  },
-  {
-   "time": "2026-09-30T13:24:00",
-   "text": "✅ ĐÃ CHỐT · NZDJPY LONG · H1 | +36.2 pip  (+0.30R) | Lý do: WPR vượt lên trên -20 | 89.560 → 89.922 · giữ 8 nến H1"
-  },
-  {
-   "time": "2026-09-30T13:24:00",
-   "text": "✅ ĐÃ CHỐT · NZDJPY LONG · H1 | +17.3 pip  (+0.14R) | Lý do: WPR vượt lên trên -20 | 89.250 → 89.422 · giữ 96 nến H1"
-  },
-  {
-   "time": "2026-09-30T13:24:00",
-   "text": "✅ ĐÃ CHỐT · NZDJPY LONG · H1 | +36.1 pip  (+0.24R) | Lý do: WPR vượt lên trên -20 | 89.791 → 90.152 · giữ 16 nến H1"
-  },
-  {
-   "time": "2026-09-30T13:24:00",
-   "text": "✅ ĐÃ CHỐT · NZDJPY LONG · H1 | +37.7 pip  (+0.34R) | Lý do: WPR vượt lên trên -20 | 89.111 → 89.488 · giữ 9 nến H1"
-  },
-  {
-   "time": "2026-09-30T13:24:00",
-   "text": "⏳ SẮP CHỐT · NZDJPY LONG · H1 | WPR H1 đang -26.7, chốt khi WPR vượt -20 (có thể ngay nến H1 kế tiếp) | Tạm tính -7.5 pip"
-  },
-  {
-   "time": "2026-09-30T13:24:00",
-   "text": "⚠️ Tín hiệu cũ (nến đóng 30/09 11:00, bot bị gián đoạn) — chỉ để theo dõi | 🔴 VÀO · USDCAD SHORT · 4H-Ngày | Vào   1.41982 | SL    1.42624  (64.2 pip) | Chốt  WPR < -80 (đang -14) | Hạn   06/10 11:00 · 24 nến | Đặt SL trên sàn ngay khi vào lệnh."
-  },
-  {
-   "time": "2026-09-30T13:24:00",
-   "text": "⚠️ Tín hiệu cũ (nến đóng 16/09 07:00, bot bị gián đoạn) — chỉ để theo dõi | 🔴 VÀO · USDCHF SHORT · 4H-Thứ | Vào   0.81913 | SL    0.82934  (102.1 pip) | Chốt  WPR < -80 (đang -19) | Hạn   22/09 07:00 · 24 nến | Đặt SL trên sàn ngay khi vào lệnh."
-  },
-  {
-   "time": "2026-09-30T13:24:00",
-   "text": "⚠️ Tín hiệu cũ (nến đóng 16/09 11:00, bot bị gián đoạn) — chỉ để theo dõi | 🔴 VÀO · USDCHF SHORT · 4H-Thứ | Vào   0.81884 | SL    0.82872  (98.8 pip) | Chốt  WPR < -80 (đang -21) | Hạn   22/09 11:00 · 24 nến | Đặt SL trên sàn ngay khi vào lệnh."
-  },
-  {
-   "time": "2026-09-30T13:24:00",
    "text": "⚠️ Tín hiệu cũ (nến đóng 16/09 15:00, bot bị gián đoạn) — chỉ để theo dõi | 🔴 VÀO · USDCHF SHORT · 4H-Thứ | Vào   0.81857 | SL    0.82821  (96.4 pip) | Chốt  WPR < -80 (đang -24) | Hạn   22/09 15:00 · 24 nến | Đặt SL trên sàn ngay khi vào lệnh."
   },
   {
@@ -4266,6 +4230,42 @@
   {
    "time": "2026-10-01T13:01:00",
    "text": "Lỗi cập nhật giá USDCHF: Chuoi USDCHF/1h qua ngan (12 nen)"
+  },
+  {
+   "time": "2026-10-01T13:25:00",
+   "text": "Lỗi cập nhật giá AUDUSD: Chuoi AUDUSD/1h qua ngan (12 nen)"
+  },
+  {
+   "time": "2026-10-01T13:25:00",
+   "text": "Lỗi cập nhật giá CADCHF: Chuoi CADCHF/1h qua ngan (12 nen)"
+  },
+  {
+   "time": "2026-10-01T13:25:00",
+   "text": "Lỗi cập nhật giá EURAUD: Chuoi EURAUD/1h qua ngan (12 nen)"
+  },
+  {
+   "time": "2026-10-01T13:25:00",
+   "text": "Lỗi cập nhật giá EURCHF: Chuoi EURCHF/1h qua ngan (12 nen)"
+  },
+  {
+   "time": "2026-10-01T13:25:00",
+   "text": "Lỗi cập nhật giá GBPAUD: Chuoi GBPAUD/1h qua ngan (12 nen)"
+  },
+  {
+   "time": "2026-10-01T13:25:00",
+   "text": "Lỗi cập nhật giá GBPCHF: Chuoi GBPCHF/1h qua ngan (12 nen)"
+  },
+  {
+   "time": "2026-10-01T13:25:00",
+   "text": "Lỗi cập nhật giá USDCAD: Chuoi USDCAD/1h qua ngan (12 nen)"
+  },
+  {
+   "time": "2026-10-01T13:25:00",
+   "text": "Lỗi cập nhật giá USDCHF: Chuoi USDCHF/1h qua ngan (12 nen)"
+  },
+  {
+   "time": "2026-10-01T13:25:00",
+   "text": "Lỗi cập nhật giá XAUUSD: Chuoi XAUUSD/1h qua ngan (12 nen)"
   }
  ],
  "leg_checked": {
@@ -4379,7 +4379,7 @@
   }
  ],
  "last_summary_date": "2026-10-01",
- "last_run": "2026-10-01T13:01:00",
+ "last_run": "2026-10-01T13:25:00",
  "boot_done": true,
  "quota_alert_date": null,
  "legs": [
@@ -5285,15 +5285,7 @@
   }
  ],
  "floating_now": -0.151,
- "last_fetch": [
-  "GBPUSD|1h",
-  "EURAUD|1h",
-  "EURCHF|1h",
-  "GBPCHF|1h",
-  "XAUUSD|1h",
-  "CADCHF|1h",
-  "AUDUSD|1h"
- ],
+ "last_fetch": [],
  "boot_fix_v2": true,
  "realized": -0.006044220317744895,
  "floating_sel": -0.151,

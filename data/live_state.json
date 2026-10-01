@@ -31,73 +31,8 @@
     "sl"
    ],
    "rebuilt": true,
-   "mark": 0.69499,
-   "mark_time": "2026-10-01T13:00:00"
-  },
-  {
-   "id": "H1_EURCHF_Short|2026-09-28T12:00:00",
-   "leg": "H1_EURCHF_Short",
-   "tier": "H1",
-   "tf": "1h",
-   "pair": "EURCHF",
-   "direction": "Short",
-   "entry_bar": "2026-09-28T12:00:00",
-   "entry_time": "2026-09-28T13:00:00",
-   "entry_date_vn": "2026-09-28",
-   "entry_price": 0.94593,
-   "sl_price": 0.9508700541920629,
-   "sl_pct": 0.5222431038304041,
-   "risk": 0.3,
-   "spread": 0.0175,
-   "max_hold": 96,
-   "bars_held": 72,
-   "last_bar": "2026-10-01T12:00:00",
-   "last_price": 0.94295,
-   "missed": false,
-   "pip": 0.0001,
-   "sl_pips": 49.40054192062941,
-   "pips_to_sl": 79.20054192062986,
-   "pnl_pips": 29.800000000000935,
-   "last_wpr": -74.24916565135895,
-   "deadline": "2026-10-02T13:00:00",
-   "warned": [
-    "wpr"
-   ],
-   "rebuilt": true,
-   "mark": 0.94295,
-   "mark_time": "2026-10-01T13:00:00"
-  },
-  {
-   "id": "H1_EURCHF_Short|2026-09-30T12:00:00",
-   "leg": "H1_EURCHF_Short",
-   "tier": "H1",
-   "tf": "1h",
-   "pair": "EURCHF",
-   "direction": "Short",
-   "entry_bar": "2026-09-30T12:00:00",
-   "entry_time": "2026-09-30T13:00:00",
-   "entry_date_vn": "2026-09-30",
-   "entry_price": 0.94746,
-   "sl_price": 0.9526324001092664,
-   "sl_pct": 0.5459227945524263,
-   "risk": 0.3,
-   "spread": 0.0175,
-   "max_hold": 96,
-   "bars_held": 24,
-   "last_bar": "2026-10-01T12:00:00",
-   "last_price": 0.94295,
-   "missed": false,
-   "pip": 0.0001,
-   "sl_pips": 51.724001092664174,
-   "pips_to_sl": 96.82400109266464,
-   "pnl_pips": 45.100000000000136,
-   "last_wpr": -74.24916565135895,
-   "deadline": "2026-10-06T12:00:00",
-   "warned": [
-    "wpr"
-   ],
-   "mark": 0.94295,
-   "mark_time": "2026-10-01T13:00:00"
+   "mark": 0.69522,
+   "mark_time": "2026-10-01T14:00:00"
   },
   {
    "id": "H1_GBPCHF_Short|2026-09-30T06:00:00",
@@ -115,22 +50,22 @@
    "risk": 0.3,
    "spread": 0.0267,
    "max_hold": 96,
-   "bars_held": 30,
-   "last_bar": "2026-10-01T12:00:00",
-   "last_price": 1.10543,
+   "bars_held": 31,
+   "last_bar": "2026-10-01T13:00:00",
+   "last_price": 1.10301,
    "missed": false,
    "pip": 0.0001,
    "sl_pips": 83.25412049845772,
-   "pips_to_sl": 75.25412049845802,
-   "pnl_pips": -7.999999999999119,
-   "last_wpr": -68.5225087006202,
+   "pips_to_sl": 99.45412049845669,
+   "pnl_pips": 16.199999999999548,
+   "last_wpr": -78.75990375959735,
    "deadline": "2026-10-06T06:00:00",
    "warned": [
     "wpr"
    ],
    "rebuilt": true,
-   "mark": 1.10543,
-   "mark_time": "2026-10-01T13:00:00"
+   "mark": 1.10301,
+   "mark_time": "2026-10-01T14:00:00"
   },
   {
    "id": "H4DOM_USDCAD_Short|2026-09-30T00:00:00",
@@ -395,22 +330,22 @@
    "risk": 0.3,
    "spread": 0.0005,
    "max_hold": 96,
-   "bars_held": 16,
-   "last_bar": "2026-10-01T12:00:00",
-   "last_price": 4180.591,
+   "bars_held": 17,
+   "last_bar": "2026-10-01T13:00:00",
+   "last_price": 4165.1298,
    "missed": false,
    "pip": 0.1,
    "sl_pips": 841.2822825551638,
-   "pips_to_sl": 1082.5904825551652,
-   "pnl_pips": 241.30820000000313,
-   "last_wpr": -32.795619789105736,
+   "pips_to_sl": 927.9784825551587,
+   "pnl_pips": 86.69619999999668,
+   "last_wpr": -39.17524735259805,
    "deadline": "2026-10-06T20:00:00",
    "warned": [
     "wpr"
    ],
    "rebuilt": false,
-   "mark": 4180.591,
-   "mark_time": "2026-10-01T13:00:00"
+   "mark": 4165.1298,
+   "mark_time": "2026-10-01T14:00:00"
   },
   {
    "id": "H1_CADCHF_Long|2026-09-30T21:00:00",
@@ -428,20 +363,20 @@
    "risk": 0.3,
    "spread": 0.0383,
    "max_hold": 96,
-   "bars_held": 15,
-   "last_bar": "2026-10-01T12:00:00",
-   "last_price": 0.58654,
+   "bars_held": 16,
+   "last_bar": "2026-10-01T13:00:00",
+   "last_price": 0.58537,
    "missed": false,
    "pip": 0.0001,
    "sl_pips": 42.88569166033916,
-   "pips_to_sl": 37.58569166033898,
-   "pnl_pips": -5.3000000000003045,
-   "last_wpr": -57.78740648692215,
+   "pips_to_sl": 25.88569166033894,
+   "pnl_pips": -17.000000000000348,
+   "last_wpr": -71.19601933565286,
    "deadline": "2026-10-06T21:00:00",
    "warned": [],
    "rebuilt": false,
-   "mark": 0.58654,
-   "mark_time": "2026-10-01T13:00:00"
+   "mark": 0.58537,
+   "mark_time": "2026-10-01T14:00:00"
   },
   {
    "id": "H4DOM_GBPAUD_Short|2026-09-30T20:00:00",
@@ -490,20 +425,22 @@
    "risk": 0.3,
    "spread": 0.0189,
    "max_hold": 96,
-   "bars_held": 12,
-   "last_bar": "2026-10-01T12:00:00",
-   "last_price": 0.69499,
+   "bars_held": 13,
+   "last_bar": "2026-10-01T13:00:00",
+   "last_price": 0.69522,
    "missed": false,
    "pip": 0.0001,
    "sl_pips": 85.61717994718005,
-   "pips_to_sl": 90.71717994718064,
-   "pnl_pips": 5.1000000000001044,
-   "last_wpr": -38.3211110248566,
+   "pips_to_sl": 93.01717994718017,
+   "pnl_pips": 7.399999999999629,
+   "last_wpr": -31.481750784248916,
    "deadline": "2026-10-07T00:00:00",
-   "warned": [],
+   "warned": [
+    "wpr"
+   ],
    "rebuilt": false,
-   "mark": 0.69499,
-   "mark_time": "2026-10-01T13:00:00"
+   "mark": 0.69522,
+   "mark_time": "2026-10-01T14:00:00"
   },
   {
    "id": "H4DOM_GBPAUD_Short|2026-10-01T00:00:00",
@@ -584,20 +521,20 @@
    "size_factor": 1.0,
    "spread": 0.0198,
    "max_hold": 96,
-   "bars_held": 0,
-   "last_bar": "2026-10-01T12:00:00",
-   "last_price": 1.62399,
+   "bars_held": 1,
+   "last_bar": "2026-10-01T13:00:00",
+   "last_price": 1.62482,
    "missed": false,
    "pip": 0.0001,
    "sl_pips": 158.2824358948502,
-   "pips_to_sl": 158.2824358948502,
-   "pnl_pips": 0.0,
-   "last_wpr": -87.30986266831718,
+   "pips_to_sl": 166.58243589484866,
+   "pnl_pips": 8.299999999998864,
+   "last_wpr": -85.62875069808076,
    "deadline": "2026-10-07T12:00:00",
    "warned": [],
    "rebuilt": false,
-   "mark": 1.62399,
-   "mark_time": "2026-10-01T13:00:00"
+   "mark": 1.62482,
+   "mark_time": "2026-10-01T14:00:00"
   },
   {
    "id": "H1_EURCHF_Long|2026-10-01T12:00:00",
@@ -616,20 +553,20 @@
    "size_factor": 1.0,
    "spread": 0.0175,
    "max_hold": 96,
-   "bars_held": 0,
-   "last_bar": "2026-10-01T12:00:00",
-   "last_price": 0.94295,
+   "bars_held": 1,
+   "last_bar": "2026-10-01T13:00:00",
+   "last_price": 0.94139,
    "missed": false,
    "pip": 0.0001,
    "sl_pips": 73.42410551978257,
-   "pips_to_sl": 73.42410551978257,
-   "pnl_pips": 0.0,
-   "last_wpr": -74.24916565135895,
+   "pips_to_sl": 57.82410551978256,
+   "pnl_pips": -15.600000000000058,
+   "last_wpr": -82.68484810682325,
    "deadline": "2026-10-07T12:00:00",
    "warned": [],
    "rebuilt": false,
-   "mark": 0.94295,
-   "mark_time": "2026-10-01T13:00:00"
+   "mark": 0.94139,
+   "mark_time": "2026-10-01T14:00:00"
   }
  ],
  "closed": [
@@ -3944,33 +3881,88 @@
    "pnl_pct": 0.010026335291941978,
    "r": 0.017373543147804267,
    "ret": 5.21206294434128e-05
+  },
+  {
+   "id": "H1_EURCHF_Short|2026-09-28T12:00:00",
+   "leg": "H1_EURCHF_Short",
+   "tier": "H1",
+   "tf": "1h",
+   "pair": "EURCHF",
+   "direction": "Short",
+   "entry_bar": "2026-09-28T12:00:00",
+   "entry_time": "2026-09-28T13:00:00",
+   "entry_date_vn": "2026-09-28",
+   "entry_price": 0.94593,
+   "sl_price": 0.9508700541920629,
+   "sl_pct": 0.5222431038304041,
+   "risk": 0.3,
+   "spread": 0.0175,
+   "max_hold": 96,
+   "bars_held": 73,
+   "last_bar": "2026-10-01T13:00:00",
+   "last_price": 0.94139,
+   "missed": false,
+   "pip": 0.0001,
+   "sl_pips": 49.40054192062941,
+   "pips_to_sl": 79.20054192062986,
+   "pnl_pips": 45.40000000000099,
+   "last_wpr": -82.68484810682325,
+   "deadline": "2026-10-02T13:00:00",
+   "warned": [
+    "wpr"
+   ],
+   "rebuilt": true,
+   "mark": 0.94295,
+   "mark_time": "2026-10-01T13:00:00",
+   "exit_price": 0.94139,
+   "exit_reason": "WPR",
+   "exit_time": "2026-10-01T14:00:00",
+   "exit_date_vn": "2026-10-01",
+   "pnl_pct": 0.46245094774455814,
+   "r": 0.8855089600086646,
+   "ret": 0.002656526880025994
+  },
+  {
+   "id": "H1_EURCHF_Short|2026-09-30T12:00:00",
+   "leg": "H1_EURCHF_Short",
+   "tier": "H1",
+   "tf": "1h",
+   "pair": "EURCHF",
+   "direction": "Short",
+   "entry_bar": "2026-09-30T12:00:00",
+   "entry_time": "2026-09-30T13:00:00",
+   "entry_date_vn": "2026-09-30",
+   "entry_price": 0.94746,
+   "sl_price": 0.9526324001092664,
+   "sl_pct": 0.5459227945524263,
+   "risk": 0.3,
+   "spread": 0.0175,
+   "max_hold": 96,
+   "bars_held": 25,
+   "last_bar": "2026-10-01T13:00:00",
+   "last_price": 0.94139,
+   "missed": false,
+   "pip": 0.0001,
+   "sl_pips": 51.724001092664174,
+   "pips_to_sl": 96.82400109266464,
+   "pnl_pips": 60.700000000000195,
+   "last_wpr": -82.68484810682325,
+   "deadline": "2026-10-06T12:00:00",
+   "warned": [
+    "wpr"
+   ],
+   "mark": 0.94295,
+   "mark_time": "2026-10-01T13:00:00",
+   "exit_price": 0.94139,
+   "exit_reason": "WPR",
+   "exit_time": "2026-10-01T14:00:00",
+   "exit_date_vn": "2026-10-01",
+   "pnl_pct": 0.6231602917273574,
+   "r": 1.1414806231680692,
+   "ret": 0.0034244418695042076
   }
  ],
  "events": [
-  {
-   "time": "2026-09-30T13:24:00",
-   "text": "⚠️ Tín hiệu cũ (nến đóng 16/09 15:00, bot bị gián đoạn) — chỉ để theo dõi | 🔴 VÀO · USDCHF SHORT · 4H-Thứ | Vào   0.81857 | SL    0.82821  (96.4 pip) | Chốt  WPR < -80 (đang -24) | Hạn   22/09 15:00 · 24 nến | Đặt SL trên sàn ngay khi vào lệnh."
-  },
-  {
-   "time": "2026-09-30T13:24:00",
-   "text": "⚠️ Tín hiệu cũ (nến đóng 16/09 19:00, bot bị gián đoạn) — chỉ để theo dõi | 🔴 VÀO · USDCHF SHORT · 4H-Thứ | Vào   0.81895 | SL    0.82841  (94.6 pip) | Chốt  WPR < -80 (đang -24) | Hạn   22/09 19:00 · 24 nến | Đặt SL trên sàn ngay khi vào lệnh."
-  },
-  {
-   "time": "2026-09-30T13:24:00",
-   "text": "⚠️ Tín hiệu cũ (nến đóng 16/09 23:00, bot bị gián đoạn) — chỉ để theo dõi | 🔴 VÀO · USDCHF SHORT · 4H-Thứ | Vào   0.81912 | SL    0.82842  (93.0 pip) | Chốt  WPR < -80 (đang -22) | Hạn   22/09 23:00 · 24 nến | Đặt SL trên sàn ngay khi vào lệnh."
-  },
-  {
-   "time": "2026-09-30T13:24:00",
-   "text": "⚠️ Tín hiệu cũ (nến đóng 17/09 03:00, bot bị gián đoạn) — chỉ để theo dõi | 🔴 VÀO · USDCHF SHORT · 4H-Thứ | Vào   0.82487 | SL    0.83670  (118.3 pip) | Chốt  WPR < -80 (đang -18) | Hạn   23/09 03:00 · 24 nến | Đặt SL trên sàn ngay khi vào lệnh."
-  },
-  {
-   "time": "2026-09-30T13:24:00",
-   "text": "⚠️ Tín hiệu cũ (nến đóng 23/09 19:00, bot bị gián đoạn) — chỉ để theo dõi | 🔴 VÀO · USDCHF SHORT · 4H-Thứ | Vào   0.82289 | SL    0.83386  (109.7 pip) | Chốt  WPR < -80 (đang -38) | Hạn   29/09 19:00 · 24 nến | Đặt SL trên sàn ngay khi vào lệnh."
-  },
-  {
-   "time": "2026-09-30T13:24:00",
-   "text": "⚠️ Tín hiệu cũ (nến đóng 23/09 23:00, bot bị gián đoạn) — chỉ để theo dõi | 🔴 VÀO · USDCHF SHORT · 4H-Thứ | Vào   0.82502 | SL    0.83642  (114.0 pip) | Chốt  WPR < -80 (đang -27) | Hạn   29/09 23:00 · 24 nến | Đặt SL trên sàn ngay khi vào lệnh."
-  },
   {
    "time": "2026-09-30T13:24:00",
    "text": "⚠️ Tín hiệu cũ (nến đóng 24/09 03:00, bot bị gián đoạn) — chỉ để theo dõi | 🔴 VÀO · USDCHF SHORT · 4H-Thứ | Vào   0.82476 | SL    0.83644  (116.8 pip) | Chốt  WPR < -80 (đang -24) | Hạn   30/09 03:00 · 24 nến | Đặt SL trên sàn ngay khi vào lệnh."
@@ -4266,6 +4258,30 @@
   {
    "time": "2026-10-01T13:25:00",
    "text": "Lỗi cập nhật giá XAUUSD: Chuoi XAUUSD/1h qua ngan (12 nen)"
+  },
+  {
+   "time": "2026-10-01T14:01:00",
+   "text": "⏳ SẮP CHỐT · AUDUSD LONG · H1 | WPR H1 đang -31.5, chốt khi WPR vượt -20 (có thể ngay nến H1 kế tiếp) | Tạm tính +7.4 pip"
+  },
+  {
+   "time": "2026-10-01T14:01:00",
+   "text": "✅ ĐÃ CHỐT · EURCHF SHORT · H1 | +45.4 pip  (+0.89R) | Lý do: WPR xuống dưới -80 | 0.94593 → 0.94139 · giữ 73 nến H1 | Lệnh có từ trước khi bot chạy"
+  },
+  {
+   "time": "2026-10-01T14:01:00",
+   "text": "✅ ĐÃ CHỐT · EURCHF SHORT · H1 | +60.7 pip  (+1.14R) | Lý do: WPR xuống dưới -80 | 0.94746 → 0.94139 · giữ 25 nến H1"
+  },
+  {
+   "time": "2026-10-01T14:01:00",
+   "text": "Lỗi cập nhật giá GBPAUD: Chuoi GBPAUD/1h qua ngan (12 nen)"
+  },
+  {
+   "time": "2026-10-01T14:01:00",
+   "text": "Lỗi cập nhật giá USDCAD: Chuoi USDCAD/1h qua ngan (12 nen)"
+  },
+  {
+   "time": "2026-10-01T14:01:00",
+   "text": "Lỗi cập nhật giá USDCHF: Chuoi USDCHF/1h qua ngan (12 nen)"
   }
  ],
  "leg_checked": {
@@ -4274,24 +4290,24 @@
   "H4DOM_AUDCHF_Short": "2026-09-30T08:00:00",
   "H1_AUDJPY_Long": "2026-10-01T09:00:00",
   "H4DOM_AUDJPY_Long": "2026-09-30T08:00:00",
-  "H1_AUDUSD_Long": "2026-10-01T12:00:00",
-  "H1_AUDUSD_Short": "2026-10-01T12:00:00",
+  "H1_AUDUSD_Long": "2026-10-01T13:00:00",
+  "H1_AUDUSD_Short": "2026-10-01T13:00:00",
   "H4DOW_AUDUSD_Long": "2026-10-01T08:00:00",
   "H4DOM_AUDUSD_Long": "2026-10-01T08:00:00",
   "H4DOM_AUDUSD_Short": "2026-10-01T08:00:00",
   "H4DOW_BTCUSD_Long": "2026-09-30T08:00:00",
   "H4DOM_BTCUSD_Short": "2026-09-30T08:00:00",
-  "H1_CADCHF_Long": "2026-10-01T12:00:00",
-  "H1_CADCHF_Short": "2026-10-01T12:00:00",
+  "H1_CADCHF_Long": "2026-10-01T13:00:00",
+  "H1_CADCHF_Short": "2026-10-01T13:00:00",
   "H4DOW_CADCHF_Short": "2026-10-01T08:00:00",
   "H4DOM_CADCHF_Short": "2026-10-01T08:00:00",
   "H1_CHFJPY_Long": "2026-09-30T21:00:00",
-  "H1_EURAUD_Long": "2026-10-01T12:00:00",
+  "H1_EURAUD_Long": "2026-10-01T13:00:00",
   "H4DOM_EURAUD_Long": "2026-09-30T08:00:00",
   "H4DOM_EURAUD_Short": "2026-09-30T08:00:00",
   "H1_EURCAD_Long": "2026-09-30T20:00:00",
-  "H1_EURCHF_Long": "2026-10-01T12:00:00",
-  "H1_EURCHF_Short": "2026-10-01T12:00:00",
+  "H1_EURCHF_Long": "2026-10-01T13:00:00",
+  "H1_EURCHF_Short": "2026-10-01T13:00:00",
   "H1_EURGBP_Short": "2026-10-01T00:00:00",
   "H4DOW_EURGBP_Long": "2026-10-01T08:00:00",
   "H4DOW_EURGBP_Short": "2026-10-01T08:00:00",
@@ -4308,8 +4324,8 @@
   "H4DOM_EURUSD_Long": "2026-10-01T08:00:00",
   "H4DOM_GBPAUD_Long": "2026-10-01T08:00:00",
   "H4DOM_GBPAUD_Short": "2026-10-01T08:00:00",
-  "H1_GBPCHF_Long": "2026-10-01T12:00:00",
-  "H1_GBPCHF_Short": "2026-10-01T12:00:00",
+  "H1_GBPCHF_Long": "2026-10-01T13:00:00",
+  "H1_GBPCHF_Short": "2026-10-01T13:00:00",
   "H4DOW_GBPCHF_Long": "2026-09-30T08:00:00",
   "H1_GBPJPY_Long": "2026-10-01T05:00:00",
   "H4DOW_GBPJPY_Short": "2026-09-30T12:00:00",
@@ -4328,23 +4344,23 @@
   "H4DOM_USDCHF_Short": "2026-10-01T08:00:00",
   "H1_USDJPY_Long": "2026-10-01T04:00:00",
   "H4DOM_USDJPY_Long": "2026-09-30T08:00:00",
-  "H1_XAUUSD_Long": "2026-10-01T12:00:00"
+  "H1_XAUUSD_Long": "2026-10-01T13:00:00"
  },
  "pair_next_due": {
   "AUDCAD|4h": "2026-09-30T16:00:00",
   "AUDCHF|4h": "2026-09-30T16:00:00",
   "AUDJPY|1h": "2026-10-01T11:00:00",
   "AUDJPY|4h": "2026-09-30T16:00:00",
-  "AUDUSD|1h": "2026-10-01T14:00:00",
+  "AUDUSD|1h": "2026-10-01T15:00:00",
   "AUDUSD|4h": "2026-10-01T16:00:00",
   "BTCUSD|4h": "2026-09-30T16:00:00",
-  "CADCHF|1h": "2026-10-01T14:00:00",
+  "CADCHF|1h": "2026-10-01T15:00:00",
   "CADCHF|4h": "2026-10-01T16:00:00",
   "CHFJPY|1h": "2026-09-30T23:00:00",
-  "EURAUD|1h": "2026-10-01T14:00:00",
+  "EURAUD|1h": "2026-10-01T15:00:00",
   "EURAUD|4h": "2026-09-30T16:00:00",
   "EURCAD|1h": "2026-09-30T22:00:00",
-  "EURCHF|1h": "2026-10-01T14:00:00",
+  "EURCHF|1h": "2026-10-01T15:00:00",
   "EURGBP|1h": "2026-10-01T02:00:00",
   "EURGBP|4h": "2026-10-01T16:00:00",
   "EURJPY|1h": "2026-10-01T07:00:00",
@@ -4353,7 +4369,7 @@
   "EURUSD|1h": "2026-10-01T10:00:00",
   "EURUSD|4h": "2026-10-01T16:00:00",
   "GBPAUD|4h": "2026-10-01T16:00:00",
-  "GBPCHF|1h": "2026-10-01T14:00:00",
+  "GBPCHF|1h": "2026-10-01T15:00:00",
   "GBPCHF|4h": "2026-09-30T16:00:00",
   "GBPJPY|1h": "2026-10-01T07:00:00",
   "GBPJPY|4h": "2026-09-30T20:00:00",
@@ -4367,7 +4383,7 @@
   "USDCHF|4h": "2026-10-01T16:00:00",
   "USDJPY|1h": "2026-10-01T06:00:00",
   "USDJPY|4h": "2026-09-30T16:00:00",
-  "XAUUSD|1h": "2026-10-01T14:00:00"
+  "XAUUSD|1h": "2026-10-01T15:00:00"
  },
  "pause_until": null,
  "last_cb_date": "2026-09-30",
@@ -4379,7 +4395,7 @@
   }
  ],
  "last_summary_date": "2026-10-01",
- "last_run": "2026-10-01T13:25:00",
+ "last_run": "2026-10-01T14:01:00",
  "boot_done": true,
  "quota_alert_date": null,
  "legs": [
@@ -5284,10 +5300,17 @@
    "spread": 0.0054
   }
  ],
- "floating_now": -0.151,
- "last_fetch": [],
+ "floating_now": -0.672,
+ "last_fetch": [
+  "EURCHF|1h",
+  "GBPCHF|1h",
+  "XAUUSD|1h",
+  "CADCHF|1h",
+  "AUDUSD|1h",
+  "EURAUD|1h"
+ ],
  "boot_fix_v2": true,
- "realized": -0.006044220317744895,
- "floating_sel": -0.151,
+ "realized": 3.6748431785306804e-05,
+ "floating_sel": -0.672,
  "float_close_pct": 3.0
 }

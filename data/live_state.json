@@ -4213,38 +4213,6 @@
  ],
  "events": [
   {
-   "time": "2026-10-01T13:25:00",
-   "text": "Lỗi cập nhật giá EURAUD: Chuoi EURAUD/1h qua ngan (12 nen)"
-  },
-  {
-   "time": "2026-10-01T13:25:00",
-   "text": "Lỗi cập nhật giá EURCHF: Chuoi EURCHF/1h qua ngan (12 nen)"
-  },
-  {
-   "time": "2026-10-01T13:25:00",
-   "text": "Lỗi cập nhật giá GBPAUD: Chuoi GBPAUD/1h qua ngan (12 nen)"
-  },
-  {
-   "time": "2026-10-01T13:25:00",
-   "text": "Lỗi cập nhật giá GBPCHF: Chuoi GBPCHF/1h qua ngan (12 nen)"
-  },
-  {
-   "time": "2026-10-01T13:25:00",
-   "text": "Lỗi cập nhật giá USDCAD: Chuoi USDCAD/1h qua ngan (12 nen)"
-  },
-  {
-   "time": "2026-10-01T13:25:00",
-   "text": "Lỗi cập nhật giá USDCHF: Chuoi USDCHF/1h qua ngan (12 nen)"
-  },
-  {
-   "time": "2026-10-01T13:25:00",
-   "text": "Lỗi cập nhật giá XAUUSD: Chuoi XAUUSD/1h qua ngan (12 nen)"
-  },
-  {
-   "time": "2026-10-01T14:01:00",
-   "text": "⏳ SẮP CHỐT · AUDUSD LONG · H1 | WPR H1 đang -31.5, chốt khi WPR vượt -20 (có thể ngay nến H1 kế tiếp) | Tạm tính +7.4 pip"
-  },
-  {
    "time": "2026-10-01T14:01:00",
    "text": "✅ ĐÃ CHỐT · EURCHF SHORT · H1 | +45.4 pip  (+0.89R) | Lý do: WPR xuống dưới -80 | 0.94593 → 0.94139 · giữ 73 nến H1 | Lệnh có từ trước khi bot chạy"
   },
@@ -4531,6 +4499,38 @@
   {
    "time": "2026-10-02T05:01:00",
    "text": "Lỗi cập nhật giá USDCAD: Chuoi USDCAD/1h qua ngan (12 nen)"
+  },
+  {
+   "time": "2026-10-02T05:45:00",
+   "text": "Lỗi cập nhật giá AUDUSD: Chuoi AUDUSD/1h qua ngan (12 nen)"
+  },
+  {
+   "time": "2026-10-02T05:45:00",
+   "text": "Lỗi cập nhật giá EURAUD: Chuoi EURAUD/1h qua ngan (12 nen)"
+  },
+  {
+   "time": "2026-10-02T05:45:00",
+   "text": "Lỗi cập nhật giá EURCAD: Chuoi EURCAD/1h qua ngan (12 nen)"
+  },
+  {
+   "time": "2026-10-02T05:45:00",
+   "text": "Lỗi cập nhật giá EURNZD: Chuoi EURNZD/1h qua ngan (12 nen)"
+  },
+  {
+   "time": "2026-10-02T05:45:00",
+   "text": "Lỗi cập nhật giá GBPAUD: Chuoi GBPAUD/1h qua ngan (12 nen)"
+  },
+  {
+   "time": "2026-10-02T05:45:00",
+   "text": "Lỗi cập nhật giá GBPCHF: Chuoi GBPCHF/1h qua ngan (12 nen)"
+  },
+  {
+   "time": "2026-10-02T05:45:00",
+   "text": "Lỗi cập nhật giá USDCAD: Chuoi USDCAD/1h qua ngan (12 nen)"
+  },
+  {
+   "time": "2026-10-02T05:45:00",
+   "text": "Lỗi cập nhật giá XAUUSD: Chuoi XAUUSD/1h qua ngan (12 nen)"
   }
  ],
  "leg_checked": {
@@ -4650,7 +4650,7 @@
   }
  ],
  "last_summary_date": "2026-10-02",
- "last_run": "2026-10-02T05:01:00",
+ "last_run": "2026-10-02T05:45:00",
  "boot_done": true,
  "quota_alert_date": null,
  "legs": [
@@ -5556,15 +5556,7 @@
   }
  ],
  "floating_now": 1.163,
- "last_fetch": [
-  "USDJPY|1h",
-  "XAUUSD|1h",
-  "AUDUSD|1h",
-  "EURAUD|1h",
-  "GBPCHF|1h",
-  "EURCAD|1h",
-  "EURNZD|1h"
- ],
+ "last_fetch": [],
  "boot_fix_v2": true,
  "realized": -0.004914801729682354,
  "floating_sel": 1.163,

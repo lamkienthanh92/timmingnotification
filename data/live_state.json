@@ -245,22 +245,22 @@
    "risk": 0.3,
    "spread": 0.0005,
    "max_hold": 96,
-   "bars_held": 29,
-   "last_bar": "2026-10-02T01:00:00",
-   "last_price": 4151.72174,
+   "bars_held": 30,
+   "last_bar": "2026-10-02T02:00:00",
+   "last_price": 4165.3851,
    "missed": false,
    "pip": 0.1,
    "sl_pips": 841.2822825551638,
-   "pips_to_sl": 793.8978825551612,
-   "pnl_pips": -47.384400000000824,
-   "last_wpr": -50.5156599989532,
+   "pips_to_sl": 930.5314825551659,
+   "pnl_pips": 89.24920000000384,
+   "last_wpr": -46.02042224315338,
    "deadline": "2026-10-06T20:00:00",
    "warned": [
     "wpr"
    ],
    "rebuilt": false,
-   "mark": 4151.72174,
-   "mark_time": "2026-10-02T02:00:00"
+   "mark": 4165.3851,
+   "mark_time": "2026-10-02T03:00:00"
   },
   {
    "id": "H4DOM_GBPAUD_Short|2026-09-30T20:00:00",
@@ -309,22 +309,22 @@
    "risk": 0.3,
    "spread": 0.0189,
    "max_hold": 96,
-   "bars_held": 25,
-   "last_bar": "2026-10-02T01:00:00",
-   "last_price": 0.69191,
+   "bars_held": 26,
+   "last_bar": "2026-10-02T02:00:00",
+   "last_price": 0.69263,
    "missed": false,
    "pip": 0.0001,
    "sl_pips": 85.61717994718005,
-   "pips_to_sl": 59.91717994718093,
-   "pnl_pips": -25.699999999999612,
-   "last_wpr": -64.63495537602144,
+   "pips_to_sl": 67.11717994718036,
+   "pnl_pips": -18.50000000000018,
+   "last_wpr": -61.80581724521702,
    "deadline": "2026-10-07T00:00:00",
    "warned": [
     "wpr"
    ],
    "rebuilt": false,
-   "mark": 0.69191,
-   "mark_time": "2026-10-02T02:00:00"
+   "mark": 0.69263,
+   "mark_time": "2026-10-02T03:00:00"
   },
   {
    "id": "H4DOM_GBPAUD_Short|2026-10-01T00:00:00",
@@ -405,20 +405,20 @@
    "size_factor": 1.0,
    "spread": 0.0198,
    "max_hold": 96,
-   "bars_held": 13,
-   "last_bar": "2026-10-02T01:00:00",
-   "last_price": 1.62392,
+   "bars_held": 14,
+   "last_bar": "2026-10-02T02:00:00",
+   "last_price": 1.62334,
    "missed": false,
    "pip": 0.0001,
    "sl_pips": 158.2824358948502,
-   "pips_to_sl": 157.58243589484965,
-   "pnl_pips": -0.700000000000145,
-   "last_wpr": -64.84530900439542,
+   "pips_to_sl": 151.7824358948494,
+   "pnl_pips": -6.500000000000394,
+   "last_wpr": -64.68437907000609,
    "deadline": "2026-10-07T12:00:00",
    "warned": [],
    "rebuilt": false,
-   "mark": 1.62392,
-   "mark_time": "2026-10-02T02:00:00"
+   "mark": 1.62334,
+   "mark_time": "2026-10-02T03:00:00"
   },
   {
    "id": "H4DOM_GBPAUD_Short|2026-10-01T12:00:00",
@@ -469,20 +469,20 @@
    "size_factor": 1.0,
    "spread": 0.0267,
    "max_hold": 96,
-   "bars_held": 7,
-   "last_bar": "2026-10-02T01:00:00",
-   "last_price": 1.09758,
+   "bars_held": 8,
+   "last_bar": "2026-10-02T02:00:00",
+   "last_price": 1.09693,
    "missed": false,
    "pip": 0.0001,
    "sl_pips": 128.281386264913,
-   "pips_to_sl": 134.98138626491183,
-   "pnl_pips": 6.699999999999484,
-   "last_wpr": -86.2339894037946,
+   "pips_to_sl": 128.48138626491146,
+   "pnl_pips": 0.1999999999990898,
+   "last_wpr": -85.64747477450052,
    "deadline": "2026-10-07T18:00:00",
    "warned": [],
    "rebuilt": false,
-   "mark": 1.09758,
-   "mark_time": "2026-10-02T02:00:00"
+   "mark": 1.09693,
+   "mark_time": "2026-10-02T03:00:00"
   },
   {
    "id": "H1_EURCAD_Long|2026-10-01T20:00:00",
@@ -501,20 +501,20 @@
    "size_factor": 1.0,
    "spread": 0.0178,
    "max_hold": 96,
-   "bars_held": 5,
-   "last_bar": "2026-10-02T01:00:00",
-   "last_price": 1.5989,
+   "bars_held": 6,
+   "last_bar": "2026-10-02T02:00:00",
+   "last_price": 1.59891,
    "missed": false,
    "pip": 0.0001,
    "sl_pips": 167.6008566977672,
-   "pips_to_sl": 167.7008566977678,
-   "pnl_pips": 0.10000000000065512,
-   "last_wpr": -92.45256368008421,
+   "pips_to_sl": 167.80085669776844,
+   "pnl_pips": 0.20000000000131024,
+   "last_wpr": -91.9870881241787,
    "deadline": "2026-10-07T20:00:00",
    "warned": [],
    "rebuilt": false,
-   "mark": 1.5989,
-   "mark_time": "2026-10-02T02:00:00"
+   "mark": 1.59891,
+   "mark_time": "2026-10-02T03:00:00"
   },
   {
    "id": "H1_EURNZD_Long|2026-10-01T20:00:00",
@@ -533,20 +533,20 @@
    "size_factor": 1.0,
    "spread": 0.0253,
    "max_hold": 96,
-   "bars_held": 5,
-   "last_bar": "2026-10-02T01:00:00",
-   "last_price": 2.00778,
+   "bars_held": 6,
+   "last_bar": "2026-10-02T02:00:00",
+   "last_price": 2.00639,
    "missed": false,
    "pip": 0.0001,
    "sl_pips": 163.01192415654452,
-   "pips_to_sl": 181.811924156543,
-   "pnl_pips": 18.799999999998818,
-   "last_wpr": -53.110875958569046,
+   "pips_to_sl": 167.9119241565452,
+   "pnl_pips": 4.900000000001015,
+   "last_wpr": -55.18608160271051,
    "deadline": "2026-10-07T20:00:00",
    "warned": [],
    "rebuilt": false,
-   "mark": 2.00778,
-   "mark_time": "2026-10-02T02:00:00"
+   "mark": 2.00639,
+   "mark_time": "2026-10-02T03:00:00"
   },
   {
    "id": "H1_AUDUSD_Long|2026-10-02T00:00:00",
@@ -565,20 +565,20 @@
    "size_factor": 1.0,
    "spread": 0.0189,
    "max_hold": 96,
-   "bars_held": 1,
-   "last_bar": "2026-10-02T01:00:00",
-   "last_price": 0.69191,
+   "bars_held": 2,
+   "last_bar": "2026-10-02T02:00:00",
+   "last_price": 0.69263,
    "missed": false,
    "pip": 0.0001,
    "sl_pips": 106.2009631501404,
-   "pips_to_sl": 105.40096315014068,
-   "pnl_pips": -0.7999999999996898,
-   "last_wpr": -64.63495537602144,
+   "pips_to_sl": 112.60096315014012,
+   "pnl_pips": 6.399999999999739,
+   "last_wpr": -61.80581724521702,
    "deadline": "2026-10-08T00:00:00",
    "warned": [],
    "rebuilt": false,
-   "mark": 0.69191,
-   "mark_time": "2026-10-02T02:00:00"
+   "mark": 0.69263,
+   "mark_time": "2026-10-02T03:00:00"
   }
  ],
  "closed": [
@@ -4171,18 +4171,6 @@
  ],
  "events": [
   {
-   "time": "2026-10-01T11:01:00",
-   "text": "Lỗi cập nhật giá GBPAUD: Chuoi GBPAUD/1h qua ngan (12 nen)"
-  },
-  {
-   "time": "2026-10-01T11:01:00",
-   "text": "Lỗi cập nhật giá USDCAD: Chuoi USDCAD/1h qua ngan (12 nen)"
-  },
-  {
-   "time": "2026-10-01T11:01:00",
-   "text": "Lỗi cập nhật giá USDCHF: Chuoi USDCHF/1h qua ngan (12 nen)"
-  },
-  {
    "time": "2026-10-01T12:01:00",
    "text": "✅ ĐÃ CHỐT · EURCHF SHORT · H1 | +2.6 pip  (+0.02R) | Lý do: hết 96 nến H1 | 0.94455 → 0.94429 · giữ 96 nến H1 | Lệnh có từ trước khi bot chạy"
   },
@@ -4489,6 +4477,18 @@
   {
    "time": "2026-10-02T02:01:00",
    "text": "Lỗi cập nhật giá USDCHF: Chuoi USDCHF/1h qua ngan (12 nen)"
+  },
+  {
+   "time": "2026-10-02T03:01:00",
+   "text": "Lỗi cập nhật giá GBPAUD: Chuoi GBPAUD/1h qua ngan (12 nen)"
+  },
+  {
+   "time": "2026-10-02T03:01:00",
+   "text": "Lỗi cập nhật giá USDCAD: Chuoi USDCAD/1h qua ngan (12 nen)"
+  },
+  {
+   "time": "2026-10-02T03:01:00",
+   "text": "Lỗi cập nhật giá USDCHF: Chuoi USDCHF/1h qua ngan (12 nen)"
   }
  ],
  "leg_checked": {
@@ -4497,8 +4497,8 @@
   "H4DOM_AUDCHF_Short": "2026-09-30T08:00:00",
   "H1_AUDJPY_Long": "2026-10-01T09:00:00",
   "H4DOM_AUDJPY_Long": "2026-09-30T08:00:00",
-  "H1_AUDUSD_Long": "2026-10-02T01:00:00",
-  "H1_AUDUSD_Short": "2026-10-02T01:00:00",
+  "H1_AUDUSD_Long": "2026-10-02T02:00:00",
+  "H1_AUDUSD_Short": "2026-10-02T02:00:00",
   "H4DOW_AUDUSD_Long": "2026-10-01T12:00:00",
   "H4DOM_AUDUSD_Long": "2026-10-01T12:00:00",
   "H4DOM_AUDUSD_Short": "2026-10-01T12:00:00",
@@ -4509,10 +4509,10 @@
   "H4DOW_CADCHF_Short": "2026-10-01T12:00:00",
   "H4DOM_CADCHF_Short": "2026-10-01T12:00:00",
   "H1_CHFJPY_Long": "2026-10-01T21:00:00",
-  "H1_EURAUD_Long": "2026-10-02T01:00:00",
+  "H1_EURAUD_Long": "2026-10-02T02:00:00",
   "H4DOM_EURAUD_Long": "2026-09-30T08:00:00",
   "H4DOM_EURAUD_Short": "2026-09-30T08:00:00",
-  "H1_EURCAD_Long": "2026-10-02T01:00:00",
+  "H1_EURCAD_Long": "2026-10-02T02:00:00",
   "H1_EURCHF_Long": "2026-10-01T14:00:00",
   "H1_EURCHF_Short": "2026-10-01T14:00:00",
   "H1_EURGBP_Short": "2026-10-02T00:00:00",
@@ -4523,7 +4523,7 @@
   "H1_EURJPY_Long": "2026-10-01T05:00:00",
   "H4DOW_EURJPY_Long": "2026-10-01T12:00:00",
   "H4DOM_EURJPY_Long": "2026-10-01T12:00:00",
-  "H1_EURNZD_Long": "2026-10-02T01:00:00",
+  "H1_EURNZD_Long": "2026-10-02T02:00:00",
   "H1_EURUSD_Long": "2026-10-01T08:00:00",
   "H1_EURUSD_Short": "2026-10-01T08:00:00",
   "H4DOW_EURUSD_Long": "2026-10-01T20:00:00",
@@ -4531,8 +4531,8 @@
   "H4DOM_EURUSD_Long": "2026-10-01T20:00:00",
   "H4DOM_GBPAUD_Long": "2026-10-01T20:00:00",
   "H4DOM_GBPAUD_Short": "2026-10-01T20:00:00",
-  "H1_GBPCHF_Long": "2026-10-02T01:00:00",
-  "H1_GBPCHF_Short": "2026-10-02T01:00:00",
+  "H1_GBPCHF_Long": "2026-10-02T02:00:00",
+  "H1_GBPCHF_Short": "2026-10-02T02:00:00",
   "H4DOW_GBPCHF_Long": "2026-09-30T08:00:00",
   "H1_GBPJPY_Long": "2026-10-01T05:00:00",
   "H4DOW_GBPJPY_Short": "2026-09-30T12:00:00",
@@ -4551,32 +4551,32 @@
   "H4DOM_USDCHF_Short": "2026-10-01T20:00:00",
   "H1_USDJPY_Long": "2026-10-01T04:00:00",
   "H4DOM_USDJPY_Long": "2026-10-01T20:00:00",
-  "H1_XAUUSD_Long": "2026-10-02T01:00:00"
+  "H1_XAUUSD_Long": "2026-10-02T02:00:00"
  },
  "pair_next_due": {
   "AUDCAD|4h": "2026-09-30T16:00:00",
   "AUDCHF|4h": "2026-09-30T16:00:00",
   "AUDJPY|1h": "2026-10-01T11:00:00",
   "AUDJPY|4h": "2026-09-30T16:00:00",
-  "AUDUSD|1h": "2026-10-02T03:00:00",
+  "AUDUSD|1h": "2026-10-02T04:00:00",
   "AUDUSD|4h": "2026-10-01T20:00:00",
   "BTCUSD|4h": "2026-10-02T04:00:00",
   "CADCHF|1h": "2026-10-01T23:00:00",
   "CADCHF|4h": "2026-10-01T20:00:00",
   "CHFJPY|1h": "2026-10-01T23:00:00",
-  "EURAUD|1h": "2026-10-02T03:00:00",
+  "EURAUD|1h": "2026-10-02T04:00:00",
   "EURAUD|4h": "2026-09-30T16:00:00",
-  "EURCAD|1h": "2026-10-02T03:00:00",
+  "EURCAD|1h": "2026-10-02T04:00:00",
   "EURCHF|1h": "2026-10-01T16:00:00",
   "EURGBP|1h": "2026-10-02T02:00:00",
   "EURGBP|4h": "2026-10-01T20:00:00",
   "EURJPY|1h": "2026-10-01T07:00:00",
   "EURJPY|4h": "2026-10-01T20:00:00",
-  "EURNZD|1h": "2026-10-02T03:00:00",
+  "EURNZD|1h": "2026-10-02T04:00:00",
   "EURUSD|1h": "2026-10-01T10:00:00",
   "EURUSD|4h": "2026-10-02T04:00:00",
   "GBPAUD|4h": "2026-10-02T04:00:00",
-  "GBPCHF|1h": "2026-10-02T03:00:00",
+  "GBPCHF|1h": "2026-10-02T04:00:00",
   "GBPCHF|4h": "2026-09-30T16:00:00",
   "GBPJPY|1h": "2026-10-01T07:00:00",
   "GBPJPY|4h": "2026-09-30T20:00:00",
@@ -4590,7 +4590,7 @@
   "USDCHF|4h": "2026-10-02T04:00:00",
   "USDJPY|1h": "2026-10-01T06:00:00",
   "USDJPY|4h": "2026-10-02T04:00:00",
-  "XAUUSD|1h": "2026-10-02T03:00:00"
+  "XAUUSD|1h": "2026-10-02T04:00:00"
  },
  "pause_until": null,
  "last_cb_date": "2026-10-01",
@@ -4608,7 +4608,7 @@
   }
  ],
  "last_summary_date": "2026-10-02",
- "last_run": "2026-10-02T02:01:00",
+ "last_run": "2026-10-02T03:01:00",
  "boot_done": true,
  "quota_alert_date": null,
  "legs": [
@@ -5513,7 +5513,7 @@
    "spread": 0.0054
   }
  ],
- "floating_now": 1.922,
+ "floating_now": 1.965,
  "last_fetch": [
   "XAUUSD|1h",
   "AUDUSD|1h",
@@ -5524,7 +5524,7 @@
  ],
  "boot_fix_v2": true,
  "realized": -0.018903720445218167,
- "floating_sel": 1.922,
+ "floating_sel": 1.965,
  "float_close_pct": 3.0,
  "equity": 1.00144,
  "equity_peak": 1.00144,

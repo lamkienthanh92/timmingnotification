@@ -4546,34 +4546,6 @@
  ],
  "events": [
   {
-   "time": "2026-10-03T03:01:00",
-   "text": "Lỗi cập nhật giá NZDCAD: Chuoi NZDCAD/1h qua ngan (12 nen)"
-  },
-  {
-   "time": "2026-10-03T03:01:00",
-   "text": "Lỗi cập nhật giá USDCAD: Chuoi USDCAD/1h qua ngan (12 nen)"
-  },
-  {
-   "time": "2026-10-03T03:01:00",
-   "text": "Lỗi cập nhật giá USDCHF: Chuoi USDCHF/1h qua ngan (12 nen)"
-  },
-  {
-   "time": "2026-10-03T05:01:00",
-   "text": "Lỗi cập nhật giá AUDCHF: Chuoi AUDCHF/1h qua ngan (12 nen)"
-  },
-  {
-   "time": "2026-10-03T05:01:00",
-   "text": "Lỗi cập nhật giá EURAUD: Chuoi EURAUD/1h qua ngan (12 nen)"
-  },
-  {
-   "time": "2026-10-03T05:01:00",
-   "text": "Lỗi cập nhật giá EURCHF: Chuoi EURCHF/1h qua ngan (12 nen)"
-  },
-  {
-   "time": "2026-10-03T05:01:00",
-   "text": "Lỗi cập nhật giá EURNZD: Chuoi EURNZD/1h qua ngan (12 nen)"
-  },
-  {
    "time": "2026-10-03T05:01:00",
    "text": "Lỗi cập nhật giá EURUSD: Chuoi EURUSD/1h qua ngan (12 nen)"
   },
@@ -4863,6 +4835,34 @@
   },
   {
    "time": "2026-10-03T11:44:00",
+   "text": "Lỗi cập nhật giá USDCHF: Chuoi USDCHF/1h qua ngan (12 nen)"
+  },
+  {
+   "time": "2026-10-03T13:01:00",
+   "text": "Lỗi cập nhật giá AUDCHF: Chuoi AUDCHF/1h qua ngan (12 nen)"
+  },
+  {
+   "time": "2026-10-03T13:01:00",
+   "text": "Lỗi cập nhật giá EURNZD: Chuoi EURNZD/1h qua ngan (12 nen)"
+  },
+  {
+   "time": "2026-10-03T13:01:00",
+   "text": "Lỗi cập nhật giá GBPAUD: Chuoi GBPAUD/1h qua ngan (12 nen)"
+  },
+  {
+   "time": "2026-10-03T13:01:00",
+   "text": "Lỗi cập nhật giá GBPCHF: Chuoi GBPCHF/1h qua ngan (12 nen)"
+  },
+  {
+   "time": "2026-10-03T13:01:00",
+   "text": "Lỗi cập nhật giá NZDCAD: Chuoi NZDCAD/1h qua ngan (12 nen)"
+  },
+  {
+   "time": "2026-10-03T13:01:00",
+   "text": "Lỗi cập nhật giá USDCAD: Chuoi USDCAD/1h qua ngan (12 nen)"
+  },
+  {
+   "time": "2026-10-03T13:01:00",
    "text": "Lỗi cập nhật giá USDCHF: Chuoi USDCHF/1h qua ngan (12 nen)"
   }
  ],
@@ -4884,12 +4884,12 @@
   "H4DOW_CADCHF_Short": "2026-10-01T12:00:00",
   "H4DOM_CADCHF_Short": "2026-10-01T12:00:00",
   "H1_CHFJPY_Long": "2026-10-02T21:00:00",
-  "H1_EURAUD_Long": "2026-10-02T21:00:00",
+  "H1_EURAUD_Long": "2026-10-03T12:00:00",
   "H4DOM_EURAUD_Long": "2026-09-30T08:00:00",
   "H4DOM_EURAUD_Short": "2026-09-30T08:00:00",
   "H1_EURCAD_Long": "2026-10-02T20:00:00",
-  "H1_EURCHF_Long": "2026-10-02T21:00:00",
-  "H1_EURCHF_Short": "2026-10-02T21:00:00",
+  "H1_EURCHF_Long": "2026-10-03T12:00:00",
+  "H1_EURCHF_Short": "2026-10-03T12:00:00",
   "H1_EURGBP_Short": "2026-10-03T00:00:00",
   "H4DOW_EURGBP_Long": "2026-10-01T12:00:00",
   "H4DOW_EURGBP_Short": "2026-10-01T12:00:00",
@@ -4911,7 +4911,7 @@
   "H4DOW_GBPCHF_Long": "2026-10-02T20:00:00",
   "H1_GBPJPY_Long": "2026-10-03T05:00:00",
   "H4DOW_GBPJPY_Short": "2026-09-30T12:00:00",
-  "H1_GBPUSD_Long": "2026-10-02T12:00:00",
+  "H1_GBPUSD_Long": "2026-10-03T12:00:00",
   "H1_NZDCAD_Short": "2026-10-02T21:00:00",
   "H4DOW_NZDCAD_Long": "2026-10-02T20:00:00",
   "H4DOW_NZDCAD_Short": "2026-10-02T20:00:00",
@@ -4939,23 +4939,23 @@
   "CADCHF|1h": "2026-10-02T23:00:00",
   "CADCHF|4h": "2026-10-01T20:00:00",
   "CHFJPY|1h": "2026-10-02T23:00:00",
-  "EURAUD|1h": "2026-10-03T16:01:00",
+  "EURAUD|1h": "2026-10-03T17:01:00",
   "EURAUD|4h": "2026-09-30T16:00:00",
   "EURCAD|1h": "2026-10-02T22:00:00",
-  "EURCHF|1h": "2026-10-03T16:01:00",
+  "EURCHF|1h": "2026-10-03T17:01:00",
   "EURGBP|1h": "2026-10-03T05:01:00",
   "EURGBP|4h": "2026-10-01T20:00:00",
   "EURJPY|1h": "2026-10-03T10:01:00",
   "EURJPY|4h": "2026-10-01T20:00:00",
   "EURNZD|1h": "2026-10-03T16:01:00",
-  "EURUSD|1h": "2026-10-03T13:01:00",
+  "EURUSD|1h": "2026-10-03T17:01:00",
   "EURUSD|4h": "2026-10-03T16:01:00",
   "GBPAUD|4h": "2026-10-03T16:01:00",
   "GBPCHF|1h": "2026-10-03T11:01:00",
   "GBPCHF|4h": "2026-10-03T16:01:00",
   "GBPJPY|1h": "2026-10-03T10:01:00",
   "GBPJPY|4h": "2026-09-30T20:00:00",
-  "GBPUSD|1h": "2026-10-02T14:00:00",
+  "GBPUSD|1h": "2026-10-03T17:01:00",
   "NZDCAD|1h": "2026-10-03T16:01:00",
   "NZDCAD|4h": "2026-10-03T16:01:00",
   "NZDJPY|1h": "2026-10-02T22:00:00",
@@ -4989,7 +4989,7 @@
   }
  ],
  "last_summary_date": "2026-10-03",
- "last_run": "2026-10-03T12:01:00",
+ "last_run": "2026-10-03T13:01:00",
  "boot_done": true,
  "quota_alert_date": null,
  "legs": [
@@ -5896,21 +5896,10 @@
  ],
  "floating_now": 0.715,
  "last_fetch": [
-  "AUDCAD|4h",
-  "AUDCHF|4h",
-  "AUDUSD|4h",
-  "BTCUSD|4h",
-  "EURUSD|4h",
-  "GBPCHF|4h",
-  "NZDCAD|4h",
-  "USDCHF|4h",
-  "USDJPY|4h",
-  "USDCAD|4h",
-  "GBPAUD|4h",
+  "GBPUSD|1h",
   "EURAUD|1h",
-  "EURNZD|1h",
   "EURCHF|1h",
-  "NZDCAD|1h"
+  "EURUSD|1h"
  ],
  "boot_fix_v2": true,
  "realized": -0.0019293728139664734,

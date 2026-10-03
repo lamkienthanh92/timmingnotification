@@ -92,8 +92,8 @@ def _fetch_json(url: str, params: dict) -> dict:
     return data
 
 
-def fetch_time_series(pair: str, interval: str, outputsize: int = 100,
-                       max_retries: int = 4) -> pd.DataFrame:
+def fetch_time_series(pair: str, interval: str = "1h", outputsize: int = 100,
+                       max_retries: int = 4, end_date=None, min_len: int = 1) -> pd.DataFrame:
     """Lay du lieu OHLC cho 1 cap, tra ve DataFrame voi cot Time(UTC), Open,
     High, Low, Close (da sap CU->MOI). interval: '1h' hoac '4h'.
 
@@ -114,6 +114,8 @@ def fetch_time_series(pair: str, interval: str, outputsize: int = 100,
         "order": "ASC",
         "apikey": TWELVE_DATA_API_KEY,
     }
+    if end_date is not None:                       # lay trang cu hon (phan trang khi khoi dong)
+        params["end_date"] = pd.Timestamp(end_date).strftime("%Y-%m-%d %H:%M:%S")
 
     for attempt in range(max_retries):
         try:
@@ -133,6 +135,8 @@ def fetch_time_series(pair: str, interval: str, outputsize: int = 100,
             raise TwelveDataError(f"Twelve Data loi ({pair}/{interval}): {data.get('message')}")
         values = data.get("values")
         if not values:
+            if min_len <= 0:
+                return pd.DataFrame(columns=["Time", "Open", "High", "Low", "Close"])
             raise TwelveDataError(f"Khong co du lieu cho {pair}/{interval}")
 
         df = pd.DataFrame(values)
@@ -142,7 +146,7 @@ def fetch_time_series(pair: str, interval: str, outputsize: int = 100,
         for c in ["Open", "High", "Low", "Close"]:
             df[c] = df[c].astype(float)
         df = df[["Time", "Open", "High", "Low", "Close"]].sort_values("Time").reset_index(drop=True)
-        if len(df) < 30:
+        if len(df) < min_len:
             raise TwelveDataError(f"Chuoi {pair}/{interval} qua ngan ({len(df)} nen)")
         return df
 

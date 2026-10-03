@@ -4546,42 +4546,6 @@
  ],
  "events": [
   {
-   "time": "2026-10-02T23:49:00",
-   "text": "Lỗi cập nhật giá EURAUD: Chuoi EURAUD/1h qua ngan (12 nen)"
-  },
-  {
-   "time": "2026-10-02T23:49:00",
-   "text": "Lỗi cập nhật giá EURCHF: Chuoi EURCHF/1h qua ngan (12 nen)"
-  },
-  {
-   "time": "2026-10-02T23:49:00",
-   "text": "Lỗi cập nhật giá EURNZD: Chuoi EURNZD/1h qua ngan (12 nen)"
-  },
-  {
-   "time": "2026-10-02T23:49:00",
-   "text": "Lỗi cập nhật giá EURUSD: Chuoi EURUSD/1h qua ngan (12 nen)"
-  },
-  {
-   "time": "2026-10-02T23:49:00",
-   "text": "Lỗi cập nhật giá GBPAUD: Chuoi GBPAUD/1h qua ngan (12 nen)"
-  },
-  {
-   "time": "2026-10-02T23:49:00",
-   "text": "Lỗi cập nhật giá NZDCAD: Chuoi NZDCAD/1h qua ngan (12 nen)"
-  },
-  {
-   "time": "2026-10-02T23:49:00",
-   "text": "Lỗi cập nhật giá USDCAD: Chuoi USDCAD/1h qua ngan (12 nen)"
-  },
-  {
-   "time": "2026-10-02T23:49:00",
-   "text": "Lỗi cập nhật giá USDCHF: Chuoi USDCHF/1h qua ngan (12 nen)"
-  },
-  {
-   "time": "2026-10-03T00:01:00",
-   "text": "🟢 VÀO · AUDCHF LONG · 4H-Thứ | Vào   0.57574 | SL    0.56762  (81.2 pip) | Chốt  WPR > -20 (đang -73) | Hạn   09/10 07:00 · 24 nến | Đặt SL trên sàn ngay khi vào lệnh."
-  },
-  {
    "time": "2026-10-03T00:01:00",
    "text": "🟢 VÀO · EURUSD LONG · 4H-Thứ | Vào   1.12569 | SL    1.10944  (162.5 pip) | Chốt  WPR > -20 (đang -74) | Hạn   09/10 07:00 · 24 nến | Đặt SL trên sàn ngay khi vào lệnh."
   },
@@ -4864,6 +4828,42 @@
   {
    "time": "2026-10-03T07:01:00",
    "text": "Lỗi cập nhật giá USDCHF: Chuoi USDCHF/1h qua ngan (12 nen)"
+  },
+  {
+   "time": "2026-10-03T09:01:00",
+   "text": "Lỗi cập nhật giá AUDCHF: Chuoi AUDCHF/1h qua ngan (12 nen)"
+  },
+  {
+   "time": "2026-10-03T09:01:00",
+   "text": "Lỗi cập nhật giá EURAUD: Chuoi EURAUD/1h qua ngan (12 nen)"
+  },
+  {
+   "time": "2026-10-03T09:01:00",
+   "text": "Lỗi cập nhật giá EURCHF: Chuoi EURCHF/1h qua ngan (12 nen)"
+  },
+  {
+   "time": "2026-10-03T09:01:00",
+   "text": "Lỗi cập nhật giá EURNZD: Chuoi EURNZD/1h qua ngan (12 nen)"
+  },
+  {
+   "time": "2026-10-03T09:01:00",
+   "text": "Lỗi cập nhật giá GBPAUD: Chuoi GBPAUD/1h qua ngan (12 nen)"
+  },
+  {
+   "time": "2026-10-03T09:01:00",
+   "text": "Lỗi cập nhật giá GBPCHF: Chuoi GBPCHF/1h qua ngan (12 nen)"
+  },
+  {
+   "time": "2026-10-03T09:01:00",
+   "text": "Lỗi cập nhật giá NZDCAD: Chuoi NZDCAD/1h qua ngan (12 nen)"
+  },
+  {
+   "time": "2026-10-03T09:01:00",
+   "text": "Lỗi cập nhật giá USDCAD: Chuoi USDCAD/1h qua ngan (12 nen)"
+  },
+  {
+   "time": "2026-10-03T09:01:00",
+   "text": "Lỗi cập nhật giá USDCHF: Chuoi USDCHF/1h qua ngan (12 nen)"
   }
  ],
  "leg_checked": {
@@ -4899,7 +4899,7 @@
   "H4DOW_EURJPY_Long": "2026-10-01T12:00:00",
   "H4DOM_EURJPY_Long": "2026-10-01T12:00:00",
   "H1_EURNZD_Long": "2026-10-02T21:00:00",
-  "H1_EURUSD_Long": "2026-10-02T21:00:00",
+  "H1_EURUSD_Long": "2026-10-03T08:00:00",
   "H1_EURUSD_Short": "2026-10-03T07:00:00",
   "H4DOW_EURUSD_Long": "2026-10-02T20:00:00",
   "H4DOW_EURUSD_Short": "2026-10-02T20:00:00",
@@ -4948,7 +4948,7 @@
   "EURJPY|1h": "2026-10-03T10:01:00",
   "EURJPY|4h": "2026-10-01T20:00:00",
   "EURNZD|1h": "2026-10-03T12:01:00",
-  "EURUSD|1h": "2026-10-03T12:01:00",
+  "EURUSD|1h": "2026-10-03T13:01:00",
   "EURUSD|4h": "2026-10-03T12:01:00",
   "GBPAUD|4h": "2026-10-03T12:01:00",
   "GBPCHF|1h": "2026-10-03T11:01:00",
@@ -4989,7 +4989,7 @@
   }
  ],
  "last_summary_date": "2026-10-03",
- "last_run": "2026-10-03T08:01:00",
+ "last_run": "2026-10-03T09:01:00",
  "boot_done": true,
  "quota_alert_date": null,
  "legs": [
@@ -5896,22 +5896,7 @@
  ],
  "floating_now": 0.715,
  "last_fetch": [
-  "EURUSD|1h",
-  "AUDCAD|4h",
-  "AUDCHF|4h",
-  "AUDUSD|4h",
-  "BTCUSD|4h",
-  "EURUSD|4h",
-  "GBPCHF|4h",
-  "NZDCAD|4h",
-  "USDCHF|4h",
-  "USDJPY|4h",
-  "USDCAD|4h",
-  "GBPAUD|4h",
-  "EURAUD|1h",
-  "EURNZD|1h",
-  "EURCHF|1h",
-  "NZDCAD|1h"
+  "EURUSD|1h"
  ],
  "boot_fix_v2": true,
  "realized": -0.0019293728139664734,

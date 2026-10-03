@@ -116,10 +116,10 @@
   "NZDUSD"
  ],
  "b_regime": -2.06,
- "last_run": "2026-10-03T16:01:00",
+ "last_run": "2026-10-03T16:26:00",
  "credits": {
   "date": "2026-10-03",
-  "n": 108
+  "n": 112
  },
  "last_summary_date": "2026-10-03",
  "quota_alert_date": null,
@@ -128,48 +128,18 @@
   "D": "2026-10-03T16:01:00",
   "B": "2026-10-03T16:01:00",
   "E": "2026-10-03T16:01:00",
-  "BB": "2026-10-03T16:01:00"
+  "BB": "2026-10-03T16:26:00"
  },
  "last_fetch": {
   "symbols": [
-   "AUDJPY",
-   "AUDUSD",
    "BTCUSD",
-   "CADCHF",
-   "CADJPY",
-   "CHFJPY",
-   "ETHUSD",
-   "EURAUD",
-   "EURCAD",
-   "EURCHF",
-   "EURGBP",
-   "EURJPY",
-   "EURNZD",
-   "EURUSD",
-   "GBPAUD",
-   "GBPCAD",
-   "GBPCHF",
-   "GBPJPY",
-   "GBPNZD",
-   "GBPUSD",
-   "NZDCAD",
-   "NZDCHF",
-   "NZDJPY",
-   "NZDUSD",
-   "USDCAD",
-   "USDCHF",
-   "USDJPY"
+   "ETHUSD"
   ],
   "why": [
-   "crypto moi gio",
-   "chot tuan"
+   "crypto moi gio"
   ],
   "parts": [
-   "A",
-   "B",
-   "BB",
-   "D",
-   "E"
+   "BB"
   ]
  },
  "parts": [
@@ -190,31 +160,6 @@
  },
  "floating_now": -0.304,
  "data_end": {
-  "AUDJPY": "2026-10-02T21:00:00",
-  "AUDUSD": "2026-10-02T21:00:00",
-  "CADCHF": "2026-10-02T21:00:00",
-  "CADJPY": "2026-10-02T21:00:00",
-  "CHFJPY": "2026-10-02T21:00:00",
-  "EURAUD": "2026-10-02T21:00:00",
-  "EURCAD": "2026-10-02T21:00:00",
-  "EURCHF": "2026-10-02T21:00:00",
-  "EURGBP": "2026-10-02T21:00:00",
-  "EURJPY": "2026-10-02T21:00:00",
-  "EURNZD": "2026-10-02T21:00:00",
-  "EURUSD": "2026-10-02T21:00:00",
-  "GBPAUD": "2026-10-02T21:00:00",
-  "GBPCAD": "2026-10-02T21:00:00",
-  "GBPCHF": "2026-10-02T21:00:00",
-  "GBPJPY": "2026-10-02T21:00:00",
-  "GBPNZD": "2026-10-02T21:00:00",
-  "GBPUSD": "2026-10-02T21:00:00",
-  "NZDCAD": "2026-10-02T21:00:00",
-  "NZDCHF": "2026-10-02T21:00:00",
-  "NZDJPY": "2026-10-02T21:00:00",
-  "NZDUSD": "2026-10-02T21:00:00",
-  "USDCAD": "2026-10-02T21:00:00",
-  "USDCHF": "2026-10-02T21:00:00",
-  "USDJPY": "2026-10-02T21:00:00",
   "BTCUSD": "2026-10-03T15:00:00",
   "ETHUSD": "2026-10-03T15:00:00"
  }

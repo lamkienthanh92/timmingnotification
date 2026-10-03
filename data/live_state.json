@@ -4546,46 +4546,6 @@
  ],
  "events": [
   {
-   "time": "2026-10-03T01:01:00",
-   "text": "Lỗi cập nhật giá NZDCAD: Chuoi NZDCAD/1h qua ngan (12 nen)"
-  },
-  {
-   "time": "2026-10-03T01:01:00",
-   "text": "Lỗi cập nhật giá USDCAD: Chuoi USDCAD/1h qua ngan (12 nen)"
-  },
-  {
-   "time": "2026-10-03T01:01:00",
-   "text": "Lỗi cập nhật giá USDCHF: Chuoi USDCHF/1h qua ngan (12 nen)"
-  },
-  {
-   "time": "2026-10-03T02:01:00",
-   "text": "Lỗi cập nhật giá AUDCHF: Chuoi AUDCHF/1h qua ngan (12 nen)"
-  },
-  {
-   "time": "2026-10-03T02:01:00",
-   "text": "Lỗi cập nhật giá EURAUD: Chuoi EURAUD/1h qua ngan (12 nen)"
-  },
-  {
-   "time": "2026-10-03T02:01:00",
-   "text": "Lỗi cập nhật giá EURCHF: Chuoi EURCHF/1h qua ngan (12 nen)"
-  },
-  {
-   "time": "2026-10-03T02:01:00",
-   "text": "Lỗi cập nhật giá EURNZD: Chuoi EURNZD/1h qua ngan (12 nen)"
-  },
-  {
-   "time": "2026-10-03T02:01:00",
-   "text": "Lỗi cập nhật giá EURUSD: Chuoi EURUSD/1h qua ngan (12 nen)"
-  },
-  {
-   "time": "2026-10-03T02:01:00",
-   "text": "Lỗi cập nhật giá GBPAUD: Chuoi GBPAUD/1h qua ngan (12 nen)"
-  },
-  {
-   "time": "2026-10-03T02:01:00",
-   "text": "Lỗi cập nhật giá GBPCHF: Chuoi GBPCHF/1h qua ngan (12 nen)"
-  },
-  {
    "time": "2026-10-03T02:01:00",
    "text": "Lỗi cập nhật giá NZDCAD: Chuoi NZDCAD/1h qua ngan (12 nen)"
   },
@@ -4863,6 +4823,46 @@
   },
   {
    "time": "2026-10-03T10:01:00",
+   "text": "Lỗi cập nhật giá USDCHF: Chuoi USDCHF/1h qua ngan (12 nen)"
+  },
+  {
+   "time": "2026-10-03T11:01:00",
+   "text": "Lỗi cập nhật giá AUDCHF: Chuoi AUDCHF/1h qua ngan (12 nen)"
+  },
+  {
+   "time": "2026-10-03T11:01:00",
+   "text": "Lỗi cập nhật giá EURAUD: Chuoi EURAUD/1h qua ngan (12 nen)"
+  },
+  {
+   "time": "2026-10-03T11:01:00",
+   "text": "Lỗi cập nhật giá EURCHF: Chuoi EURCHF/1h qua ngan (12 nen)"
+  },
+  {
+   "time": "2026-10-03T11:01:00",
+   "text": "Lỗi cập nhật giá EURNZD: Chuoi EURNZD/1h qua ngan (12 nen)"
+  },
+  {
+   "time": "2026-10-03T11:01:00",
+   "text": "Lỗi cập nhật giá EURUSD: Chuoi EURUSD/1h qua ngan (12 nen)"
+  },
+  {
+   "time": "2026-10-03T11:01:00",
+   "text": "Lỗi cập nhật giá GBPAUD: Chuoi GBPAUD/1h qua ngan (12 nen)"
+  },
+  {
+   "time": "2026-10-03T11:01:00",
+   "text": "Lỗi cập nhật giá GBPCHF: Chuoi GBPCHF/1h qua ngan (12 nen)"
+  },
+  {
+   "time": "2026-10-03T11:01:00",
+   "text": "Lỗi cập nhật giá NZDCAD: Chuoi NZDCAD/1h qua ngan (12 nen)"
+  },
+  {
+   "time": "2026-10-03T11:01:00",
+   "text": "Lỗi cập nhật giá USDCAD: Chuoi USDCAD/1h qua ngan (12 nen)"
+  },
+  {
+   "time": "2026-10-03T11:01:00",
    "text": "Lỗi cập nhật giá USDCHF: Chuoi USDCHF/1h qua ngan (12 nen)"
   }
  ],
@@ -4989,7 +4989,7 @@
   }
  ],
  "last_summary_date": "2026-10-03",
- "last_run": "2026-10-03T10:01:00",
+ "last_run": "2026-10-03T11:01:00",
  "boot_done": true,
  "quota_alert_date": null,
  "legs": [
@@ -5895,10 +5895,7 @@
   }
  ],
  "floating_now": 0.715,
- "last_fetch": [
-  "USDCAD|1h",
-  "AUDJPY|1h"
- ],
+ "last_fetch": [],
  "boot_fix_v2": true,
  "realized": -0.0019293728139664734,
  "floating_sel": 0.715,

@@ -1,14 +1,14 @@
 """
-Backtest + tin hieu danh muc FX/crypto tren du lieu H1 xuat tu MT5 (phien ban 4).
+Backtest + tin hieu danh muc FX/crypto tren du lieu H1 xuat tu MT5 (phien ban 5).
 
-THANH PHAN (mac dinh chay A B BB D E; C la tuy chon):
+THANH PHAN (mac dinh chay A B BB AQB D E; C la tuy chon). Phien ban 5: trong so W1, gioi han + ngat mach.
   A  - Mua sau ban thao, 18 cap khong JPY (+XAUUSD neu co). Ngay giao dich dau tuan, neu WPR(14)+EMA(5) H1
        o nen dong cua cuoi tuan truoc < -80 va gia dong cua hom truoc < SMA200 ngay -> LONG o gia mo dau tuan,
        dong o gia dong cua ngay giao dich thu 8. Khong SL. 1R = 1 ATR(14) ngay.
   B  - Theo xu huong yen yeu, 7 cap JPY. Supertrend(10,3) 4H chuyen tang -> LONG o gia mo nen ke tiep,
        SL = duong Supertrend, keo len theo moi nen. Ghi nguyen nhan cu dao chieu (JPY tu yeu / XX manh / hon hop);
        --b-filter: chi vao lenh khi JPY tu yeu (phu thuoc che do chinh sach BoJ, xem chi bao theo doi trong bao cao).
-  BB - Squeeze Bollinger crypto (BTCUSD, ETHUSD) H1: squeeze = do rong band < phan vi 10% cua 4000 nen
+  BB - Squeeze Bollinger crypto (BTCUSD, ETHUSD, SOLUSD) H1: squeeze = do rong band < phan vi 10% cua 4000 nen
        (trong 20 nen gan nhat); dong cua vuot band -> vao o gia mo nen ke tiep; SL = band doi dien keo theo;
        giu toi da 10 ngay; khong vao thu Bay/Chu nhat; loc xu huong 30 ngay +/-2%; toi da 5 lenh chong.
        Chi phi moi lenh = max(COST_CRYPTO, spread thuc te trong file luc vao); bo lenh neu chi phi > 25% rui ro.
@@ -23,9 +23,18 @@ THANH PHAN (mac dinh chay A B BB D E; C la tuy chon):
        luc vao (co dinh), TP = mean (SMA120 log gia 4H). Chi vao khi RR = khoang cach TP / khoang cach SL
        nam trong [2, 4]. 1R = khoang cach SL.
 
-Moi lenh rui ro RISK[%] von (A, D: % von moi 1 ATR ngay). Mac dinh co tinh spread va swap (--no-swap de tat).
+  AQB - Band phan vi thich ung (BTC, ETH, SOL, DOGE: vuot q95; XAU: vuot q99) H1: trong luc nen (bien dong < phan vi 10%
+       cua 90 ngay), loi suat 4 nen da chuan hoa vuot phan vi -> vao theo chieu pha o gia mo nen ke tiep; SL = band p1/p99
+       keo theo; giu toi da 5 ngay; loc xu huong 30 ngay +/-2%; crypto khong vao thu Bay/CN.
 
-Du lieu: file CSV H1 tu MT5, ten bat dau bang ma 6 ky tu (EURUSD_H1.csv, BTCUSDm_H1.csv, EURUSD.r_H1.csv ...).
+Trong so W1 (RISK): A 0.25 / D 0.15 (% von moi ATR ngay, toi thieu 0.4% gia), B 0.35, E 0.10, vang 0.75, crypto 0.25.
+Gioi han: A toi da 2 lenh/dong tien; D toi da 2/dong, tong 4; crypto (BB+AQB) toi da 6 lenh mo; tong rui ro mo <= 4%.
+Ngat mach: lo thang phan FX (B,D,E) >= 1% hoac phan A >= 3% -> phan do dung den het thang; lo tha noi >= 3% -> dong het;
+sut giam >= 20% -> dung toan bo. Bao cao in them dong "DANH MUC THUC THI" (da ap gioi han + ngat mach).
+Mac dinh co tinh spread va swap (--no-swap de tat).
+
+Du lieu: file CSV H1 tu MT5, ten bat dau bang ma 6 ky tu (EURUSD_H1.csv, BTCUSDm_H1.csv, EURUSD.r_H1.csv ...),
+hoac file nen 1 gio cua Binance (SOLUSDT_1hour.csv, cot timestamp/open_time tinh bang ms; khong co spread).
 Ho tro header "Time Open High Low Close Volume Spread" va "<DATE> <TIME> <OPEN> ... <SPREAD>". Gio phai la UTC.
 D va E can it nhat 12 cap forex de tach nhan to dong tien (khuyen nghi du 25-28 cap).
 
@@ -48,9 +57,11 @@ import numpy as np
 import pandas as pd
 
 # ------------------------------------------------------------------ tham so
-RISK = {"A": 0.25, "B": 0.25, "C": 0.10, "D": 0.15, "E": 0.10, "BB BTC": 0.5, "BB ETH": 0.5}
-COST_CRYPTO = {"BTCUSD": 0.10, "ETHUSD": 0.25}                 # % gia toi thieu moi lenh; dung spread file neu lon hon
-CRYPTO = ("BTCUSD", "ETHUSD")
+# Trong so W1 (% von moi lenh; A, D: % von moi 1 ATR ngay, toi thieu 0.4% gia)
+RISK = {"A": 0.25, "B": 0.35, "C": 0.10, "D": 0.15, "E": 0.10, "BB BTC": 0.25, "BB ETH": 0.25, "BB SOL": 0.25,
+        "AQB BTC": 0.25, "AQB ETH": 0.25, "AQB SOL": 0.25, "AQB DOGE": 0.25, "AQB XAU": 0.75}
+COST_CRYPTO = {"BTCUSD": 0.10, "ETHUSD": 0.25, "SOLUSD": 0.20, "DOGEUSD": 0.20}                 # % gia toi thieu moi lenh; dung spread file neu lon hon
+CRYPTO = ("BTCUSD", "ETHUSD", "SOLUSD", "DOGEUSD")
 A_HOLD_DAYS = 8
 FX = {"USD", "EUR", "GBP", "JPY", "CHF", "CAD", "AUD", "NZD"}
 CUR = ["USD", "EUR", "GBP", "JPY", "CHF", "CAD", "AUD", "NZD"]
@@ -61,7 +72,19 @@ D_N, D_T, D_EXIT, D_MAXAGE = 120, 2.0, 1.0, 60
 D_MAX_PER_CCY, D_MAX_TOTAL = 2, 4
 E_N, E_T, E_RR = 120, 2.0, (2.0, 4.0)
 MIN_FX_PAIRS = 12
-BB_MAX_COST_R = 0.25                    # BB bo lenh neu chi phi > 25% khoang rui ro (spread qua rong so voi SL)
+BB_MAX_COST_R = 0.25                    # BB, AQB bo lenh neu chi phi > 25% khoang rui ro (spread qua rong so voi SL)
+ATR_FLOOR_PCT = 0.4                     # A, D: khoang tinh khoi luong = max(ATR ngay, 0.4% gia) -> chan ATR bi nen gia tao
+A_MAX_PER_CCY = 2                       # A: toi da 2 lenh dang mo chung 1 dong tien (uu tien WPR qua ban sau nhat)
+# AQB (band phan vi thich ung): (nen < phan vi %, vuot phan vi q, giu toi da ngay, loc xu huong 30 ngay)
+AQB_PARAMS = {"BTCUSD": (10, 95, 5, True), "ETHUSD": (10, 95, 5, True), "SOLUSD": (10, 95, 5, True),
+              "DOGEUSD": (10, 95, 5, True), "XAUUSD": (10, 99, 5, True)}
+AQB_W, AQB_H = 2160, 4                  # cua so phan vi (nen H1, ~90 ngay crypto), do dai loi suat (4 nen)
+# Gioi han cap danh muc + ngat mach (dung cho backtest danh muc va bot)
+MAX_OPEN_RISK = 4.0                     # tong rui ro cac lenh dang mo <= 4% von; vuot -> bo tin hieu moi
+CRYPTO_MAX_OPEN = 6                     # BB + AQB crypto: toi da 6 lenh mo cung luc
+BREAK_SLEEVE_MONTH = {"A": 3.0, "FX": 1.0}   # lo trong thang cua phan (A; FX = B, D, E) >= x% -> phan do dung den het thang
+BREAK_FLOAT = 3.0                       # lo tha noi toan danh muc >= 3% -> dong het, nghi den het ngay
+BREAK_DD = 20.0                         # sut giam tu dinh >= 20% -> dung toan bo, danh gia lai
 
 # Swap. Forex/vang: chenh lech lai suat dieu hanh (%/nam) tru phan san cat. Cap nhat CHG khi lai suat thay doi.
 SWAP_MARKUP = 1.0          # %/nam san cat khoi swap, ap cho moi chieu
@@ -115,7 +138,9 @@ def read_mt5(f):
     sep = "\t" if "\t" in head else (";" if ";" in head else ",")
     x = pd.read_csv(f, sep=sep)
     x.columns = [c.strip().strip("<>").upper() for c in x.columns]
-    if "DATE" in x.columns and "TIME" in x.columns:
+    if "TIME" not in x.columns and ("TIMESTAMP" in x.columns or "OPEN_TIME" in x.columns):   # file Binance (ms)
+        x["T"] = pd.to_datetime(x["TIMESTAMP" if "TIMESTAMP" in x.columns else "OPEN_TIME"], unit="ms")
+    elif "DATE" in x.columns and "TIME" in x.columns:
         x["T"] = to_time(x["DATE"].astype(str) + " " + x["TIME"].astype(str))
     elif "TIME" in x.columns:
         x["T"] = to_time(x["TIME"])
@@ -135,9 +160,9 @@ def read_mt5(f):
 def load_folder(folder):
     files, skipped = {}, []
     for f in glob.glob(os.path.join(folder, "*.csv")):
-        if not re.search(r"H1(?!\d)", os.path.basename(f), re.I):      # chi nhan file khung H1
+        if not re.search(r"H1(?!\d)|1h(?!\d)|1hour", os.path.basename(f), re.I):   # chi nhan file khung H1
             continue
-        m = re.match(r"([A-Za-z]{6})", os.path.basename(f))
+        m = re.match(r"(DOGEUSD|[A-Za-z]{6})", os.path.basename(f), re.I)
         sym = m.group(1).upper() if m else None
         if sym not in SUPPORTED:
             skipped.append(os.path.basename(f)); continue
@@ -217,7 +242,7 @@ def fx_pairs(data):
 
 
 def a_symbols(data):
-    return [q for q in fx_pairs(data) if "JPY" not in q] + (["XAUUSD"] if "XAUUSD" in data else [])
+    return [q for q in fx_pairs(data) if "JPY" not in q]
 
 
 OPEN, PENDING = [], []      # lenh con mo cuoi du lieu / tin hieu cho vao o nen ke tiep (dung cho --signals)
@@ -283,8 +308,13 @@ def need_factors(part):
 
 
 # ------------------------------------------------------------------ A
+def a_unit(atr, price):
+    return max(atr, ATR_FLOOR_PCT / 100 * price)
+
+
 def rule_A(data):
-    out = []
+    """Ung vien moi cap, roi xet chung theo thoi gian: moi dong tien toi da A_MAX_PER_CCY lenh dang mo."""
+    cands = []
     for p in a_symbols(data):
         x = data[p]
         d = daily_bars(x)
@@ -299,14 +329,28 @@ def rule_A(data):
             k = np.searchsorted(h1_close, d.index.values[a], side="right") - 1
             if k < 30 or np.isnan(w[k]) or not (w[k] < -80 and c[a - 1] < s200[a - 1]):
                 continue
-            ex = a + A_HOLD_DAYS - 1
-            e = o[a]; cost = sp[a] / 100 * e
+            ex = a + A_HOLD_DAYS - 1; e = o[a]; u = a_unit(atr[a - 1], e)
             if ex >= len(d):
-                OPEN.append(dict(he="A", pair=p, side=1, vao=d.index[a], gia_vao=e, rui_ro=atr[a - 1], con_ngay=ex - len(d) + 1,
-                                 ghi_chu=f"dong o gia dong cua ngay giao dich thu 8 (con {ex - len(d) + 1} ngay)"))
-                continue
-            out.append(dict(he="A", pair=p, side=1, vao=d.index[a], ra=d.index[ex] + pd.Timedelta(hours=23, minutes=59),
-                            gia_vao=e, gia_ra=c[ex], rui_ro=atr[a - 1], R=(c[ex] - e - cost) / atr[a - 1]))
+                cands.append(dict(he="A", pair=p, side=1, vao=d.index[a], ra=pd.Timestamp.max, gia_vao=e, rui_ro=u, wpr=w[k],
+                                  con_ngay=ex - len(d) + 1, _open=True))
+            else:
+                cands.append(dict(he="A", pair=p, side=1, vao=d.index[a], ra=d.index[ex] + pd.Timedelta(hours=23, minutes=59),
+                                  gia_vao=e, gia_ra=c[ex], rui_ro=u, R=(c[ex] - e - sp[a] / 100 * e) / u, wpr=w[k]))
+    out, opn = [], []
+    for cd in sorted(cands, key=lambda z: (z["vao"], z["wpr"])):        # cung ngay: qua ban sau nhat truoc
+        opn = [z for z in opn if z["ra"] > cd["vao"]]
+        cnt = {}
+        for z in opn:
+            for cc in (z["pair"][:3], z["pair"][3:]):
+                cnt[cc] = cnt.get(cc, 0) + 1
+        if cnt.get(cd["pair"][:3], 0) >= A_MAX_PER_CCY or cnt.get(cd["pair"][3:], 0) >= A_MAX_PER_CCY:
+            continue
+        opn.append(cd)
+        if cd.get("_open"):
+            OPEN.append(dict({k: v for k, v in cd.items() if k not in ("ra", "_open")},
+                             ghi_chu=f"dong o gia dong cua ngay giao dich thu 8 (con {cd['con_ngay']} ngay)"))
+        else:
+            out.append(cd)
     return out
 
 
@@ -441,11 +485,11 @@ def rule_D(data):
             if t + 1 >= n:
                 n_pend += 1
                 PENDING.append(dict(he="D", pair=P[j], side=s, t_vao=pd.Timestamp(idx[t]).normalize() + pd.offsets.BDay(1),
-                                    rui_ro=AT[t, j], z_tu=ZA[t, j], z_mau=ZQ[t, j],
+                                    rui_ro=a_unit(AT[t, j], Cl[t, j]), z_tu=ZA[t, j], z_mau=ZQ[t, j],
                                     ghi_chu=f"{'LONG' if s == 1 else 'SHORT'} o gia mo ngay ke tiep (z {ccy[j][0]} {ZA[t, j]:+.1f}, "
                                             f"z {ccy[j][1]} {ZQ[t, j]:+.1f}), khong SL, thoat khi |z tu - z mau| < {D_EXIT}"))
                 continue
-            opn[j] = dict(s=s, t0=t + 1, e=O[t + 1, j], u=AT[t, j], age=0)
+            opn[j] = dict(s=s, t0=t + 1, e=O[t + 1, j], u=a_unit(AT[t, j], O[t + 1, j]), age=0)
     for j, q in opn.items():
         OPEN.append(dict(he="D", pair=P[j], side=q["s"], vao=idx[q["t0"]], gia_vao=q["e"], rui_ro=q["u"], do_lech=S[-1, j],
                          tuoi=q["age"], thoat=bool(q.get("thoat")),
@@ -562,7 +606,7 @@ def bb_squeeze(df, cost, N=20, W=4000, hold_days=10, bpd=24, k=2.0, pct=10,
 
 def rule_BB(data):
     out = []
-    for p, lab in [("BTCUSD", "BB BTC"), ("ETHUSD", "BB ETH")]:
+    for p, lab in [("BTCUSD", "BB BTC"), ("ETHUSD", "BB ETH"), ("SOLUSD", "BB SOL")]:
         if p not in data:
             continue
         df = data[p][["Time", "Open", "High", "Low", "Close", "spr_pct"]].reset_index(drop=True)
@@ -576,6 +620,122 @@ def rule_BB(data):
             PENDING.append(dict(he=lab, pair=p, side=s, t_vao=tv, sl=sl,
                                 ghi_chu=f"{'LONG' if s == 1 else 'SHORT'} o gia mo nen 1H ke tiep, SL {sl:.6g}"))
     return out
+
+
+# ------------------------------------------------------------------ AQB (band phan vi thich ung: crypto, vang)
+def aqb_label(sym):
+    return "AQB " + sym.replace("USD", "")
+
+
+def rule_AQB(data):
+    """Squeeze -> loi suat 4 nen da chuan hoa theo bien dong vuot phan vi q -> vao theo chieu pha;
+    SL = band p1/p99, keo theo band; giu toi da N ngay; crypto khong vao thu Bay/CN."""
+    out = []
+    for sym, (sqp, qe, hold, flt) in AQB_PARAMS.items():
+        if sym not in data:
+            continue
+        df = data[sym].reset_index(drop=True); lab = aqb_label(sym); H, W = AQB_H, AQB_W
+        c = df.Close; lr = np.log(c).diff(); sig = np.sqrt((lr ** 2).ewm(halflife=24).mean()).shift(1)
+        z = (np.log(c / c.shift(H)) / (sig.shift(H) * np.sqrt(H))).values
+        q = {pp: pd.Series(z).rolling(W, min_periods=720).quantile(pp / 100).values for pp in (1, 100 - qe, qe, 99)}
+        sq = (sig < sig.rolling(W, min_periods=720).quantile(sqp / 100)).astype(float).rolling(24, min_periods=1).max().values > 0
+        o, h, l, cc, sg = df.Open.values, df.High.values, df.Low.values, c.values, sig.values; T = df.Time
+        wd = T.dt.weekday.values; spr = np.nan_to_num(df.spr_pct.values, nan=0.0); lag = c.shift(720).values
+        crypto = sym in CRYPTO; floor = COST_CRYPTO.get(sym, 0.0); hi, lo = q[qe], q[100 - qe]; busy, last = -1, -99
+        band = lambda j, s: cc[j] * np.exp((q[1][j] if s == 1 else q[99][j]) * sg[j] * np.sqrt(H))
+        for i in range(W // 3, len(df)):
+            if i <= busy or i - last < 4 or not sq[i] or (crypto and wd[i] >= 5) or np.isnan(hi[i]):
+                continue
+            s = 1 if (z[i] > hi[i] and z[i - 1] <= hi[i - 1]) else (-1 if (z[i] < lo[i] and z[i - 1] >= lo[i - 1]) else 0)
+            if s == 0:
+                continue
+            if flt and not np.isnan(lag[i]) and ((s == 1 and cc[i] < lag[i] * 0.98) or (s == -1 and cc[i] > lag[i] * 1.02)):
+                continue
+            sl = band(i, s)
+            if i + 1 >= len(df):
+                if np.isfinite(sl):
+                    PENDING.append(dict(he=lab, pair=sym, side=s, t_vao=T.iat[i] + pd.Timedelta(hours=1), sl=sl,
+                                        ghi_chu=f"{'LONG' if s == 1 else 'SHORT'} o gia mo nen 1H ke tiep, SL {sl:.6g} (band, keo theo)"))
+                continue
+            a = i + 1; e = o[a]; risk = s * (e - sl)
+            if not risk > 0:
+                continue
+            cost = max(floor, spr[a]) / 100 * e
+            if cost > BB_MAX_COST_R * risk:
+                continue
+            xp = None
+            for j in range(a, len(df)):
+                if (s == 1 and l[j] <= sl) or (s == -1 and h[j] >= sl):
+                    xp = (min(o[j], sl) if s == 1 else max(o[j], sl)) if j > a else sl; break
+                if j - a >= hold * 24:
+                    xp = cc[j]; break
+                nb = band(j, s)
+                if not np.isnan(nb):
+                    sl = max(sl, nb) if s == 1 else min(sl, nb)
+            if xp is None:
+                OPEN.append(dict(he=lab, pair=sym, side=s, vao=T.iat[a], gia_vao=e, sl=sl, rui_ro=risk, gio_giu=len(df) - a,
+                                 ghi_chu=f"SL hien tai {sl:.6g}, toi da {hold} ngay"))
+                busy, last = len(df), i
+                continue
+            out.append(dict(he=lab, pair=sym, side=s, vao=T.iat[a], ra=T.iat[j] + pd.Timedelta(hours=1), gia_vao=e, gia_ra=xp,
+                            rui_ro=risk, R=s * (xp - e) / risk - cost / risk))
+            busy, last = j, i
+    return out
+
+
+# ------------------------------------------------------------------ danh muc: gioi han + ngat mach
+def sleeve(he):
+    return "A" if he == "A" else ("FX" if he in ("B", "C", "D", "E") else ("Crypto" if he.split()[-1] in
+                                  ("BTC", "ETH", "SOL", "DOGE") else "Vang"))
+
+
+def portfolio_sim(T, data, start):
+    """Mo phong theo ngay, xet tung lenh theo thu tu vao: tran rui ro mo, tran crypto, ngat mach phan/tha noi/sut giam.
+    Tra ve (loi nhuan ngay, lenh duoc vao, so lan kich hoat)."""
+    T = T[(pd.to_datetime(T.vao) >= start) & T.pair.isin(list(data))].sort_values("vao").reset_index(drop=True)
+    closes = {p: daily_bars(data[p], weekdays_only=p not in CRYPTO).Close for p in T.pair.unique()}
+    days = pd.date_range(pd.Timestamp(start).normalize(), pd.to_datetime(T.ra).max().normalize()); di = {d: i for i, d in enumerate(days)}
+    INC, ENT, LAST = [], [], []
+    for r in T.itertuples():
+        sc = RISK[r.he] / r.rui_ro; d0, d1 = pd.Timestamp(r.vao).normalize(), pd.Timestamp(r.ra).normalize(); prev = 0.0; inc = {}
+        for d, px in closes[r.pair].loc[d0:d1 - pd.Timedelta(days=1)].items():
+            v = r.side * (px - r.gia_vao) * sc; inc[di[d]] = inc.get(di[d], 0) + v - prev; prev = v
+        inc[di[d1]] = inc.get(di[d1], 0) + r.R * RISK[r.he] - prev
+        INC.append(inc); ENT.append(di[d0]); LAST.append(di[d1])
+    by_day = {}
+    for k, e0 in enumerate(ENT):
+        by_day.setdefault(e0, []).append(k)
+    SL_ = [sleeve(h) for h in T.he]; RK = [RISK[h] for h in T.he]; CR = [p in CRYPTO for p in T.pair]
+    pnl = np.zeros(len(days)); eq = peak = 1.0; active, cum = {}, {}; month = None; mtd = {}; stop = {}; dd_stop = False
+    trig = {"phan A": 0, "phan FX": 0, "tha noi": 0, "sut giam": 0, "tran rui ro": 0, "tran crypto": 0}; taken = []
+    for t, d in enumerate(days):
+        if month != (d.year, d.month):
+            month = (d.year, d.month); mtd = {k: 0.0 for k in BREAK_SLEEVE_MONTH}; stop = {k: False for k in BREAK_SLEEVE_MONTH}
+        for k in by_day.get(t, []):
+            if dd_stop or stop.get(SL_[k], False):
+                continue
+            if sum(RK[j] for j in active) + RK[k] > MAX_OPEN_RISK + 1e-9:
+                trig["tran rui ro"] += 1; continue
+            if CR[k] and sum(CR[j] for j in active) >= CRYPTO_MAX_OPEN:
+                trig["tran crypto"] += 1; continue
+            active[k] = True; cum[k] = 0.0; taken.append(k)
+        tot = 0.0; sv = {k: 0.0 for k in BREAK_SLEEVE_MONTH}
+        for k in list(active):
+            v = INC[k].get(t, 0.0); tot += v; cum[k] += v
+            if SL_[k] in sv:
+                sv[SL_[k]] += v
+            if t >= LAST[k]:
+                del active[k]; del cum[k]
+        pnl[t] = tot / 100; eq *= 1 + pnl[t]; peak = max(peak, eq)
+        for k_, lim in BREAK_SLEEVE_MONTH.items():
+            mtd[k_] += sv[k_] / 100
+            if not stop[k_] and mtd[k_] <= -lim / 100:
+                stop[k_] = True; trig["phan " + k_] += 1
+        if sum(cum.values()) / 100 <= -BREAK_FLOAT / 100:
+            active.clear(); cum.clear(); trig["tha noi"] += 1
+        if not dd_stop and eq / peak - 1 <= -BREAK_DD / 100:
+            dd_stop = True; trig["sut giam"] += 1
+    return pd.Series(pnl, days), T.loc[taken], trig
 
 
 # ------------------------------------------------------------------ swap
@@ -615,7 +775,7 @@ def daily_mtm(T, data):
 
 
 # ------------------------------------------------------------------ bao cao
-ORDER = ["A", "B", "C", "D", "E", "BB BTC", "BB ETH"]
+ORDER = ["A", "B", "C", "D", "E", "AQB XAU", "BB BTC", "BB ETH", "BB SOL", "AQB BTC", "AQB ETH", "AQB SOL", "AQB DOGE"]
 
 
 def report(T, data, start="2011-09-01"):
@@ -656,9 +816,18 @@ def report(T, data, start="2011-09-01"):
               f"{b_['sharpe']:>8.2f}{b_['omega']:>7.2f} | {a['dd']:>10.1f}%{b_['dd']:>14.1f}%")
     print("Loi/nam, Sharpe (theo tuan), Omega (theo thang) tinh tren chuoi gom floating. Co tinh spread"
           + (" va swap." if "swap_R" in T else ", CHUA tinh swap."))
+    ex, taken, trig = portfolio_sim(T, data, start)
+    s_ex = stats(ex)
+    if s_ex:
+        mm = ex.resample("ME").sum()
+        print(f"\nDANH MUC THUC THI (tran rui ro mo {MAX_OPEN_RISK:g}%, crypto <= {CRYPTO_MAX_OPEN} lenh, ngat mach):")
+        print(f"  {len(taken)}/{len(T)} lenh duoc vao | Loi/nam {s_ex['cagr']:.1f}% | Sharpe {s_ex['sharpe']:.2f} | "
+              f"MaxDD {s_ex['dd']:.1f}% | thang te nhat {mm.min() * 100:.1f}%")
+        print("  So lan kich hoat: " + ", ".join(f"{k} {v}" for k, v in trig.items()))
+        mtm["THUC THI"] = ex.reindex(idx).fillna(0)
     yr = pd.DataFrame({k: v.groupby(v.index.year).apply(lambda s: ((1 + s).prod() - 1) * 100) for k, v in mtm.items()}).round(1)
     print("\nLoi nhuan tung nam (%, gom floating):")
-    print(yr[[k for k in ORDER if k in yr] + ["TOAN DANH MUC"]].to_string())
+    print(yr[[k for k in ORDER if k in yr] + ["TOAN DANH MUC"] + (["THUC THI"] if "THUC THI" in yr else [])].to_string())
     comp = [k for k in ORDER if k in mtm]
     if len(comp) > 1:
         print("\nTuong quan loi nhuan thang giua cac thanh phan:")
@@ -691,9 +860,18 @@ def a_pending(data, require_week_close=False):
         w = wpr_ema(xs.High.values, xs.Low.values, xs.Close.values)
         if w[-1] < -80 and c[-1] < s200[-1]:
             note = "" if ok else f"  (nen cuoi {last:%a %d/%m %H:%M}, chua phai dong cua thu Sau)"
-            out.append(dict(he="A", pair=p, side=1, t_vao=last.normalize() + pd.offsets.BDay(1), rui_ro=atr[-1], wpr=w[-1],
-                            ghi_chu=f"WPR-EMA {w[-1]:.1f}, duoi SMA200 -> LONG dau tuan{note}"))
-    return out
+            out.append(dict(he="A", pair=p, side=1, t_vao=last.normalize() + pd.offsets.BDay(1), rui_ro=a_unit(atr[-1], c[-1]),
+                            wpr=w[-1], ghi_chu=f"WPR-EMA {w[-1]:.1f}, duoi SMA200 -> LONG dau tuan{note}"))
+    cnt, keep = {}, []                                   # gioi han theo dong tien, tinh ca lenh A dang mo (con ngay > 1)
+    for z in OPEN:
+        if z["he"] == "A" and z.get("con_ngay", 9) > 1:
+            for cc in (z["pair"][:3], z["pair"][3:]):
+                cnt[cc] = cnt.get(cc, 0) + 1
+    for z in sorted(out, key=lambda v: v["wpr"]):
+        a_, q_ = z["pair"][:3], z["pair"][3:]
+        if cnt.get(a_, 0) < A_MAX_PER_CCY and cnt.get(q_, 0) < A_MAX_PER_CCY:
+            keep.append(z); cnt[a_] = cnt.get(a_, 0) + 1; cnt[q_] = cnt.get(q_, 0) + 1
+    return keep
 
 
 # ------------------------------------------------------------------ tin hieu hien tai
@@ -726,7 +904,7 @@ def print_signals(data, parts):
 def run_parts(data, parts, b_filter=False):
     rows = []
     for part, fn in [("A", rule_A), ("B", lambda d: rule_B(d, b_filter)), ("C", rule_C), ("D", rule_D),
-                     ("E", rule_E), ("BB", rule_BB)]:
+                     ("E", rule_E), ("BB", rule_BB), ("AQB", rule_AQB)]:
         if part in parts:
             r = fn(data); rows += r; print(f"{part}: xong ({len(r)} lenh da dong)")
     return rows
@@ -735,7 +913,7 @@ def run_parts(data, parts, b_filter=False):
 if __name__ == "__main__":
     ap = argparse.ArgumentParser()
     ap.add_argument("--data", default=".", help="thu muc chua file CSV H1 xuat tu MT5")
-    ap.add_argument("--parts", nargs="+", default=["A", "B", "BB", "D", "E"], choices=["A", "B", "BB", "C", "D", "E"])
+    ap.add_argument("--parts", nargs="+", default=["A", "B", "BB", "AQB", "D", "E"], choices=["A", "B", "BB", "AQB", "C", "D", "E"])
     ap.add_argument("--b-filter", action="store_true", help="B chi vao lenh khi cu dao chieu do JPY tu yeu")
     ap.add_argument("--no-swap", action="store_true", help="khong tinh swap")
     ap.add_argument("--signals", action="store_true", help="in lenh dang mo va tin hieu cho vao")

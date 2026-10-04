@@ -7,9 +7,10 @@ const STALE_MIN = 130; // bot chay moi gio; qua ~2 gio khong cap nhat la co van 
 const VN_MS = 7 * 3600 * 1000;
 const NAME = {
   A: "A · mua sau bán tháo", B: "B · xu hướng JPY", C: "C · CUSUM short JPY", D: "D · đảo chiều sức mạnh",
-  E: "E · lớp phụ 4H→1H", "BB BTC": "BB · squeeze BTC", "BB ETH": "BB · squeeze ETH",
+  E: "E · lớp phụ 4H→1H", "BB BTC": "BB · squeeze BTC", "BB ETH": "BB · squeeze ETH", "BB SOL": "BB · squeeze SOL",
+  "AQB XAU": "AQB · vàng", "AQB BTC": "AQB · BTC", "AQB ETH": "AQB · ETH", "AQB SOL": "AQB · SOL", "AQB DOGE": "AQB · DOGE",
 };
-const ORDER = ["A", "B", "C", "D", "E", "BB BTC", "BB ETH"];
+const ORDER = ["A", "B", "C", "D", "E", "AQB XAU", "BB BTC", "BB ETH", "BB SOL", "AQB BTC", "AQB ETH", "AQB SOL", "AQB DOGE"];
 const DOW = ["CN", "T2", "T3", "T4", "T5", "T6", "T7"];
 
 const utc = (s) => (s ? new Date(/[zZ]|[+-]\d\d:?\d\d$/.test(s) ? s : s + "Z") : null);
@@ -158,6 +159,9 @@ export default function App() {
   const closed = [...(state.closed || [])].reverse().slice(0, 60);
   const events = [...(state.events || [])].reverse().slice(0, 60);
   const fl = state.floating_now ?? 0;
+  const rs = state.risk_state || {};
+  const paused = rs.sleeve_paused || [];
+  const floatPause = rs.float_pause_until && utc(rs.float_pause_until) > now;
   const tabs = [["open", `Đang mở (${pos.length})`], ["pending", `Chờ vào (${pend.length})`],
     ["closed", "Đã chốt"], ["log", "Nhật ký"]];
 
@@ -169,12 +173,16 @@ export default function App() {
           <h1 className="status">{pos.length ? `${pos.length} lệnh đang mở` : "Không có lệnh mở"}</h1>
           <p className="updated">Cập nhật {lastRun ? ago(lastRun, now) : "–"} · tạm tính{" "}
             <b className={tone(fl)}>{signed(fl, 2, "% vốn")}</b></p>
+          <p className="updated">Rủi ro mở {(rs.open_risk ?? 0).toFixed(2)}% / 4% · crypto {rs.crypto_open ?? 0}/6 · từ đỉnh {signed(rs.dd ?? 0, 2, "%")}</p>
         </div>
         <button className="refresh" onClick={reload} disabled={loading}>{loading ? "…" : "Tải lại"}</button>
       </div>
 
       {staleMin > STALE_MIN && (
         <p className="banner danger">Bot chưa cập nhật hơn {Math.round(staleMin / 60)} giờ — kiểm tra GitHub Actions.</p>)}
+      {rs.dd_stop && <p className="banner danger">HỆ THỐNG ĐÃ DỪNG: sụt giảm ≥ 20% từ đỉnh. Không vào lệnh mới — đánh giá lại chiến lược.</p>}
+      {floatPause && <p className="banner danger">Ngắt mạch thả nổi: đã đóng tất cả lệnh, nghỉ đến {vnTxt(rs.float_pause_until)}.</p>}
+      {paused.length > 0 && <p className="banner warn">Ngắt mạch tháng: dừng vào lệnh mới phần {paused.map((k) => (k === "FX" ? "FX (B, D, E)" : k)).join(", ")} đến hết tháng.</p>}
       {state.b_regime != null && state.b_regime < 0 && (state.parts || []).includes("B") && (
         <p className="banner warn">Chỉ báo chế độ B đang âm ({signed(state.b_regime, 1, "R")} trong 12 tháng) — cân nhắc giảm khối lượng B.</p>)}
 
@@ -197,10 +205,11 @@ export default function App() {
         <p>Thành phần: {(state.parts || []).join(", ")} · rủi ro/lệnh: {Object.entries(state.risk || {})
           .filter(([k]) => (state.parts || []).some((p) => k === p || k.startsWith(p + " "))).map(([k, v]) => `${k} ${v}%`).join(", ")}</p>
         {state.e_watch?.length > 0 && <p>E đang theo dõi mỗi giờ: {state.e_watch.join(", ")}</p>}
-        <p>Lấy mẫu: BTC, ETH mỗi giờ · 25 cặp forex mỗi 4 giờ (07, 11, 15, 19, 23, 03 giờ VN) · chốt tuần 05:00 sáng thứ Bảy.
+        <p>Lấy mẫu: BTC, ETH, SOL, DOGE, vàng mỗi giờ · 25 cặp forex mỗi 4 giờ (07, 11, 15, 19, 23, 03 giờ VN) · chốt tuần 05:00 sáng thứ Bảy.
           Lần chạy gần nhất lấy {state.last_fetch?.symbols?.length ?? 0} mã ({(state.last_fetch?.why || []).join(", ")}).
           Twelve Data hôm nay: {state.credits?.n ?? 0} lượt.</p>
-        <p>Bot không đặt lệnh. Lệnh B, C, E, BB: đặt SL trên sàn và dời SL khi bot báo. Lệnh A, D không có SL.</p>
+        <p>Bot không đặt lệnh. Lệnh B, C, E, BB, AQB: đặt SL trên sàn và dời SL khi bot báo. Lệnh A, D không có SL.
+          Giới hạn: rủi ro mở ≤ 4%, crypto ≤ 6 lệnh, A ≤ 2 lệnh/đồng tiền. Ngắt mạch: phần FX lỗ tháng ≥ 1%, phần A ≥ 3%, thả nổi ≥ 3%, sụt giảm ≥ 20%.</p>
       </footer>
     </main>
   );

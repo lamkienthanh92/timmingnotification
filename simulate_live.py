@@ -67,14 +67,18 @@ res, _ = live_bot.engine(data, end, live_bot.PARTS)
 start = pd.Timestamp(args.start)
 txt = "\n".join(live_bot._plain(m) for _, m in log)
 print("\nDOI CHIEU VOI BACKTEST (lenh co gio vao trong khoang mo phong):")
-ok = miss = 0
+ok = miss = skip = 0
+blocked = set(st.get("blocked_ids", []))
 for part, snap in res.items():
     for c in snap["closed"] + snap["open"]:
         if pd.Timestamp(c["vao"]) < start + pd.Timedelta(hours=2):
             continue
         side = "LONG" if c["side"] == 1 else "SHORT"
+        if c["id"] in blocked:
+            skip += 1
+            print(f"  BO QUA {c['he']:<8}{c['pair']:<8}{side:<6} vao {c['vao'][:16]}  (bi chan boi tran/ngat mach)"); continue
         found = re.search(rf"(VÀO|ĐANG MỞ|ĐÃ CHỐT) · {c['pair']} {side}", txt) is not None
         ok += found; miss += not found
-        print(f"  {'OK ' if found else 'THIEU'} {c['he']:<7}{c['pair']:<8}{side:<6} vao {c['vao'][:16]}"
+        print(f"  {'OK ' if found else 'THIEU'} {c['he']:<8}{c['pair']:<8}{side:<6} vao {c['vao'][:16]}"
               + (f"  ra {c['ra'][:16]}  R {c['R']:+.2f}" if "ra" in c else "  (con mo)"))
-print(f"Khop {ok}/{ok + miss}")
+print(f"Khop {ok}/{ok + miss} | bi chan boi tran/ngat mach: {skip}")

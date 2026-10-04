@@ -4,17 +4,18 @@
  "positions": [
   {
    "he": "A",
-   "pair": "EURGBP",
+   "pair": "GBPNZD",
    "side": 1,
-   "vao": "2026-09-14T00:00:00",
-   "gia_vao": 0.85714,
-   "rui_ro": 0.002108398027295286,
+   "vao": "2026-08-17T00:00:00",
+   "gia_vao": 2.29966,
+   "rui_ro": 0.011157484310888525,
+   "wpr": -85.03299450037495,
    "con_ngay": 3,
    "ghi_chu": "dong o gia dong cua ngay giao dich thu 8 (con 3 ngay)",
-   "id": "A|EURGBP|1|2026-09-14T00:00:00",
-   "last": 0.85725,
-   "r_now": 0.052,
-   "pct_now": 0.013,
+   "id": "A|GBPNZD|1|2026-08-17T00:00:00",
+   "last": 2.28139,
+   "r_now": -1.637,
+   "pct_now": -0.409,
    "sl_bao": null
   },
   {
@@ -23,152 +24,168 @@
    "side": -1,
    "vao": "2026-07-14T00:00:00",
    "gia_vao": 1.08744,
-   "rui_ro": 0.004442892824887452,
-   "do_lech": 2.5744548284293423,
-   "tuoi": 49,
+   "rui_ro": 0.004442892824888651,
+   "do_lech": 2.8037813648798844,
+   "tuoi": 29,
    "thoat": false,
-   "ghi_chu": "do lech hien tai +2.57 (thoat khi < 1.0), da giu 49 ngay",
+   "ghi_chu": "do lech hien tai +2.80 (thoat khi < 1.0), da giu 29 ngay",
    "id": "D|GBPCHF|-1|2026-07-14T00:00:00",
-   "last": 1.10086,
-   "r_now": -3.021,
-   "pct_now": -0.453,
-   "sl_bao": null
-  },
-  {
-   "he": "D",
-   "pair": "CHFJPY",
-   "side": 1,
-   "vao": "2026-09-08T00:00:00",
-   "gia_vao": 190.148,
-   "rui_ro": 1.4913323688067708,
-   "do_lech": -3.8981367214388034,
-   "tuoi": 9,
-   "thoat": false,
-   "ghi_chu": "do lech hien tai -3.90 (thoat khi < 1.0), da giu 9 ngay",
-   "id": "D|CHFJPY|1|2026-09-08T00:00:00",
-   "last": 190.856,
-   "r_now": 0.475,
-   "pct_now": 0.071,
+   "last": 1.09299,
+   "r_now": -1.249,
+   "pct_now": -0.187,
    "sl_bao": null
   },
   {
    "he": "B",
    "pair": "AUDJPY",
    "side": 1,
-   "vao": "2026-09-18T00:00:00",
-   "gia_vao": 111.096,
-   "sl": 111.23169481346669,
-   "rui_ro": 0.970879542569719,
-   "nguyen_nhan": "hon hop",
-   "ghi_chu": "SL hien tai 111.23 (hon hop)",
-   "id": "B|AUDJPY|1|2026-09-18T00:00:00",
-   "last": 111.75,
-   "r_now": 0.674,
-   "pct_now": 0.169,
-   "sl_bao": 111.23169481346669,
-   "sl_bao_luc": "2026-09-18T12:02:00"
+   "vao": "2026-08-21T04:00:00",
+   "gia_vao": 113.545,
+   "sl": 113.2629261618419,
+   "rui_ro": 1.031770899012841,
+   "nguyen_nhan": "JPY tu yeu",
+   "ghi_chu": "SL hien tai 113.26 (JPY tu yeu)",
+   "id": "B|AUDJPY|1|2026-08-21T04:00:00",
+   "last": 113.985,
+   "r_now": 0.426,
+   "pct_now": 0.149,
+   "sl_bao": 113.25997351315769,
+   "sl_bao_luc": "2026-08-21T20:02:00"
   },
   {
    "he": "B",
    "pair": "CADJPY",
    "side": 1,
-   "vao": "2026-09-18T04:00:00",
-   "gia_vao": 112.361,
-   "sl": 111.53612996904128,
-   "rui_ro": 1.4378827542700066,
+   "vao": "2026-08-20T12:00:00",
+   "gia_vao": 115.24,
+   "sl": 114.83344026521357,
+   "rui_ro": 0.8532950653041809,
    "nguyen_nhan": "JPY tu yeu",
-   "ghi_chu": "SL hien tai 111.54 (JPY tu yeu)",
-   "id": "B|CADJPY|1|2026-09-18T04:00:00",
-   "last": 112.153,
-   "r_now": -0.145,
-   "pct_now": -0.036,
-   "sl_bao": 111.53612996904128,
-   "sl_bao_luc": "2026-09-18T12:02:00"
+   "ghi_chu": "SL hien tai 114.83 (JPY tu yeu)",
+   "id": "B|CADJPY|1|2026-08-20T12:00:00",
+   "last": 115.467,
+   "r_now": 0.266,
+   "pct_now": 0.093,
+   "sl_bao": 114.83344026521357,
+   "sl_bao_luc": "2026-08-21T22:02:00"
   },
   {
    "he": "B",
    "pair": "CHFJPY",
    "side": 1,
-   "vao": "2026-09-16T04:00:00",
-   "gia_vao": 189.756,
-   "sl": 189.45918005962082,
-   "rui_ro": 1.615290078873386,
-   "nguyen_nhan": "hon hop",
-   "ghi_chu": "SL hien tai 189.46 (hon hop)",
-   "id": "B|CHFJPY|1|2026-09-16T04:00:00",
-   "last": 190.856,
-   "r_now": 0.681,
-   "pct_now": 0.17,
-   "sl_bao": 189.45918005962082,
-   "sl_bao_luc": "2026-09-18T12:02:00"
-  },
-  {
-   "he": "B",
-   "pair": "EURJPY",
-   "side": 1,
-   "vao": "2026-09-18T04:00:00",
-   "gia_vao": 180.452,
-   "sl": 179.4596478986891,
-   "rui_ro": 2.03147790285297,
+   "vao": "2026-08-10T12:00:00",
+   "gia_vao": 196.419,
+   "sl": 197.5389042357449,
+   "rui_ro": 1.591971808790106,
    "nguyen_nhan": "JPY tu yeu",
-   "ghi_chu": "SL hien tai 179.46 (JPY tu yeu)",
-   "id": "B|EURJPY|1|2026-09-18T04:00:00",
-   "last": 180.147,
-   "r_now": -0.15,
-   "pct_now": -0.037,
-   "sl_bao": 179.4596478986891,
-   "sl_bao_luc": "2026-09-18T12:02:00"
+   "ghi_chu": "SL hien tai 197.54 (JPY tu yeu)",
+   "id": "B|CHFJPY|1|2026-08-10T12:00:00",
+   "last": 198.372,
+   "r_now": 1.227,
+   "pct_now": 0.429,
+   "sl_bao": 197.5389042357449,
+   "sl_bao_luc": "2026-08-21T04:02:00"
   },
   {
    "he": "B",
    "pair": "GBPJPY",
    "side": 1,
-   "vao": "2026-09-18T04:00:00",
-   "gia_vao": 210.008,
-   "sl": 208.78835694231682,
-   "rui_ro": 2.21590153222283,
+   "vao": "2026-08-20T12:00:00",
+   "gia_vao": 216.278,
+   "sl": 215.90620305931017,
+   "rui_ro": 1.3523846266486714,
    "nguyen_nhan": "JPY tu yeu",
-   "ghi_chu": "SL hien tai 208.79 (JPY tu yeu)",
-   "id": "B|GBPJPY|1|2026-09-18T04:00:00",
-   "last": 210.095,
-   "r_now": 0.039,
-   "pct_now": 0.01,
-   "sl_bao": 208.78835694231682,
-   "sl_bao_luc": "2026-09-18T12:02:00"
+   "ghi_chu": "SL hien tai 215.91 (JPY tu yeu)",
+   "id": "B|GBPJPY|1|2026-08-20T12:00:00",
+   "last": 216.908,
+   "r_now": 0.466,
+   "pct_now": 0.163,
+   "sl_bao": 215.79439469645575,
+   "sl_bao_luc": "2026-08-21T04:02:00"
   },
   {
    "he": "B",
    "pair": "NZDJPY",
    "side": 1,
-   "vao": "2026-09-18T04:00:00",
-   "gia_vao": 90.049,
-   "sl": 89.24691492996205,
-   "rui_ro": 1.1040016909092714,
-   "nguyen_nhan": "JPY tu yeu",
-   "ghi_chu": "SL hien tai 89.247 (JPY tu yeu)",
-   "id": "B|NZDJPY|1|2026-09-18T04:00:00",
-   "last": 89.725,
-   "r_now": -0.293,
-   "pct_now": -0.073,
-   "sl_bao": 89.24691492996205,
-   "sl_bao_luc": "2026-09-18T12:02:00"
+   "vao": "2026-08-20T04:00:00",
+   "gia_vao": 94.302,
+   "sl": 94.37534402056903,
+   "rui_ro": 1.0575766508287359,
+   "nguyen_nhan": "hon hop",
+   "ghi_chu": "SL hien tai 94.375 (hon hop)",
+   "id": "B|NZDJPY|1|2026-08-20T04:00:00",
+   "last": 95.026,
+   "r_now": 0.685,
+   "pct_now": 0.24,
+   "sl_bao": 94.36738224507671,
+   "sl_bao_luc": "2026-08-21T20:02:00"
   },
   {
-   "he": "B",
-   "pair": "USDJPY",
+   "he": "E",
+   "pair": "USDCHF",
    "side": 1,
-   "vao": "2026-09-16T00:00:00",
-   "gia_vao": 155.285,
-   "sl": 156.0717098351163,
-   "rui_ro": 1.49137425819481,
-   "nguyen_nhan": "XX manh",
-   "ghi_chu": "SL hien tai 156.07 (XX manh)",
-   "id": "B|USDJPY|1|2026-09-16T00:00:00",
-   "last": 156.868,
-   "r_now": 1.061,
-   "pct_now": 0.265,
-   "sl_bao": 156.0717098351163,
-   "sl_bao_luc": "2026-09-18T12:02:00"
+   "vao": "2026-08-20T19:00:00",
+   "gia_vao": 0.80066,
+   "sl": 0.7959326882648505,
+   "tp": 0.8112790582882579,
+   "rui_ro": 0.004727311735149509,
+   "ghi_chu": "SL 0.79593, TP 0.81128",
+   "id": "E|USDCHF|1|2026-08-20T19:00:00",
+   "last": 0.8008,
+   "r_now": 0.03,
+   "pct_now": 0.003,
+   "sl_bao": 0.7959326882648505
+  },
+  {
+   "he": "BB BTC",
+   "pair": "BTCUSD",
+   "side": 1,
+   "vao": "2026-08-18T15:00:00",
+   "gia_vao": 64630.7,
+   "sl": 74690.9974143136,
+   "rui_ro": 690.1776352144151,
+   "gio_giu": 80,
+   "ghi_chu": "SL hien tai 74691",
+   "id": "BB BTC|BTCUSD|1|2026-08-18T15:00:00",
+   "last": 78443.6,
+   "r_now": 20.014,
+   "pct_now": 5.003,
+   "sl_bao": 74690.9974143136,
+   "sl_bao_luc": "2026-08-21T23:02:00"
+  },
+  {
+   "he": "BB ETH",
+   "pair": "ETHUSD",
+   "side": 1,
+   "vao": "2026-08-18T16:00:00",
+   "gia_vao": 1914.8,
+   "sl": 2328.7199965709624,
+   "rui_ro": 29.26696920528639,
+   "gio_giu": 79,
+   "ghi_chu": "SL hien tai 2328.72",
+   "id": "BB ETH|ETHUSD|1|2026-08-18T16:00:00",
+   "last": 2519.7,
+   "r_now": 20.668,
+   "pct_now": 5.167,
+   "sl_bao": 2328.7199965709624,
+   "sl_bao_luc": "2026-08-21T21:02:00"
+  },
+  {
+   "he": "BB SOL",
+   "pair": "SOLUSD",
+   "side": 1,
+   "vao": "2026-08-19T12:00:00",
+   "gia_vao": 77.54,
+   "sl": 88.83466622920291,
+   "rui_ro": 0.9132145220344512,
+   "gio_giu": 59,
+   "ghi_chu": "SL hien tai 88.8347",
+   "id": "BB SOL|SOLUSD|1|2026-08-19T12:00:00",
+   "last": 94.3,
+   "r_now": 18.353,
+   "pct_now": 4.588,
+   "sl_bao": 88.30235758608035,
+   "sl_bao_luc": "2026-08-21T20:02:00"
   }
  ],
  "pending": [
@@ -176,233 +193,900 @@
    "he": "A",
    "pair": "EURGBP",
    "side": 1,
-   "t_vao": "2026-09-21T00:00:00",
-   "rui_ro": 0.0023128041120302335,
-   "wpr": -88.82258965941861,
-   "ghi_chu": "WPR-EMA -88.8, duoi SMA200 -> LONG dau tuan"
+   "t_vao": "2026-08-24T00:00:00",
+   "rui_ro": 0.003422,
+   "wpr": -92.25462441125086,
+   "ghi_chu": "WPR-EMA -92.3, duoi SMA200 -> LONG dau tuan"
+  },
+  {
+   "he": "A",
+   "pair": "EURAUD",
+   "side": 1,
+   "t_vao": "2026-08-24T00:00:00",
+   "rui_ro": 0.007396579830447388,
+   "wpr": -91.1244447719703,
+   "ghi_chu": "WPR-EMA -91.1, duoi SMA200 -> LONG dau tuan"
   }
  ],
  "closed": [
   {
+   "he": "AQB SOL",
+   "pair": "SOLUSD",
+   "side": -1,
+   "vao": "2026-08-12T15:00:00",
+   "ra": "2026-08-17T02:00:00",
+   "gia_vao": 75.47,
+   "gia_ra": 75.13947231508246,
+   "rui_ro": 1.3002279174574767,
+   "R": 0.1381201576326057,
+   "id": "AQB SOL|SOLUSD|-1|2026-08-12T15:00:00"
+  },
+  {
+   "he": "AQB BTC",
+   "pair": "BTCUSD",
+   "side": -1,
+   "vao": "2026-08-12T15:00:00",
+   "ra": "2026-08-17T03:00:00",
+   "gia_vao": 63271.5,
+   "gia_ra": 63333.38427111067,
+   "rui_ro": 886.6288117521253,
+   "R": -0.14115915189282133,
+   "id": "AQB BTC|BTCUSD|-1|2026-08-12T15:00:00"
+  },
+  {
+   "he": "BB ETH",
+   "pair": "ETHUSD",
+   "side": 1,
+   "vao": "2026-08-17T03:00:00",
+   "ra": "2026-08-18T03:00:00",
+   "gia_vao": 1899.0,
+   "gia_ra": 1891.376780802647,
+   "rui_ro": 31.668896694146273,
+   "R": -0.39062678175458937,
+   "id": "BB ETH|ETHUSD|1|2026-08-17T03:00:00"
+  },
+  {
+   "he": "AQB ETH",
+   "pair": "ETHUSD",
+   "side": 1,
+   "vao": "2026-08-17T02:00:00",
+   "ra": "2026-08-18T04:00:00",
+   "gia_vao": 1887.8,
+   "gia_ra": 1882.6859364718582,
+   "rui_ro": 20.153717057718723,
+   "R": -0.4879280333240344,
+   "id": "AQB ETH|ETHUSD|1|2026-08-17T02:00:00"
+  },
+  {
    "he": "BB BTC",
    "pair": "BTCUSD",
    "side": 1,
-   "vao": "2026-09-18T03:00:00",
-   "ra": "2026-09-19T22:00:00",
-   "gia_vao": 76915.8,
-   "gia_ra": 80882.74751128435,
-   "rui_ro": 692.3195604568609,
-   "R": 5.618838370993481,
-   "id": "BB BTC|BTCUSD|1|2026-09-18T03:00:00"
+   "vao": "2026-08-17T03:00:00",
+   "ra": "2026-08-18T14:00:00",
+   "gia_vao": 63339.0,
+   "gia_ra": 64003.12389601809,
+   "rui_ro": 597.0242548555617,
+   "R": 1.0062989755138858,
+   "id": "BB BTC|BTCUSD|1|2026-08-17T03:00:00"
+  },
+  {
+   "he": "B",
+   "pair": "AUDJPY",
+   "side": 1,
+   "vao": "2026-08-10T08:00:00",
+   "ra": "2026-08-19T04:00:00",
+   "gia_vao": 112.056,
+   "gia_ra": 112.86594127837515,
+   "rui_ro": 1.1964410961674758,
+   "R": 0.6700280832404101,
+   "nguyen_nhan": "hon hop",
+   "id": "B|AUDJPY|1|2026-08-10T08:00:00"
+  },
+  {
+   "he": "B",
+   "pair": "NZDJPY",
+   "side": 1,
+   "vao": "2026-08-14T12:00:00",
+   "ra": "2026-08-19T04:00:00",
+   "gia_vao": 93.683,
+   "gia_ra": 93.59328755609666,
+   "rui_ro": 0.7139038681901297,
+   "R": -0.1404931775445149,
+   "nguyen_nhan": "JPY tu yeu",
+   "id": "B|NZDJPY|1|2026-08-14T12:00:00"
+  },
+  {
+   "he": "B",
+   "pair": "CADJPY",
+   "side": 1,
+   "vao": "2026-08-10T08:00:00",
+   "ra": "2026-08-19T16:00:00",
+   "gia_vao": 113.677,
+   "gia_ra": 114.58137965906607,
+   "rui_ro": 1.1545302464013645,
+   "R": 0.7722051118582219,
+   "nguyen_nhan": "hon hop",
+   "id": "B|CADJPY|1|2026-08-10T08:00:00"
+  },
+  {
+   "he": "B",
+   "pair": "EURJPY",
+   "side": 1,
+   "vao": "2026-08-10T12:00:00",
+   "ra": "2026-08-19T16:00:00",
+   "gia_vao": 183.473,
+   "gia_ra": 184.13975247757253,
+   "rui_ro": 1.4902598433588992,
+   "R": 0.44063554788704845,
+   "nguyen_nhan": "JPY tu yeu",
+   "id": "B|EURJPY|1|2026-08-10T12:00:00"
+  },
+  {
+   "he": "B",
+   "pair": "GBPJPY",
+   "side": 1,
+   "vao": "2026-08-10T12:00:00",
+   "ra": "2026-08-19T16:00:00",
+   "gia_vao": 214.414,
+   "gia_ra": 215.228902175028,
+   "rui_ro": 1.9740934077261727,
+   "R": 0.4026970911896583,
+   "nguyen_nhan": "JPY tu yeu",
+   "id": "B|GBPJPY|1|2026-08-10T12:00:00"
+  },
+  {
+   "he": "B",
+   "pair": "USDJPY",
+   "side": 1,
+   "vao": "2026-08-10T20:00:00",
+   "ra": "2026-08-19T16:00:00",
+   "gia_vao": 159.302,
+   "gia_ra": 158.85587079248089,
+   "rui_ro": 1.6157596031233368,
+   "R": -0.2794632782291678,
+   "nguyen_nhan": "JPY tu yeu",
+   "id": "B|USDJPY|1|2026-08-10T20:00:00"
+  },
+  {
+   "he": "A",
+   "pair": "EURAUD",
+   "side": 1,
+   "vao": "2026-08-10T00:00:00",
+   "ra": "2026-08-19T23:59:00",
+   "gia_vao": 1.63616,
+   "gia_ra": 1.63887,
+   "rui_ro": 0.0077827941899639074,
+   "R": 0.3179311825039363,
+   "wpr": -90.95888854879782,
+   "id": "A|EURAUD|1|2026-08-10T00:00:00"
+  },
+  {
+   "he": "A",
+   "pair": "EURGBP",
+   "side": 1,
+   "vao": "2026-08-10T00:00:00",
+   "ra": "2026-08-19T23:59:00",
+   "gia_vao": 0.85664,
+   "gia_ra": 0.85836,
+   "rui_ro": 0.00342656,
+   "R": 0.47871115054166713,
+   "wpr": -83.41264084653562,
+   "id": "A|EURGBP|1|2026-08-10T00:00:00"
+  },
+  {
+   "he": "AQB DOGE",
+   "pair": "DOGEUSD",
+   "side": 1,
+   "vao": "2026-08-19T21:00:00",
+   "ra": "2026-08-20T23:00:00",
+   "gia_vao": 0.07418,
+   "gia_ra": 0.07923931595201335,
+   "rui_ro": 0.001888295109678459,
+   "R": 2.600735407745453,
+   "id": "AQB DOGE|DOGEUSD|1|2026-08-19T21:00:00"
+  },
+  {
+   "he": "AQB SOL",
+   "pair": "SOLUSD",
+   "side": 1,
+   "vao": "2026-08-18T07:00:00",
+   "ra": "2026-08-21T14:00:00",
+   "gia_vao": 76.02,
+   "gia_ra": 89.87788692540136,
+   "rui_ro": 1.2666482363982823,
+   "R": 10.820562908905137,
+   "id": "AQB SOL|SOLUSD|1|2026-08-18T07:00:00"
   }
  ],
  "events": [
   {
-   "time": "2026-09-18T00:02:00",
-   "text": "🟢 VÀO · AUDJPY LONG · B · xu hướng JPY | Vào: giá mở 07:00 T6 18/09 | SL ban đầu 110.125 · dời theo Supertrend 4H (bot báo) | Nguyên nhân cú đảo chiều: hon hop | Khối lượng: 0.25% vốn ứng với khoảng SL ≈ 0.97188 (97 pip) (theo giá hiện tại)"
+   "time": "2026-08-17T00:02:00",
+   "text": "🟢 VÀO · GBPNZD LONG · A · mua sau bán tháo | Vào: giá mở 07:00 T2 17/08 · giữ 8 ngày giao dịch, đóng ở giá đóng cửa ngày thứ 8 (bot nhắc) | Không SL · WPR-EMA -85.0, giá dưới SMA200 ngày | Khối lượng: 0.25% vốn ứng với 1 ATR ngày = 0.01116 (112 pip)"
   },
   {
-   "time": "2026-09-18T03:02:00",
-   "text": "🟢 VÀO · BTCUSD LONG · BB · squeeze BTC | Vào: giá mở 10:00 T6 18/09 · SL 76223.5 (band đối diện, bot báo khi dời) · tối đa 10 ngày | Khối lượng: 0.5% vốn ứng với khoảng SL ≈ 689.620 (690 điểm) (theo giá hiện tại)"
+   "time": "2026-08-17T02:02:00",
+   "text": "✅ ĐÃ CHỐT · SOLUSD SHORT · AQB · SOL | +0.14R (≈ +0.03% vốn) · chạm SL kéo theo | 75.470 → 75.139 · giữ 4.5 ngày"
   },
   {
-   "time": "2026-09-18T04:02:00",
-   "text": "↕️ DỜI SL · CHFJPY LONG · B · xu hướng JPY | 188.141 → 188.435 · tạm tính +0.62R"
+   "time": "2026-08-17T02:02:00",
+   "text": "🟢 VÀO · ETHUSD LONG · BB · squeeze ETH | Vào: giá mở 09:00 T2 17/08 · SL 1870.15 (band đối diện, bot báo khi dời) · tối đa 10 ngày | Khối lượng: 0.25% vốn ứng với khoảng SL ≈ 17.65494 (0.94% giá) (theo giá hiện tại)"
   },
   {
-   "time": "2026-09-18T04:02:00",
-   "text": "↕️ DỜI SL · USDJPY LONG · B · xu hướng JPY | 154.703 → 155.087 · tạm tính +1.18R"
+   "time": "2026-08-17T02:02:00",
+   "text": "🟢 VÀO · ETHUSD LONG · AQB · ETH | Vào: giá mở 09:00 T2 17/08 · SL 1867.65 (band đối diện, bot báo khi dời) · tối đa 10 ngày | Khối lượng: 0.25% vốn ứng với khoảng SL ≈ 20.15372 (1.07% giá) (theo giá hiện tại)"
   },
   {
-   "time": "2026-09-18T04:02:00",
-   "text": "🟢 VÀO · CADJPY LONG · B · xu hướng JPY | Vào: giá mở 11:00 T6 18/09 | SL ban đầu 110.923 · dời theo Supertrend 4H (bot báo) | Nguyên nhân cú đảo chiều: JPY tu yeu | Khối lượng: 0.25% vốn ứng với khoảng SL ≈ 1.43488 (143 pip) (theo giá hiện tại)"
+   "time": "2026-08-17T03:02:00",
+   "text": "❌ ĐÃ CHỐT · BTCUSD SHORT · AQB · BTC | -0.14R (≈ -0.04% vốn) · chạm SL kéo theo | 63271.5 → 63333.4 · giữ 4.5 ngày"
   },
   {
-   "time": "2026-09-18T04:02:00",
-   "text": "🟢 VÀO · EURJPY LONG · B · xu hướng JPY | Vào: giá mở 11:00 T6 18/09 | SL ban đầu 178.421 · dời theo Supertrend 4H (bot báo) | Nguyên nhân cú đảo chiều: JPY tu yeu | Khối lượng: 0.25% vốn ứng với khoảng SL ≈ 2.02948 (203 pip) (theo giá hiện tại)"
+   "time": "2026-08-17T03:02:00",
+   "text": "🟢 VÀO · BTCUSD LONG · BB · squeeze BTC | Vào: giá mở 10:00 T2 17/08 · SL 62742.0 (band đối diện, bot báo khi dời) · tối đa 10 ngày | Khối lượng: 0.25% vốn ứng với khoảng SL ≈ 578.824 (0.91% giá) (theo giá hiện tại)"
   },
   {
-   "time": "2026-09-18T04:02:00",
-   "text": "🟢 VÀO · GBPJPY LONG · B · xu hướng JPY | Vào: giá mở 11:00 T6 18/09 | SL ban đầu 207.792 · dời theo Supertrend 4H (bot báo) | Nguyên nhân cú đảo chiều: JPY tu yeu | Khối lượng: 0.25% vốn ứng với khoảng SL ≈ 2.21190 (221 pip) (theo giá hiện tại)"
+   "time": "2026-08-17T03:02:00",
+   "text": "🟢 VÀO · ETHUSD LONG · BB · squeeze ETH | Vào: giá mở 10:00 T2 17/08 · SL 1867.33 (band đối diện, bot báo khi dời) · tối đa 10 ngày | Khối lượng: 0.25% vốn ứng với khoảng SL ≈ 31.36890 (1.65% giá) (theo giá hiện tại)"
   },
   {
-   "time": "2026-09-18T04:02:00",
-   "text": "🟢 VÀO · NZDJPY LONG · B · xu hướng JPY | Vào: giá mở 11:00 T6 18/09 | SL ban đầu 88.945 · dời theo Supertrend 4H (bot báo) | Nguyên nhân cú đảo chiều: JPY tu yeu | Khối lượng: 0.25% vốn ứng với khoảng SL ≈ 1.10200 (110 pip) (theo giá hiện tại)"
+   "time": "2026-08-17T08:02:00",
+   "text": "↕️ DỜI SL · AUDJPY LONG · B · xu hướng JPY | 112.206 → 112.423 · tạm tính +0.94R"
   },
   {
-   "time": "2026-09-18T08:02:00",
-   "text": "↕️ DỜI SL · AUDJPY LONG · B · xu hướng JPY | 110.510 → 110.710 · tạm tính +1.13R"
+   "time": "2026-08-17T08:02:00",
+   "text": "↕️ DỜI SL · NZDJPY LONG · B · xu hướng JPY | 93.215 → 93.439 · tạm tính +0.59R"
   },
   {
-   "time": "2026-09-18T08:02:00",
-   "text": "↕️ DỜI SL · CHFJPY LONG · B · xu hướng JPY | 188.435 → 188.669 · tạm tính +0.74R"
+   "time": "2026-08-17T12:02:00",
+   "text": "↕️ DỜI SL · AUDJPY LONG · B · xu hướng JPY | 112.423 → 112.598 · tạm tính +1.17R"
   },
   {
-   "time": "2026-09-18T08:02:00",
-   "text": "↕️ DỜI SL · USDJPY LONG · B · xu hướng JPY | 155.087 → 155.320 · tạm tính +1.48R"
+   "time": "2026-08-17T12:02:00",
+   "text": "↕️ DỜI SL · CHFJPY LONG · B · xu hướng JPY | 195.233 → 195.503 · tạm tính +0.12R"
   },
   {
-   "time": "2026-09-18T12:02:00",
-   "text": "↕️ DỜI SL · AUDJPY LONG · B · xu hướng JPY | 110.710 → 111.232 · tạm tính +1.36R"
+   "time": "2026-08-17T12:02:00",
+   "text": "↕️ DỜI SL · EURJPY LONG · B · xu hướng JPY | 183.478 → 183.742 · tạm tính +0.75R"
   },
   {
-   "time": "2026-09-18T12:02:00",
-   "text": "↕️ DỜI SL · CADJPY LONG · B · xu hướng JPY | 111.006 → 111.536 · tạm tính +0.22R"
+   "time": "2026-08-17T12:02:00",
+   "text": "↕️ DỜI SL · NZDJPY LONG · B · xu hướng JPY | 93.439 → 93.570 · tạm tính +0.73R"
   },
   {
-   "time": "2026-09-18T12:02:00",
-   "text": "↕️ DỜI SL · CHFJPY LONG · B · xu hướng JPY | 188.669 → 189.459 · tạm tính +0.93R"
+   "time": "2026-08-17T14:02:00",
+   "text": "⏭ BỎ QUA · BTCUSD LONG · AQB · BTC | vượt trần rủi ro mở 4% (đang 3.85%)"
   },
   {
-   "time": "2026-09-18T12:02:00",
-   "text": "↕️ DỜI SL · EURJPY LONG · B · xu hướng JPY | 178.696 → 179.460 · tạm tính +0.22R"
+   "time": "2026-08-17T16:02:00",
+   "text": "↕️ DỜI SL · CADJPY LONG · B · xu hướng JPY | 114.162 → 114.348 · tạm tính +1.06R"
   },
   {
-   "time": "2026-09-18T12:02:00",
-   "text": "↕️ DỜI SL · GBPJPY LONG · B · xu hướng JPY | 207.856 → 208.788 · tạm tính +0.29R"
+   "time": "2026-08-17T16:02:00",
+   "text": "↕️ DỜI SL · GBPJPY LONG · B · xu hướng JPY | 214.608 → 214.954 · tạm tính +0.85R"
   },
   {
-   "time": "2026-09-18T12:02:00",
-   "text": "↕️ DỜI SL · NZDJPY LONG · B · xu hướng JPY | 88.945 → 89.247 · tạm tính +0.09R"
+   "time": "2026-08-17T21:02:00",
+   "text": "↕️ DỜI SL · ETHUSD LONG · BB · squeeze ETH | 1867.33 → 1888.62 · tạm tính +0.13R"
   },
   {
-   "time": "2026-09-18T12:02:00",
-   "text": "↕️ DỜI SL · USDJPY LONG · B · xu hướng JPY | 155.320 → 156.072 · tạm tính +1.71R"
+   "time": "2026-08-18T01:02:00",
+   "text": "↕️ DỜI SL · BTCUSD LONG · BB · squeeze BTC | 62742.0 → 63064.1 · tạm tính +1.65R"
   },
   {
-   "time": "2026-09-18T22:02:00",
-   "text": "🟢 VÀO · EURGBP LONG · A · mua sau bán tháo | Vào: giá mở 07:00 T2 21/09 · giữ 8 ngày giao dịch, đóng ở giá đóng cửa ngày thứ 8 (bot nhắc) | Không SL · WPR-EMA -88.8, giá dưới SMA200 ngày | Khối lượng: 0.25% vốn ứng với 1 ATR ngày = 0.00231 (23 pip)"
+   "time": "2026-08-18T03:02:00",
+   "text": "❌ ĐÃ CHỐT · ETHUSD LONG · BB · squeeze ETH | -0.39R (≈ -0.10% vốn) · chạm SL kéo theo | 1899.00 → 1891.38 · giữ 1.0 ngày"
   },
   {
-   "time": "2026-09-19T01:02:00",
-   "text": "↕️ DỜI SL · BTCUSD LONG · BB · squeeze BTC | 76223.5 → 76666.3 · tạm tính +6.84R"
+   "time": "2026-08-18T04:02:00",
+   "text": "↕️ DỜI SL · EURJPY LONG · B · xu hướng JPY | 183.742 → 183.907 · tạm tính +0.79R"
   },
   {
-   "time": "2026-09-19T05:02:00",
-   "text": "↕️ DỜI SL · BTCUSD LONG · BB · squeeze BTC | 76666.3 → 78008.6 · tạm tính +5.90R"
+   "time": "2026-08-18T04:02:00",
+   "text": "❌ ĐÃ CHỐT · ETHUSD LONG · AQB · ETH | -0.49R (≈ -0.12% vốn) · chạm SL kéo theo | 1887.80 → 1882.69 · giữ 1.1 ngày"
   },
   {
-   "time": "2026-09-19T09:02:00",
-   "text": "↕️ DỜI SL · BTCUSD LONG · BB · squeeze BTC | 78008.6 → 80408.3 · tạm tính +6.32R"
+   "time": "2026-08-18T06:02:00",
+   "text": "↕️ DỜI SL · BTCUSD LONG · BB · squeeze BTC | 63064.1 → 63477.3 · tạm tính +1.35R"
   },
   {
-   "time": "2026-09-19T13:02:00",
-   "text": "↕️ DỜI SL · BTCUSD LONG · BB · squeeze BTC | 80408.3 → 80807.0 · tạm tính +6.34R"
+   "time": "2026-08-18T07:02:00",
+   "text": "🟢 VÀO · SOLUSD LONG · AQB · SOL | Vào: giá mở 14:00 T3 18/08 · SL 74.753 (band đối diện, bot báo khi dời) · tối đa 10 ngày | Khối lượng: 0.25% vốn ứng với khoảng SL ≈ 1.25665 (1.65% giá) (theo giá hiện tại)"
   },
   {
-   "time": "2026-09-19T22:02:00",
-   "text": "✅ ĐÃ CHỐT · BTCUSD LONG · BB · squeeze BTC | +5.62R (≈ +2.81% vốn) · chạm SL kéo theo | 76915.8 → 80882.7 · giữ 1.8 ngày"
+   "time": "2026-08-18T08:02:00",
+   "text": "↕️ DỜI SL · AUDJPY LONG · B · xu hướng JPY | 112.598 → 112.785 · tạm tính +1.16R"
+  },
+  {
+   "time": "2026-08-18T08:02:00",
+   "text": "↕️ DỜI SL · CADJPY LONG · B · xu hướng JPY | 114.348 → 114.527 · tạm tính +1.31R"
+  },
+  {
+   "time": "2026-08-18T08:02:00",
+   "text": "↕️ DỜI SL · CHFJPY LONG · B · xu hướng JPY | 195.503 → 195.721 · tạm tính +0.29R"
+  },
+  {
+   "time": "2026-08-18T08:02:00",
+   "text": "↕️ DỜI SL · USDJPY LONG · B · xu hướng JPY | 158.565 → 158.819 · tạm tính +0.26R"
+  },
+  {
+   "time": "2026-08-18T10:02:00",
+   "text": "↕️ DỜI SL · BTCUSD LONG · BB · squeeze BTC | 63477.3 → 63908.5 · tạm tính +1.24R"
+  },
+  {
+   "time": "2026-08-18T12:02:00",
+   "text": "↕️ DỜI SL · EURJPY LONG · B · xu hướng JPY | 183.907 → 184.122 · tạm tính +0.94R"
+  },
+  {
+   "time": "2026-08-18T14:02:00",
+   "text": "✅ ĐÃ CHỐT · BTCUSD LONG · BB · squeeze BTC | +1.01R (≈ +0.25% vốn) · chạm SL kéo theo | 63339.0 → 64003.1 · giữ 1.5 ngày"
+  },
+  {
+   "time": "2026-08-18T15:02:00",
+   "text": "↕️ DỜI SL · SOLUSD LONG · AQB · SOL | 74.836 → 75.546 · tạm tính +0.62R"
+  },
+  {
+   "time": "2026-08-18T15:02:00",
+   "text": "🟢 VÀO · BTCUSD LONG · BB · squeeze BTC | Vào: giá mở 22:00 T3 18/08 · SL 63940.5 (band đối diện, bot báo khi dời) · tối đa 10 ngày | Khối lượng: 0.25% vốn ứng với khoảng SL ≈ 722.578 (1.12% giá) (theo giá hiện tại)"
+  },
+  {
+   "time": "2026-08-18T15:02:00",
+   "text": "⏭ BỎ QUA · SOLUSD LONG · BB · squeeze SOL | vượt trần rủi ro mở 4% (đang 3.85%)"
+  },
+  {
+   "time": "2026-08-18T16:02:00",
+   "text": "↕️ DỜI SL · GBPJPY LONG · B · xu hướng JPY | 214.954 → 215.182 · tạm tính +0.87R"
+  },
+  {
+   "time": "2026-08-18T16:02:00",
+   "text": "⏭ BỎ QUA · ETHUSD LONG · BB · squeeze ETH | vượt trần rủi ro mở 4% (đang 3.85%)"
+  },
+  {
+   "time": "2026-08-18T17:02:00",
+   "text": "⏭ BỎ QUA · ETHUSD LONG · AQB · ETH | vượt trần rủi ro mở 4% (đang 4.10%)"
+  },
+  {
+   "time": "2026-08-19T00:02:00",
+   "text": "🔔 HÔM NAY ĐÓNG · EURAUD LONG · A · mua sau bán tháo | Ngày giữ cuối: đóng ở giá đóng cửa, trước 07:00 T5 20/08 | Tạm tính -0.19R"
+  },
+  {
+   "time": "2026-08-19T00:02:00",
+   "text": "🔔 HÔM NAY ĐÓNG · EURGBP LONG · A · mua sau bán tháo | Ngày giữ cuối: đóng ở giá đóng cửa, trước 07:00 T5 20/08 | Tạm tính -0.43R"
+  },
+  {
+   "time": "2026-08-19T04:02:00",
+   "text": "✅ ĐÃ CHỐT · AUDJPY LONG · B · xu hướng JPY | +0.67R (≈ +0.23% vốn) · chạm SL kéo theo | 112.056 → 112.866 · giữ 8.8 ngày"
+  },
+  {
+   "time": "2026-08-19T04:02:00",
+   "text": "❌ ĐÃ CHỐT · NZDJPY LONG · B · xu hướng JPY | -0.14R (≈ -0.05% vốn) · chạm SL kéo theo | 93.683 → 93.593 · giữ 4.7 ngày"
+  },
+  {
+   "time": "2026-08-19T09:02:00",
+   "text": "↕️ DỜI SL · ETHUSD LONG · BB · squeeze ETH | 1885.53 → 1900.23 · tạm tính +0.11R"
+  },
+  {
+   "time": "2026-08-19T12:02:00",
+   "text": "↕️ DỜI SL · SOLUSD LONG · AQB · SOL | 75.546 → 76.304 · tạm tính +1.21R"
+  },
+  {
+   "time": "2026-08-19T12:02:00",
+   "text": "🟢 VÀO · ETHUSD LONG · BB · squeeze ETH | Vào: giá mở 19:00 T4 19/08 · SL 1903.94 (band đối diện, bot báo khi dời) · tối đa 10 ngày | Khối lượng: 0.25% vốn ứng với khoảng SL ≈ 15.86331 (0.83% giá) (theo giá hiện tại)"
+  },
+  {
+   "time": "2026-08-19T12:02:00",
+   "text": "🟢 VÀO · SOLUSD LONG · BB · squeeze SOL | Vào: giá mở 19:00 T4 19/08 · SL 76.627 (band đối diện, bot báo khi dời) · tối đa 10 ngày | Khối lượng: 0.25% vốn ứng với khoảng SL ≈ 0.92321 (1.19% giá) (theo giá hiện tại)"
+  },
+  {
+   "time": "2026-08-19T13:02:00",
+   "text": "🟢 VÀO · ETHUSD LONG · BB · squeeze ETH | Vào: giá mở 20:00 T4 19/08 · SL 1900.44 (band đối diện, bot báo khi dời) · tối đa 10 ngày | Khối lượng: 0.25% vốn ứng với khoảng SL ≈ 33.15813 (1.71% giá) (theo giá hiện tại)"
+  },
+  {
+   "time": "2026-08-19T13:02:00",
+   "text": "⏭ BỎ QUA · XAUUSD LONG · AQB · vàng | vượt trần rủi ro mở 4% (đang 3.90%)"
+  },
+  {
+   "time": "2026-08-19T16:02:00",
+   "text": "✅ ĐÃ CHỐT · CADJPY LONG · B · xu hướng JPY | +0.77R (≈ +0.27% vốn) · chạm SL kéo theo | 113.677 → 114.581 · giữ 9.3 ngày"
+  },
+  {
+   "time": "2026-08-19T16:02:00",
+   "text": "✅ ĐÃ CHỐT · EURJPY LONG · B · xu hướng JPY | +0.44R (≈ +0.15% vốn) · chạm SL kéo theo | 183.473 → 184.140 · giữ 9.2 ngày"
+  },
+  {
+   "time": "2026-08-19T16:02:00",
+   "text": "✅ ĐÃ CHỐT · GBPJPY LONG · B · xu hướng JPY | +0.40R (≈ +0.14% vốn) · chạm SL kéo theo | 214.414 → 215.229 · giữ 9.2 ngày"
+  },
+  {
+   "time": "2026-08-19T16:02:00",
+   "text": "❌ ĐÃ CHỐT · USDJPY LONG · B · xu hướng JPY | -0.28R (≈ -0.10% vốn) · chạm SL kéo theo | 159.302 → 158.856 · giữ 8.8 ngày"
+  },
+  {
+   "time": "2026-08-19T16:02:00",
+   "text": "↕️ DỜI SL · SOLUSD LONG · AQB · SOL | 76.304 → 79.405 · tạm tính +4.59R"
+  },
+  {
+   "time": "2026-08-19T20:02:00",
+   "text": "↕️ DỜI SL · CHFJPY LONG · B · xu hướng JPY | 195.721 → 196.735 · tạm tính +1.21R"
+  },
+  {
+   "time": "2026-08-19T21:02:00",
+   "text": "↕️ DỜI SL · SOLUSD LONG · AQB · SOL | 79.405 → 80.929 · tạm tính +6.08R"
+  },
+  {
+   "time": "2026-08-19T21:02:00",
+   "text": "🟢 VÀO · DOGEUSD LONG · AQB · DOGE | Vào: giá mở 04:00 T5 20/08 · SL 0.07229 (band đối diện, bot báo khi dời) · tối đa 10 ngày | Khối lượng: 0.25% vốn ứng với khoảng SL ≈ 0.00189 (2.55% giá) (theo giá hiện tại)"
+  },
+  {
+   "time": "2026-08-20T00:02:00",
+   "text": "✅ ĐÃ CHỐT · EURAUD LONG · A · mua sau bán tháo | +0.32R (≈ +0.08% vốn) · hết 8 ngày giao dịch | 1.63616 → 1.63887 · giữ 10.0 ngày"
+  },
+  {
+   "time": "2026-08-20T00:02:00",
+   "text": "✅ ĐÃ CHỐT · EURGBP LONG · A · mua sau bán tháo | +0.48R (≈ +0.12% vốn) · hết 8 ngày giao dịch | 0.85664 → 0.85836 · giữ 10.0 ngày"
+  },
+  {
+   "time": "2026-08-20T01:02:00",
+   "text": "↕️ DỜI SL · SOLUSD LONG · AQB · SOL | 80.929 → 83.524 · tạm tính +7.09R"
+  },
+  {
+   "time": "2026-08-20T04:02:00",
+   "text": "🟢 VÀO · NZDJPY LONG · B · xu hướng JPY | Vào: giá mở 11:00 T5 20/08 | SL ban đầu 93.244 · dời theo Supertrend 4H (bot báo) | Nguyên nhân cú đảo chiều: hon hop | Khối lượng: 0.35% vốn ứng với khoảng SL ≈ 1.05658 (106 pip) (theo giá hiện tại)"
+  },
+  {
+   "time": "2026-08-20T07:02:00",
+   "text": "↕️ DỜI SL · BTCUSD LONG · BB · squeeze BTC | 63940.5 → 64855.6 · tạm tính +7.45R"
+  },
+  {
+   "time": "2026-08-20T07:02:00",
+   "text": "↕️ DỜI SL · SOLUSD LONG · BB · squeeze SOL | 76.627 → 77.810 · tạm tính +9.18R"
+  },
+  {
+   "time": "2026-08-20T08:02:00",
+   "text": "↕️ DỜI SL · ETHUSD LONG · BB · squeeze ETH | 1900.23 → 1932.85 · tạm tính +11.39R"
+  },
+  {
+   "time": "2026-08-20T11:02:00",
+   "text": "↕️ DỜI SL · BTCUSD LONG · BB · squeeze BTC | 64855.6 → 67380.5 · tạm tính +10.54R"
+  },
+  {
+   "time": "2026-08-20T11:02:00",
+   "text": "↕️ DỜI SL · SOLUSD LONG · BB · squeeze SOL | 77.810 → 80.960 · tạm tính +10.85R"
+  },
+  {
+   "time": "2026-08-20T12:02:00",
+   "text": "↕️ DỜI SL · CHFJPY LONG · B · xu hướng JPY | 196.735 → 197.198 · tạm tính +1.45R"
+  },
+  {
+   "time": "2026-08-20T12:02:00",
+   "text": "↕️ DỜI SL · ETHUSD LONG · BB · squeeze ETH | 1932.85 → 2086.83 · tạm tính +12.92R"
+  },
+  {
+   "time": "2026-08-20T12:02:00",
+   "text": "🟢 VÀO · CADJPY LONG · B · xu hướng JPY | Vào: giá mở 19:00 T5 20/08 | SL ban đầu 114.387 · dời theo Supertrend 4H (bot báo) | Nguyên nhân cú đảo chiều: JPY tu yeu | Khối lượng: 0.35% vốn ứng với khoảng SL ≈ 0.85430 (85 pip) (theo giá hiện tại)"
+  },
+  {
+   "time": "2026-08-20T12:02:00",
+   "text": "🟢 VÀO · GBPJPY LONG · B · xu hướng JPY | Vào: giá mở 19:00 T5 20/08 | SL ban đầu 214.926 · dời theo Supertrend 4H (bot báo) | Nguyên nhân cú đảo chiều: JPY tu yeu | Khối lượng: 0.35% vốn ứng với khoảng SL ≈ 1.35438 (135 pip) (theo giá hiện tại)"
+  },
+  {
+   "time": "2026-08-20T15:02:00",
+   "text": "↕️ DỜI SL · BTCUSD LONG · BB · squeeze BTC | 67380.5 → 67791.9 · tạm tính +10.30R"
+  },
+  {
+   "time": "2026-08-20T15:02:00",
+   "text": "↕️ DỜI SL · SOLUSD LONG · BB · squeeze SOL | 80.960 → 83.082 · tạm tính +9.94R"
+  },
+  {
+   "time": "2026-08-20T15:02:00",
+   "text": "↕️ DỜI SL · DOGEUSD LONG · AQB · DOGE | 0.07386 → 0.07521 · tạm tính +2.27R"
+  },
+  {
+   "time": "2026-08-20T16:02:00",
+   "text": "↕️ DỜI SL · NZDJPY LONG · B · xu hướng JPY | 93.478 → 93.632 · tạm tính +0.16R"
+  },
+  {
+   "time": "2026-08-20T16:02:00",
+   "text": "↕️ DỜI SL · ETHUSD LONG · BB · squeeze ETH | 2086.83 → 2219.35 · tạm tính +13.95R"
+  },
+  {
+   "time": "2026-08-20T19:02:00",
+   "text": "↕️ DỜI SL · BTCUSD LONG · BB · squeeze BTC | 67791.9 → 68193.4 · tạm tính +11.21R"
+  },
+  {
+   "time": "2026-08-20T19:02:00",
+   "text": "↕️ DỜI SL · SOLUSD LONG · BB · squeeze SOL | 83.082 → 84.134 · tạm tính +10.22R"
+  },
+  {
+   "time": "2026-08-20T19:02:00",
+   "text": "↕️ DỜI SL · DOGEUSD LONG · AQB · DOGE | 0.07521 → 0.07924 · tạm tính +2.89R"
+  },
+  {
+   "time": "2026-08-20T19:02:00",
+   "text": "🟢 VÀO · USDCHF LONG · E · lớp phụ 4H→1H | Vào: giá mở 02:00 T6 21/08 | SL  0.79593 | TP  0.81143 | RR  2.3SL, TP cố định — đặt sẵn trên sàn. | Khối lượng: 0.1% vốn ứng với khoảng SL ≈ 0.00473 (47 pip) (theo giá hiện tại)"
+  },
+  {
+   "time": "2026-08-20T20:02:00",
+   "text": "↕️ DỜI SL · CADJPY LONG · B · xu hướng JPY | 114.459 → 114.634 · tạm tính +0.14R"
+  },
+  {
+   "time": "2026-08-20T20:02:00",
+   "text": "↕️ DỜI SL · GBPJPY LONG · B · xu hướng JPY | 215.254 → 215.577 · tạm tính +0.42R"
+  },
+  {
+   "time": "2026-08-20T23:02:00",
+   "text": "↕️ DỜI SL · BTCUSD LONG · BB · squeeze BTC | 68193.4 → 69026.4 · tạm tính +11.63R"
+  },
+  {
+   "time": "2026-08-20T23:02:00",
+   "text": "↕️ DỜI SL · SOLUSD LONG · BB · squeeze SOL | 84.134 → 84.836 · tạm tính +10.62R"
+  },
+  {
+   "time": "2026-08-20T23:02:00",
+   "text": "✅ ĐÃ CHỐT · DOGEUSD LONG · AQB · DOGE | +2.60R (≈ +0.65% vốn) · chạm SL kéo theo | 0.07418 → 0.07924 · giữ 1.1 ngày"
+  },
+  {
+   "time": "2026-08-21T00:02:00",
+   "text": "↕️ DỜI SL · SOLUSD LONG · AQB · SOL | 83.524 → 84.255 · tạm tính +9.19R"
+  },
+  {
+   "time": "2026-08-21T01:02:00",
+   "text": "↕️ DỜI SL · ETHUSD LONG · BB · squeeze ETH | 2219.35 → 2239.26 · tạm tính +14.47R"
+  },
+  {
+   "time": "2026-08-21T03:02:00",
+   "text": "↕️ DỜI SL · BTCUSD LONG · BB · squeeze BTC | 69026.4 → 70273.4 · tạm tính +14.16R"
+  },
+  {
+   "time": "2026-08-21T03:02:00",
+   "text": "↕️ DỜI SL · SOLUSD LONG · BB · squeeze SOL | 84.836 → 86.042 · tạm tính +12.82R"
+  },
+  {
+   "time": "2026-08-21T04:02:00",
+   "text": "↕️ DỜI SL · CHFJPY LONG · B · xu hướng JPY | 197.198 → 197.539 · tạm tính +1.51R"
+  },
+  {
+   "time": "2026-08-21T04:02:00",
+   "text": "↕️ DỜI SL · GBPJPY LONG · B · xu hướng JPY | 215.577 → 215.794 · tạm tính +0.51R"
+  },
+  {
+   "time": "2026-08-21T04:02:00",
+   "text": "↕️ DỜI SL · NZDJPY LONG · B · xu hướng JPY | 93.632 → 93.957 · tạm tính +0.57R"
+  },
+  {
+   "time": "2026-08-21T04:02:00",
+   "text": "↕️ DỜI SL · SOLUSD LONG · AQB · SOL | 84.255 → 85.802 · tạm tính +10.33R"
+  },
+  {
+   "time": "2026-08-21T04:02:00",
+   "text": "🟢 VÀO · AUDJPY LONG · B · xu hướng JPY | Vào: giá mở 11:00 T6 21/08 | SL ban đầu 112.513 · dời theo Supertrend 4H (bot báo) | Nguyên nhân cú đảo chiều: JPY tu yeu | Khối lượng: 0.35% vốn ứng với khoảng SL ≈ 1.02977 (103 pip) (theo giá hiện tại)"
+  },
+  {
+   "time": "2026-08-21T05:02:00",
+   "text": "↕️ DỜI SL · ETHUSD LONG · BB · squeeze ETH | 2239.26 → 2264.45 · tạm tính +14.91R"
+  },
+  {
+   "time": "2026-08-21T07:02:00",
+   "text": "↕️ DỜI SL · BTCUSD LONG · BB · squeeze BTC | 70273.4 → 70729.1 · tạm tính +15.90R"
+  },
+  {
+   "time": "2026-08-21T08:02:00",
+   "text": "↕️ DỜI SL · CADJPY LONG · B · xu hướng JPY | 114.634 → 114.745 · tạm tính +0.22R"
+  },
+  {
+   "time": "2026-08-21T08:02:00",
+   "text": "↕️ DỜI SL · SOLUSD LONG · AQB · SOL | 85.802 → 87.086 · tạm tính +11.36R"
+  },
+  {
+   "time": "2026-08-21T11:02:00",
+   "text": "↕️ DỜI SL · ETHUSD LONG · BB · squeeze ETH | 2264.45 → 2282.98 · tạm tính +16.33R"
+  },
+  {
+   "time": "2026-08-21T12:02:00",
+   "text": "↕️ DỜI SL · SOLUSD LONG · AQB · SOL | 87.086 → 89.878 · tạm tính +11.27R"
+  },
+  {
+   "time": "2026-08-21T14:02:00",
+   "text": "✅ ĐÃ CHỐT · SOLUSD LONG · AQB · SOL | +10.82R (≈ +2.71% vốn) · chạm SL kéo theo | 76.020 → 89.878 · giữ 3.3 ngày"
+  },
+  {
+   "time": "2026-08-21T15:02:00",
+   "text": "↕️ DỜI SL · BTCUSD LONG · BB · squeeze BTC | 70729.1 → 71333.0 · tạm tính +18.39R"
+  },
+  {
+   "time": "2026-08-21T16:02:00",
+   "text": "↕️ DỜI SL · AUDJPY LONG · B · xu hướng JPY | 112.718 → 113.035 · tạm tính +0.47R"
+  },
+  {
+   "time": "2026-08-21T16:02:00",
+   "text": "↕️ DỜI SL · NZDJPY LONG · B · xu hướng JPY | 93.957 → 94.211 · tạm tính +0.72R"
+  },
+  {
+   "time": "2026-08-21T16:02:00",
+   "text": "↕️ DỜI SL · SOLUSD LONG · BB · squeeze SOL | 86.042 → 86.606 · tạm tính +15.14R"
+  },
+  {
+   "time": "2026-08-21T17:02:00",
+   "text": "↕️ DỜI SL · ETHUSD LONG · BB · squeeze ETH | 2282.98 → 2302.84 · tạm tính +16.69R"
+  },
+  {
+   "time": "2026-08-21T19:02:00",
+   "text": "↕️ DỜI SL · BTCUSD LONG · BB · squeeze BTC | 71333.0 → 73122.1 · tạm tính +18.03R"
+  },
+  {
+   "time": "2026-08-21T20:02:00",
+   "text": "↕️ DỜI SL · AUDJPY LONG · B · xu hướng JPY | 113.035 → 113.260 · tạm tính +0.49R"
+  },
+  {
+   "time": "2026-08-21T20:02:00",
+   "text": "↕️ DỜI SL · NZDJPY LONG · B · xu hướng JPY | 94.211 → 94.367 · tạm tính +0.72R"
+  },
+  {
+   "time": "2026-08-21T20:02:00",
+   "text": "↕️ DỜI SL · SOLUSD LONG · BB · squeeze SOL | 86.606 → 88.302 · tạm tính +14.70R"
+  },
+  {
+   "time": "2026-08-21T21:02:00",
+   "text": "↕️ DỜI SL · ETHUSD LONG · BB · squeeze ETH | 2302.84 → 2328.72 · tạm tính +17.90R"
+  },
+  {
+   "time": "2026-08-21T22:02:00",
+   "text": "↕️ DỜI SL · CADJPY LONG · B · xu hướng JPY | 114.745 → 114.833 · tạm tính +0.27R"
+  },
+  {
+   "time": "2026-08-21T22:02:00",
+   "text": "🟢 VÀO · EURGBP LONG · A · mua sau bán tháo | Vào: giá mở 07:00 T2 24/08 · giữ 8 ngày giao dịch, đóng ở giá đóng cửa ngày thứ 8 (bot nhắc) | Không SL · WPR-EMA -92.3, giá dưới SMA200 ngày | Khối lượng: 0.25% vốn ứng với 1 ATR ngày = 0.00342 (34 pip)"
+  },
+  {
+   "time": "2026-08-21T22:02:00",
+   "text": "🟢 VÀO · EURAUD LONG · A · mua sau bán tháo | Vào: giá mở 07:00 T2 24/08 · giữ 8 ngày giao dịch, đóng ở giá đóng cửa ngày thứ 8 (bot nhắc) | Không SL · WPR-EMA -91.1, giá dưới SMA200 ngày | Khối lượng: 0.25% vốn ứng với 1 ATR ngày = 0.00740 (74 pip)"
+  },
+  {
+   "time": "2026-08-21T23:02:00",
+   "text": "↕️ DỜI SL · BTCUSD LONG · BB · squeeze BTC | 73122.1 → 74691.0 · tạm tính +20.01R"
   }
  ],
  "announced": {
-  "B|AUDJPY|1|2026-09-18T00:00:00": {
-   "time": "2026-09-18T00:02:00",
+  "A|GBPNZD|1|2026-08-17T00:00:00": {
+   "time": "2026-08-17T00:02:00",
    "used": true
   },
-  "BB BTC|BTCUSD|1|2026-09-18T03:00:00": {
-   "time": "2026-09-18T03:02:00",
+  "BB ETH|ETHUSD|1|2026-08-17T02:00:00": {
+   "time": "2026-08-17T02:02:00",
    "used": true
   },
-  "B|CADJPY|1|2026-09-18T04:00:00": {
-   "time": "2026-09-18T04:02:00",
+  "AQB ETH|ETHUSD|1|2026-08-17T02:00:00": {
+   "time": "2026-08-17T02:02:00",
    "used": true
   },
-  "B|EURJPY|1|2026-09-18T04:00:00": {
-   "time": "2026-09-18T04:02:00",
+  "BB BTC|BTCUSD|1|2026-08-17T03:00:00": {
+   "time": "2026-08-17T03:02:00",
    "used": true
   },
-  "B|GBPJPY|1|2026-09-18T04:00:00": {
-   "time": "2026-09-18T04:02:00",
+  "BB ETH|ETHUSD|1|2026-08-17T03:00:00": {
+   "time": "2026-08-17T03:02:00",
    "used": true
   },
-  "B|NZDJPY|1|2026-09-18T04:00:00": {
-   "time": "2026-09-18T04:02:00",
+  "AQB BTC|BTCUSD|1|2026-08-17T14:00:00": {
+   "time": "2026-08-17T14:02:00",
+   "used": true,
+   "blocked": true,
+   "ly_do": "vượt trần rủi ro mở 4% (đang 3.85%)"
+  },
+  "AQB SOL|SOLUSD|1|2026-08-18T07:00:00": {
+   "time": "2026-08-18T07:02:00",
    "used": true
   },
-  "A|EURGBP|1|2026-09-21T00:00:00": {
-   "time": "2026-09-18T22:02:00",
+  "BB BTC|BTCUSD|1|2026-08-18T15:00:00": {
+   "time": "2026-08-18T15:02:00",
+   "used": true
+  },
+  "BB SOL|SOLUSD|1|2026-08-18T15:00:00": {
+   "time": "2026-08-18T15:02:00",
+   "used": true,
+   "blocked": true,
+   "ly_do": "vượt trần rủi ro mở 4% (đang 3.85%)"
+  },
+  "BB ETH|ETHUSD|1|2026-08-18T16:00:00": {
+   "time": "2026-08-18T16:02:00",
+   "used": true,
+   "blocked": true,
+   "ly_do": "vượt trần rủi ro mở 4% (đang 3.85%)"
+  },
+  "AQB ETH|ETHUSD|1|2026-08-18T17:00:00": {
+   "time": "2026-08-18T17:02:00",
+   "used": true,
+   "blocked": true,
+   "ly_do": "vượt trần rủi ro mở 4% (đang 4.10%)"
+  },
+  "BB ETH|ETHUSD|1|2026-08-19T12:00:00": {
+   "time": "2026-08-19T12:02:00",
+   "used": false
+  },
+  "BB SOL|SOLUSD|1|2026-08-19T12:00:00": {
+   "time": "2026-08-19T12:02:00",
+   "used": true
+  },
+  "BB ETH|ETHUSD|1|2026-08-19T13:00:00": {
+   "time": "2026-08-19T13:02:00",
+   "used": false
+  },
+  "AQB XAU|XAUUSD|1|2026-08-19T13:00:00": {
+   "time": "2026-08-19T13:02:00",
+   "used": true,
+   "blocked": true,
+   "ly_do": "vượt trần rủi ro mở 4% (đang 3.90%)"
+  },
+  "AQB DOGE|DOGEUSD|1|2026-08-19T21:00:00": {
+   "time": "2026-08-19T21:02:00",
+   "used": true
+  },
+  "B|NZDJPY|1|2026-08-20T04:00:00": {
+   "time": "2026-08-20T04:02:00",
+   "used": true
+  },
+  "B|CADJPY|1|2026-08-20T12:00:00": {
+   "time": "2026-08-20T12:02:00",
+   "used": true
+  },
+  "B|GBPJPY|1|2026-08-20T12:00:00": {
+   "time": "2026-08-20T12:02:00",
+   "used": true
+  },
+  "E|USDCHF|1|2026-08-20T19:00:00": {
+   "time": "2026-08-20T19:02:00",
+   "used": true
+  },
+  "B|AUDJPY|1|2026-08-21T04:00:00": {
+   "time": "2026-08-21T04:02:00",
+   "used": true
+  },
+  "A|EURGBP|1|2026-08-24T00:00:00": {
+   "time": "2026-08-21T22:02:00",
+   "used": false
+  },
+  "A|EURAUD|1|2026-08-24T00:00:00": {
+   "time": "2026-08-21T22:02:00",
    "used": false
   }
  },
  "seen_closed": {
-  "BB BTC|BTCUSD|1|2026-09-18T03:00:00": "2026-09-19T22:02:00"
+  "AQB SOL|SOLUSD|-1|2026-08-12T15:00:00": "2026-08-17T02:02:00",
+  "AQB BTC|BTCUSD|-1|2026-08-12T15:00:00": "2026-08-17T03:02:00",
+  "BB ETH|ETHUSD|1|2026-08-17T03:00:00": "2026-08-18T03:02:00",
+  "AQB ETH|ETHUSD|1|2026-08-17T02:00:00": "2026-08-18T04:02:00",
+  "BB BTC|BTCUSD|1|2026-08-17T03:00:00": "2026-08-18T14:02:00",
+  "B|AUDJPY|1|2026-08-10T08:00:00": "2026-08-19T04:02:00",
+  "B|NZDJPY|1|2026-08-14T12:00:00": "2026-08-19T04:02:00",
+  "B|CADJPY|1|2026-08-10T08:00:00": "2026-08-19T16:02:00",
+  "B|EURJPY|1|2026-08-10T12:00:00": "2026-08-19T16:02:00",
+  "B|GBPJPY|1|2026-08-10T12:00:00": "2026-08-19T16:02:00",
+  "B|USDJPY|1|2026-08-10T20:00:00": "2026-08-19T16:02:00",
+  "A|EURAUD|1|2026-08-10T00:00:00": "2026-08-20T00:02:00",
+  "A|EURGBP|1|2026-08-10T00:00:00": "2026-08-20T00:02:00",
+  "AQB DOGE|DOGEUSD|1|2026-08-19T21:00:00": "2026-08-20T23:02:00",
+  "AQB SOL|SOLUSD|1|2026-08-18T07:00:00": "2026-08-21T14:02:00"
  },
- "last_full_bin": "2026-09-18T20:00:00",
- "week_close_done": "2026-09-18",
+ "last_full_bin": "2026-08-21T20:00:00",
+ "week_close_done": "2026-08-21",
  "e_watch": [
-  "NZDJPY"
+  "EURUSD",
+  "USDCHF"
  ],
- "b_regime": -3.24,
- "last_run": "2026-09-20T12:02:00",
+ "b_regime": -3.43,
+ "last_run": "2026-08-21T23:02:00",
  "credits": {
-  "date": "2026-09-20",
-  "n": 26
+  "date": "2026-08-21",
+  "n": 326
  },
- "last_summary_date": "2026-09-20",
+ "last_summary_date": "2026-08-21",
  "quota_alert_date": null,
  "last_calc": {
-  "A": "2026-09-18T22:02:00",
-  "D": "2026-09-18T22:02:00",
-  "B": "2026-09-18T22:02:00",
-  "E": "2026-09-18T22:02:00",
-  "BB": "2026-09-20T12:02:00"
+  "A": "2026-08-21T22:02:00",
+  "D": "2026-08-21T22:02:00",
+  "B": "2026-08-21T22:02:00",
+  "E": "2026-08-21T22:02:00",
+  "BB": "2026-08-21T23:02:00",
+  "AQB": "2026-08-21T23:02:00"
  },
+ "blocked_ids": [
+  "AQB BTC|BTCUSD|1|2026-08-17T14:00:00",
+  "AQB ETH|ETHUSD|1|2026-08-18T17:00:00",
+  "AQB XAU|XAUUSD|1|2026-08-19T13:00:00",
+  "BB ETH|ETHUSD|1|2026-08-19T13:00:00",
+  "BB SOL|SOLUSD|1|2026-08-18T15:00:00"
+ ],
+ "risk_state": {
+  "floating": 15.239,
+  "equity": 19.478,
+  "dd": 0.0,
+  "month": "2026-08",
+  "sleeve_mtd": {
+   "A": -0.21,
+   "FX": 1.543
+  },
+  "sleeve_paused": [],
+  "dd_stop": false,
+  "float_pause_until": null,
+  "open_risk": 3.0,
+  "crypto_open": 3
+ },
+ "month_real": {
+  "key": "2026-08",
+  "Crypto": 3.386500870706409,
+  "FX": 0.6529632824405796,
+  "A": 0.19916058326140085
+ },
+ "eq_peak": 19.47762473640839,
+ "sleeve_stop": {},
  "last_fetch": {
   "symbols": [
    "BTCUSD",
-   "ETHUSD"
+   "DOGEUSD",
+   "ETHUSD",
+   "SOLUSD"
   ],
   "why": [
    "crypto moi gio"
   ],
   "parts": [
-   "BB"
+   "BB",
+   "AQB"
   ]
  },
  "parts": [
   "A",
   "B",
   "BB",
+  "AQB",
   "D",
   "E"
  ],
  "risk": {
   "A": 0.25,
-  "B": 0.25,
+  "B": 0.35,
   "C": 0.1,
   "D": 0.15,
   "E": 0.1,
-  "BB BTC": 0.5,
-  "BB ETH": 0.5
+  "BB BTC": 0.25,
+  "BB ETH": 0.25,
+  "BB SOL": 0.25,
+  "AQB BTC": 0.25,
+  "AQB ETH": 0.25,
+  "AQB SOL": 0.25,
+  "AQB DOGE": 0.25,
+  "AQB XAU": 0.75
  },
- "floating_now": 0.099,
+ "floating_now": 15.239,
  "data_end": {
-  "AUDJPY": "2026-09-18T20:00:00",
-  "AUDUSD": "2026-09-18T20:00:00",
-  "CADCHF": "2026-09-18T20:00:00",
-  "CADJPY": "2026-09-18T20:00:00",
-  "CHFJPY": "2026-09-18T20:00:00",
-  "EURAUD": "2026-09-18T20:00:00",
-  "EURCAD": "2026-09-18T20:00:00",
-  "EURCHF": "2026-09-18T20:00:00",
-  "EURGBP": "2026-09-18T20:00:00",
-  "EURJPY": "2026-09-18T20:00:00",
-  "EURNZD": "2026-09-18T20:00:00",
-  "EURUSD": "2026-09-18T20:00:00",
-  "GBPAUD": "2026-09-18T20:00:00",
-  "GBPCAD": "2026-09-18T20:00:00",
-  "GBPCHF": "2026-09-18T20:00:00",
-  "GBPJPY": "2026-09-18T20:00:00",
-  "GBPNZD": "2026-09-18T20:00:00",
-  "GBPUSD": "2026-09-18T20:00:00",
-  "NZDCAD": "2026-09-18T20:00:00",
-  "NZDCHF": "2026-09-18T20:00:00",
-  "NZDJPY": "2026-09-18T20:00:00",
-  "NZDUSD": "2026-09-18T20:00:00",
-  "USDCAD": "2026-09-18T20:00:00",
-  "USDCHF": "2026-09-18T20:00:00",
-  "USDJPY": "2026-09-18T20:00:00",
-  "BTCUSD": "2026-09-20T11:00:00",
-  "ETHUSD": "2026-09-20T11:00:00"
- }
+  "AUDJPY": "2026-08-21T20:00:00",
+  "AUDUSD": "2026-08-21T20:00:00",
+  "CADCHF": "2026-08-21T20:00:00",
+  "CADJPY": "2026-08-21T20:00:00",
+  "CHFJPY": "2026-08-21T20:00:00",
+  "EURAUD": "2026-08-21T20:00:00",
+  "EURCAD": "2026-08-21T20:00:00",
+  "EURCHF": "2026-08-21T20:00:00",
+  "EURGBP": "2026-08-21T20:00:00",
+  "EURJPY": "2026-08-21T20:00:00",
+  "EURNZD": "2026-08-21T20:00:00",
+  "EURUSD": "2026-08-21T20:00:00",
+  "GBPAUD": "2026-08-21T20:00:00",
+  "GBPCAD": "2026-08-21T20:00:00",
+  "GBPCHF": "2026-08-21T20:00:00",
+  "GBPJPY": "2026-08-21T20:00:00",
+  "GBPNZD": "2026-08-21T20:00:00",
+  "GBPUSD": "2026-08-21T20:00:00",
+  "NZDCAD": "2026-08-21T20:00:00",
+  "NZDCHF": "2026-08-21T20:00:00",
+  "NZDJPY": "2026-08-21T20:00:00",
+  "NZDUSD": "2026-08-21T20:00:00",
+  "USDCAD": "2026-08-21T20:00:00",
+  "USDCHF": "2026-08-21T20:00:00",
+  "USDJPY": "2026-08-21T20:00:00",
+  "BTCUSD": "2026-08-21T22:00:00",
+  "ETHUSD": "2026-08-21T22:00:00",
+  "SOLUSD": "2026-08-21T22:00:00",
+  "DOGEUSD": "2026-08-21T22:00:00",
+  "XAUUSD": "2026-08-21T20:00:00"
+ },
+ "realized": 4.23862473640839
 }

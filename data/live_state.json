@@ -200,7 +200,7 @@
   "NZDUSD"
  ],
  "b_regime": -2.06,
- "last_run": "2026-10-05T22:42:00",
+ "last_run": "2026-10-05T23:01:00",
  "credits": {
   "date": "2026-10-05",
   "n": 746
@@ -216,17 +216,7 @@
   "AQB": "2026-10-05T22:42:00"
  },
  "last_fetch": {
-  "symbols": [
-   "AUDUSD",
-   "BTCUSD",
-   "DOGEUSD",
-   "ETHUSD",
-   "EURCHF",
-   "GBPAUD",
-   "NZDCHF",
-   "NZDUSD",
-   "SOLUSD"
-  ],
+  "symbols": [],
   "why": [
    "crypto moi gio",
    "vang moi gio",
@@ -234,8 +224,7 @@
   ],
   "parts": [
    "BB",
-   "AQB",
-   "E"
+   "AQB"
   ]
  },
  "parts": [
@@ -262,17 +251,7 @@
   "AQB XAU": 0.75
  },
  "floating_now": -0.285,
- "data_end": {
-  "AUDUSD": "2026-10-05T21:00:00",
-  "EURCHF": "2026-10-05T21:00:00",
-  "GBPAUD": "2026-10-05T21:00:00",
-  "NZDCHF": "2026-10-05T21:00:00",
-  "NZDUSD": "2026-10-05T21:00:00",
-  "BTCUSD": "2026-10-05T21:00:00",
-  "ETHUSD": "2026-10-05T21:00:00",
-  "SOLUSD": "2026-10-05T21:00:00",
-  "DOGEUSD": "2026-10-05T21:00:00"
- },
+ "data_end": {},
  "blocked_ids": [],
  "risk_state": {
   "floating": -0.285,

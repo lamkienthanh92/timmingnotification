@@ -8,15 +8,15 @@
    "side": -1,
    "vao": "2026-07-14T00:00:00",
    "gia_vao": 1.08757,
-   "rui_ro": 0.004195576030042341,
-   "do_lech": 2.252428121340121,
+   "rui_ro": 0.00435028,
+   "do_lech": 2.2524281213401185,
    "tuoi": 59,
    "thoat": false,
    "ghi_chu": "do lech hien tai +2.25 (thoat khi < 1.0), da giu 59 ngay",
    "id": "D|GBPCHF|-1|2026-07-14T00:00:00",
-   "last": 1.09733,
-   "r_now": -2.326,
-   "pct_now": -0.349,
+   "last": 1.09697,
+   "r_now": -2.161,
+   "pct_now": -0.324,
    "sl_bao": null
   },
   {
@@ -25,15 +25,15 @@
    "side": 1,
    "vao": "2026-09-11T00:00:00",
    "gia_vao": 189.96142,
-   "rui_ro": 1.3936828657886757,
-   "do_lech": -2.970429942123068,
+   "rui_ro": 1.3936828658030935,
+   "do_lech": -2.970429942123059,
    "tuoi": 16,
    "thoat": false,
    "ghi_chu": "do lech hien tai -2.97 (thoat khi < 1.0), da giu 16 ngay",
    "id": "D|CHFJPY|1|2026-09-11T00:00:00",
-   "last": 190.46829,
-   "r_now": 0.364,
-   "pct_now": 0.055,
+   "last": 190.33972,
+   "r_now": 0.271,
+   "pct_now": 0.041,
    "sl_bao": null
   },
   {
@@ -47,9 +47,9 @@
    "nguyen_nhan": "hon hop",
    "ghi_chu": "SL hien tai 188.66 (hon hop)",
    "id": "B|CHFJPY|1|2026-10-01T08:00:00",
-   "last": 190.46829,
-   "r_now": 0.32,
-   "pct_now": 0.08,
+   "last": 190.33972,
+   "r_now": 0.26,
+   "pct_now": 0.091,
    "sl_bao": 188.65549756295627
   },
   {
@@ -63,9 +63,9 @@
    "rui_ro": 0.004527788342358674,
    "ghi_chu": "SL 0.69211, TP 0.70971",
    "id": "E|AUDUSD|1|2026-10-02T13:00:00",
-   "last": 0.69476,
-   "r_now": -0.415,
-   "pct_now": -0.042,
+   "last": 0.69551,
+   "r_now": -0.25,
+   "pct_now": -0.025,
    "sl_bao": 0.6921122116576414
   },
   {
@@ -79,9 +79,9 @@
    "rui_ro": 0.008024361075607889,
    "ghi_chu": "SL 1.9126, TP 1.8839",
    "id": "E|GBPAUD|-1|2026-10-01T09:00:00",
-   "last": 1.906,
-   "r_now": -0.176,
-   "pct_now": -0.018,
+   "last": 1.90349,
+   "r_now": 0.137,
+   "pct_now": 0.014,
    "sl_bao": 1.912614361075608
   },
   {
@@ -95,18 +95,73 @@
    "rui_ro": 0.003695324627609242,
    "ghi_chu": "SL 0.55901, TP 0.57357",
    "id": "E|NZDUSD|1|2026-10-02T13:00:00",
-   "last": 0.56159,
-   "r_now": -0.303,
-   "pct_now": -0.03,
+   "last": 0.56128,
+   "r_now": -0.387,
+   "pct_now": -0.039,
    "sl_bao": 0.5590146753723908
+  },
+  {
+   "he": "AQB XAU",
+   "pair": "XAUUSD",
+   "side": -1,
+   "vao": "2026-10-02T17:00:00",
+   "gia_vao": 4139.21142,
+   "sl": 4214.8706907600035,
+   "rui_ro": 81.60068612637951,
+   "gio_giu": 6,
+   "ghi_chu": "SL hien tai 4214.87, toi da 5 ngay",
+   "id": "AQB XAU|XAUUSD|-1|2026-10-02T17:00:00",
+   "last": 4156.3139,
+   "r_now": -0.21,
+   "pct_now": -0.158,
+   "sl_bao": 4214.8706907600035
   }
  ],
- "pending": [],
+ "pending": [
+  {
+   "he": "BB BTC",
+   "pair": "BTCUSD",
+   "side": 1,
+   "t_vao": "2026-10-05T01:00:00",
+   "sl": 84490.05378536246,
+   "ghi_chu": "LONG o gia mo nen 1H ke tiep, SL 84490.1"
+  },
+  {
+   "he": "BB ETH",
+   "pair": "ETHUSD",
+   "side": 1,
+   "t_vao": "2026-10-05T01:00:00",
+   "sl": 2683.4216315508293,
+   "ghi_chu": "LONG o gia mo nen 1H ke tiep, SL 2683.42"
+  }
+ ],
  "closed": [],
- "events": [],
- "announced": {},
+ "events": [
+  {
+   "time": "2026-10-05T01:01:00",
+   "text": "🔴 ĐANG MỞ (báo muộn) · XAUUSD SHORT · AQB · vàng | Vào 4139.21 lúc 00:00 T7 03/10 · SL hien tai 4214.87, toi da 5 ngay | Tín hiệu xảy ra lúc bot gián đoạn — tạm tính -0.21R"
+  },
+  {
+   "time": "2026-10-05T01:01:00",
+   "text": "🟢 VÀO · BTCUSD LONG · BB · squeeze BTC | ① Vào: MUA giá thị trường lúc mở nến 08:00 T2 05/10 (giá hiện tại 86652.5) | ② SL: 84490.1 (band Bollinger đối diện) — cách 2162.4 = 2.50% giá. Đặt SL trên sàn ngay khi vào. | ③ TP: không có — kéo SL theo band mỗi giờ (bot báo khi dời ≥ 0.5R, tối đa mỗi 4 giờ). Đóng muộn nhất sau 10 ngày giao dịch: 08:00 T5 15/10. | ④ Khối lượng: rủi ro 0.25% vốn nếu chạm SL → khối lượng = 0.25% vốn ÷ 2162.4 = 2.50% giá. | ⑤ Lý do: Squeeze Bollinger rồi phá band"
+  },
+  {
+   "time": "2026-10-05T01:01:00",
+   "text": "🟢 VÀO · ETHUSD LONG · BB · squeeze ETH | ① Vào: MUA giá thị trường lúc mở nến 08:00 T2 05/10 (giá hiện tại 2729.29) | ② SL: 2683.42 (band Bollinger đối diện) — cách 45.9 = 1.68% giá. Đặt SL trên sàn ngay khi vào. | ③ TP: không có — kéo SL theo band mỗi giờ (bot báo khi dời ≥ 0.5R, tối đa mỗi 4 giờ). Đóng muộn nhất sau 10 ngày giao dịch: 08:00 T5 15/10. | ④ Khối lượng: rủi ro 0.25% vốn nếu chạm SL → khối lượng = 0.25% vốn ÷ 45.9 = 1.68% giá. | ⑤ Lý do: Squeeze Bollinger rồi phá band"
+  }
+ ],
+ "announced": {
+  "BB BTC|BTCUSD|1|2026-10-05T01:00:00": {
+   "time": "2026-10-05T01:01:00",
+   "used": false
+  },
+  "BB ETH|ETHUSD|1|2026-10-05T01:00:00": {
+   "time": "2026-10-05T01:01:00",
+   "used": false
+  }
+ },
  "seen_closed": {},
- "last_full_bin": "2026-10-03T12:00:00",
+ "last_full_bin": "2026-10-05T00:00:00",
  "week_close_done": "2026-10-02",
  "e_watch": [
   "AUDUSD",
@@ -116,34 +171,66 @@
   "NZDUSD"
  ],
  "b_regime": -2.06,
- "last_run": "2026-10-05T00:01:00",
+ "last_run": "2026-10-05T01:01:00",
  "credits": {
   "date": "2026-10-05",
-  "n": 8
+  "n": 68
  },
  "last_summary_date": "2026-10-05",
  "quota_alert_date": null,
  "last_calc": {
-  "A": "2026-10-03T16:01:00",
-  "D": "2026-10-03T16:01:00",
-  "B": "2026-10-03T16:01:00",
-  "E": "2026-10-03T16:01:00",
-  "BB": "2026-10-05T00:01:00",
-  "AQB": "2026-10-05T00:01:00"
+  "A": "2026-10-05T01:01:00",
+  "D": "2026-10-05T01:01:00",
+  "B": "2026-10-05T01:01:00",
+  "E": "2026-10-05T01:01:00",
+  "BB": "2026-10-05T01:01:00",
+  "AQB": "2026-10-05T01:01:00"
  },
  "last_fetch": {
   "symbols": [
+   "AUDJPY",
+   "AUDUSD",
    "BTCUSD",
+   "CADCHF",
+   "CADJPY",
+   "CHFJPY",
    "DOGEUSD",
    "ETHUSD",
-   "SOLUSD"
+   "EURAUD",
+   "EURCAD",
+   "EURCHF",
+   "EURGBP",
+   "EURJPY",
+   "EURNZD",
+   "EURUSD",
+   "GBPAUD",
+   "GBPCAD",
+   "GBPCHF",
+   "GBPJPY",
+   "GBPNZD",
+   "GBPUSD",
+   "NZDCAD",
+   "NZDCHF",
+   "NZDJPY",
+   "NZDUSD",
+   "SOLUSD",
+   "USDCAD",
+   "USDCHF",
+   "USDJPY",
+   "XAUUSD"
   ],
   "why": [
-   "crypto moi gio"
+   "crypto moi gio",
+   "vang moi gio",
+   "nen 4H dong"
   ],
   "parts": [
+   "A",
+   "B",
    "BB",
-   "AQB"
+   "AQB",
+   "D",
+   "E"
   ]
  },
  "parts": [
@@ -169,28 +256,54 @@
   "AQB DOGE": 0.25,
   "AQB XAU": 0.75
  },
- "floating_now": -0.304,
+ "floating_now": -0.4,
  "data_end": {
-  "BTCUSD": "2026-10-04T23:00:00",
-  "ETHUSD": "2026-10-04T23:00:00",
-  "SOLUSD": "2026-10-04T23:00:00",
-  "DOGEUSD": "2026-10-04T23:00:00"
+  "AUDJPY": "2026-10-05T00:00:00",
+  "AUDUSD": "2026-10-05T00:00:00",
+  "CADCHF": "2026-10-05T00:00:00",
+  "CADJPY": "2026-10-05T00:00:00",
+  "CHFJPY": "2026-10-05T00:00:00",
+  "EURAUD": "2026-10-05T00:00:00",
+  "EURCAD": "2026-10-05T00:00:00",
+  "EURCHF": "2026-10-05T00:00:00",
+  "EURGBP": "2026-10-05T00:00:00",
+  "EURJPY": "2026-10-05T00:00:00",
+  "EURNZD": "2026-10-05T00:00:00",
+  "EURUSD": "2026-10-05T00:00:00",
+  "GBPAUD": "2026-10-05T00:00:00",
+  "GBPCAD": "2026-10-05T00:00:00",
+  "GBPCHF": "2026-10-05T00:00:00",
+  "GBPJPY": "2026-10-05T00:00:00",
+  "GBPNZD": "2026-10-05T00:00:00",
+  "GBPUSD": "2026-10-05T00:00:00",
+  "NZDCAD": "2026-10-05T00:00:00",
+  "NZDCHF": "2026-10-05T00:00:00",
+  "NZDJPY": "2026-10-05T00:00:00",
+  "NZDUSD": "2026-10-05T00:00:00",
+  "USDCAD": "2026-10-05T00:00:00",
+  "USDCHF": "2026-10-05T00:00:00",
+  "USDJPY": "2026-10-05T00:00:00",
+  "BTCUSD": "2026-10-05T00:00:00",
+  "ETHUSD": "2026-10-05T00:00:00",
+  "SOLUSD": "2026-10-05T00:00:00",
+  "DOGEUSD": "2026-10-05T00:00:00",
+  "XAUUSD": "2026-10-05T00:00:00"
  },
  "blocked_ids": [],
  "risk_state": {
-  "floating": -0.304,
-  "equity": -0.304,
-  "dd": -0.304,
+  "floating": -0.4,
+  "equity": -0.4,
+  "dd": -0.4,
   "month": "2026-10",
   "sleeve_mtd": {
    "A": 0.0,
-   "FX": -0.304
+   "FX": -0.242
   },
   "sleeve_paused": [],
   "dd_stop": false,
   "float_pause_until": null,
-  "open_risk": 0.95,
-  "crypto_open": 0
+  "open_risk": 2.2,
+  "crypto_open": 2
  },
  "month_real": {
   "key": "2026-10"

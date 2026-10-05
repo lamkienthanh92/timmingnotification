@@ -5,17 +5,17 @@ Bot chạy trên GitHub Actions, lấy giá H1 từ Twelve Data. Mỗi lần ch�
 (trần rủi ro + ngắt mạch), rồi gửi Telegram: **VÀO**, **DỜI SL**, **THOÁT**, **ĐÃ CHỐT**, **NGẮT MẠCH**.
 Trạng thái được lưu cho app React trên Netlify.
 
-**Bot không đặt lệnh.** Bạn tự vào lệnh theo tin nhắn. Với B, C, E, BB, AQB: đặt SL trên sàn ngay khi vào,
-dời SL khi bot báo. Với A, D: hệ thống không có SL, bot báo khi nào cần đóng.
+**Bot không đặt lệnh.** Bạn tự vào lệnh theo tin nhắn. **Mọi lệnh đều có SL** — đặt trên sàn ngay khi vào.
+B, C, BB, AQB: dời SL khi bot báo. A, D: SL cố định (2 / 10 ATR ngày), bot báo khi nào cần đóng.
 
 ## Các thành phần và trọng số (W1)
 
 | | Thành phần | Thị trường | Khung | Rủi ro/lệnh |
 |---|---|---|---|---|
-| A | Mua sau bán tháo (thứ Hai, giữ 8 ngày) | 18 cặp forex không JPY | Ngày + H1 | 0.25% vốn / 1 ATR ngày* |
+| A | Mua sau bán tháo (thứ Hai, giữ 8 ngày), SL 2 ATR | 18 cặp forex không JPY | Ngày + H1 | 0.25% vốn / 1 ATR ngày* (lỗ tối đa ≈ 0.5%) |
 | B | Xu hướng yen yếu (Supertrend) | 7 cặp JPY | 4H | 0.35% |
-| D | Đảo chiều sức mạnh đồng tiền (z 120 ngày) | 25 cặp forex | Ngày | 0.15% vốn / 1 ATR ngày* |
-| E | Lớp phụ 4H → 1H, RR 2–4 | 25 cặp forex | 4H + H1 | 0.10% |
+| D | Đảo chiều sức mạnh đồng tiền (z 120 ngày), SL 10 ATR, vào 10:00 VN (03:00 UTC) | 25 cặp forex | Ngày | 0.15% vốn / 1 ATR ngày* (lỗ tối đa ≈ 1.5%) |
+| E | Lớp phụ 4H → 1H, RR 2–4, **chỉ vào 8–16h giờ New York** (19–03h VN mùa hè, 20–04h VN mùa đông) | 25 cặp forex | 4H + H1 | 0.15% |
 | AQB vàng | Band phân vị thích ứng, vượt q99 | XAUUSD | H1 | 0.75% |
 | BB | Squeeze Bollinger | BTC, ETH, SOL | H1 | 0.25% |
 | AQB crypto | Band phân vị thích ứng, vượt q95 | BTC, ETH, SOL, DOGE | H1 | 0.25% |
@@ -24,6 +24,8 @@ dời SL khi bot báo. Với A, D: hệ thống không có SL, bot báo khi nào
 \* Khoảng tính khối lượng = max(ATR ngày, 0.4% giá) — chặn trường hợp ATR bị nén giả tạo (kiểu EURCHF trước SNB 2015).
 
 ### Giới hạn
+- **SL tối thiểu 10 pip** (cặp JPY 0,10) cho B, C, E: nếu đường Supertrend gần hơn, SL được nới ra 10 pip và khối lượng
+  tính theo khoảng đã nới. Crypto, vàng (BB, AQB) bỏ lệnh nếu phí > 25% khoảng SL.
 - **A:** tối đa 2 lệnh đang mở chung một đồng tiền (ưu tiên cặp quá bán sâu nhất).
 - **D:** tối đa 2 lệnh mỗi đồng tiền, tổng 4 lệnh.
 - **Crypto (BB + AQB):** tối đa 6 lệnh mở cùng lúc.
@@ -45,10 +47,12 @@ backtest và bot.
 
 ## Kết quả backtest (09/2011 → 10/2026, có spread, swap, lãi/lỗ thả nổi)
 
-Danh mục thực thi (đã áp trần + ngắt mạch): **khoảng 18.5%/năm, Sharpe 1.36, MaxDD −9.3%, tháng tệ nhất −6.1%**.
-Đây là kết quả trong mẫu — nhiều lựa chọn (mã crypto, tham số AQB, trọng số, ngưỡng ngắt) đã dùng kết quả để quyết định.
-Kỳ vọng thực tế nên khoảng **10–15%/năm**, drawdown có thể **−15% đến −20%**. Khoảng 80% rủi ro và lợi nhuận đến từ
-crypto; forex và vàng làm mượt đường vốn.
+Danh mục thực thi (đã áp trần + ngắt mạch, A và D có SL, E lọc giờ New York): **khoảng 18.4%/năm, Sharpe 1.38,
+MaxDD −9.3%, tháng tệ nhất −6.0%**. Đây là kết quả trong mẫu — nhiều lựa chọn (mã crypto, tham số AQB, trọng số, ngưỡng
+ngắt, khung giờ E) đã dùng kết quả để quyết định. Kỳ vọng thực tế nên khoảng **10–15%/năm**, drawdown có thể **−15% đến −20%**.
+Khoảng 80% rủi ro và lợi nhuận đến từ crypto; forex và vàng làm mượt đường vốn.
+
+Muốn tắt SL của A, D: đặt `A_SL_ATR, D_SL_ATR = 999, 999`; bỏ lọc giờ E: `E_NY_HOURS = (0, 24)` trong `portfolio_backtest.py`.
 
 Chạy lại backtest: `python portfolio_backtest.py --data ./data` (dòng "DANH MỤC THỰC THI" là kết quả có giới hạn).
 

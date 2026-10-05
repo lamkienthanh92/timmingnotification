@@ -4,9 +4,9 @@ Backtest + tin hieu danh muc FX/crypto tren du lieu H1 xuat tu MT5 (phien ban 5)
 THANH PHAN (mac dinh chay A B BB AQB D E; C la tuy chon). Phien ban 5: trong so W1, gioi han + ngat mach.
   A  - Mua sau ban thao, 18 cap khong JPY (+XAUUSD neu co). Ngay giao dich dau tuan, neu WPR(14)+EMA(5) H1
        o nen dong cua cuoi tuan truoc < -80 va gia dong cua hom truoc < SMA200 ngay -> LONG o gia mo dau tuan,
-       dong o gia dong cua ngay giao dich thu 8. Khong SL. 1R = 1 ATR(14) ngay.
+       dong o gia dong cua ngay giao dich thu 8. SL co dinh 2 ATR ngay. 1R = 1 ATR(14) ngay (toi thieu 0.4% gia).
   B  - Theo xu huong yen yeu, 7 cap JPY. Supertrend(10,3) 4H chuyen tang -> LONG o gia mo nen ke tiep,
-       SL = duong Supertrend, keo len theo moi nen. Ghi nguyen nhan cu dao chieu (JPY tu yeu / XX manh / hon hop);
+       SL = duong Supertrend (cach gia vao toi thieu 10 pip), keo len theo moi nen. Ghi nguyen nhan cu dao chieu (JPY tu yeu / XX manh / hon hop);
        --b-filter: chi vao lenh khi JPY tu yeu (phu thuoc che do chinh sach BoJ, xem chi bao theo doi trong bao cao).
   BB - Squeeze Bollinger crypto (BTCUSD, ETHUSD, SOLUSD) H1: squeeze = do rong band < phan vi 10% cua 4000 nen
        (trong 20 nen gan nhat); dong cua vuot band -> vao o gia mo nen ke tiep; SL = band doi dien keo theo;
@@ -14,11 +14,11 @@ THANH PHAN (mac dinh chay A B BB AQB D E; C la tuy chon). Phien ban 5: trong so 
        Chi phi moi lenh = max(COST_CRYPTO, spread thuc te trong file luc vao); bo lenh neu chi phi > 25% rui ro.
   C  - (tuy chon, bao hiem cho B) CUSUM short JPY: CUSUM(h=4, k=0.5) tren loi nhuan 4H tung cap JPY bao giam
        -> SHORT o gia mo nen ke tiep, SL 3 ATR(4H) keo theo diem thap nhat. 1R = 3 ATR 4H.
-  D  - Dao chieu suc manh dong tien, khung NGAY. Tach 25 cap thanh 8 nhan to dong tien (neo trung vi), z = vi tri
+  D  - (vao luc 03:00 UTC) Dao chieu suc manh dong tien, khung NGAY. Tach 25 cap thanh 8 nhan to dong tien (neo trung vi), z = vi tri
        chi so dong tien so voi mean/SD 120 ngay. Dong tu so z >= 2 VA dong mau so z <= -2 -> SHORT cap
        (nguoc lai -> LONG), vao o gia mo ngay hom sau. Thoat khi |z_tu - z_mau| < 1 hoac sau 60 ngay giao dich.
-       Khong SL. Toi da 2 lenh moi dong tien, tong 4 lenh. 1R = 1 ATR(14) ngay.
-  E  - Lop phu 4H -> 1H. Cung cong thuc D nhung tinh tren nhan to 4H (N = 120 nen 4H). Trong boi canh cuc doan,
+       SL co dinh 10 ATR ngay. Toi da 2 lenh moi dong tien, tong 4 lenh. 1R = 1 ATR(14) ngay.
+  E  - (chi vao 8-16h gio New York) Lop phu 4H -> 1H. Cung cong thuc D nhung tinh tren nhan to 4H (N = 120 nen 4H). Trong boi canh cuc doan,
        Supertrend(10,3) 1H dao chieu theo huong ve mean -> vao o gia mo nen ke tiep. SL = duong Supertrend 1H
        luc vao (co dinh), TP = mean (SMA120 log gia 4H). Chi vao khi RR = khoang cach TP / khoang cach SL
        nam trong [2, 4]. 1R = khoang cach SL.
@@ -58,7 +58,7 @@ import pandas as pd
 
 # ------------------------------------------------------------------ tham so
 # Trong so W1 (% von moi lenh; A, D: % von moi 1 ATR ngay, toi thieu 0.4% gia)
-RISK = {"A": 0.25, "B": 0.35, "C": 0.10, "D": 0.15, "E": 0.10, "BB BTC": 0.25, "BB ETH": 0.25, "BB SOL": 0.25,
+RISK = {"A": 0.25, "B": 0.35, "C": 0.10, "D": 0.15, "E": 0.15, "BB BTC": 0.25, "BB ETH": 0.25, "BB SOL": 0.25,
         "AQB BTC": 0.25, "AQB ETH": 0.25, "AQB SOL": 0.25, "AQB DOGE": 0.25, "AQB XAU": 0.75}
 COST_CRYPTO = {"BTCUSD": 0.10, "ETHUSD": 0.25, "SOLUSD": 0.20, "DOGEUSD": 0.20}                 # % gia toi thieu moi lenh; dung spread file neu lon hon
 CRYPTO = ("BTCUSD", "ETHUSD", "SOLUSD", "DOGEUSD")
@@ -73,8 +73,12 @@ D_MAX_PER_CCY, D_MAX_TOTAL = 2, 4
 E_N, E_T, E_RR = 120, 2.0, (2.0, 4.0)
 MIN_FX_PAIRS = 12
 BB_MAX_COST_R = 0.25                    # BB, AQB bo lenh neu chi phi > 25% khoang rui ro (spread qua rong so voi SL)
+MIN_SL_PIPS = 10                        # B, C, E: SL cach gia vao toi thieu 10 pip (JPY: 0.10) -> chong SL qua sat
 ATR_FLOOR_PCT = 0.4                     # A, D: khoang tinh khoi luong = max(ATR ngay, 0.4% gia) -> chan ATR bi nen gia tao
 A_MAX_PER_CCY = 2                       # A: toi da 2 lenh dang mo chung 1 dong tien (uu tien WPR qua ban sau nhat)
+A_SL_ATR, D_SL_ATR = 2.0, 10.0          # SL co dinh (so ATR ngay, toi thieu 0.4% gia): A lo toi da ~0.5% von, D ~1.5% von
+E_NY_HOURS = (8, 16)                    # E chi vao lenh 8:00-16:00 gio New York (19-03h VN mua he, 20-04h VN mua dong)
+D_ENTRY_HOUR = 3                        # D vao lenh luc 03:00 UTC (10:00 VN) ngay sau tin hieu, tranh gio chuyen ngay
 # AQB (band phan vi thich ung): (nen < phan vi %, vuot phan vi q, giu toi da ngay, loc xu huong 30 ngay)
 AQB_PARAMS = {"BTCUSD": (10, 95, 5, True), "ETHUSD": (10, 95, 5, True), "SOLUSD": (10, 95, 5, True),
               "DOGEUSD": (10, 95, 5, True), "XAUUSD": (10, 99, 5, True)}
@@ -308,6 +312,10 @@ def need_factors(part):
 
 
 # ------------------------------------------------------------------ A
+def min_sl(pair):
+    return MIN_SL_PIPS * (0.01 if pair.endswith("JPY") else 0.0001)
+
+
 def a_unit(atr, price):
     return max(atr, ATR_FLOOR_PCT / 100 * price)
 
@@ -329,13 +337,21 @@ def rule_A(data):
             k = np.searchsorted(h1_close, d.index.values[a], side="right") - 1
             if k < 30 or np.isnan(w[k]) or not (w[k] < -80 and c[a - 1] < s200[a - 1]):
                 continue
-            ex = a + A_HOLD_DAYS - 1; e = o[a]; u = a_unit(atr[a - 1], e)
-            if ex >= len(d):
-                cands.append(dict(he="A", pair=p, side=1, vao=d.index[a], ra=pd.Timestamp.max, gia_vao=e, rui_ro=u, wpr=w[k],
+            ex = a + A_HOLD_DAYS - 1; e = o[a]; u = a_unit(atr[a - 1], e); sl = e - A_SL_ATR * u; cost = sp[a] / 100 * e
+            hit = None
+            for j in range(a, min(ex, len(d) - 1) + 1):                    # SL co dinh, kiem tra theo dinh/day ngay
+                if l[j] <= sl:
+                    hit = j; break
+            if hit is not None:
+                xp = min(o[hit], sl) if hit > a else sl
+                cands.append(dict(he="A", pair=p, side=1, vao=d.index[a], ra=d.index[hit] + pd.Timedelta(hours=12), gia_vao=e,
+                                  gia_ra=xp, rui_ro=u, sl=sl, R=(xp - e - cost) / u, wpr=w[k]))
+            elif ex >= len(d):
+                cands.append(dict(he="A", pair=p, side=1, vao=d.index[a], ra=pd.Timestamp.max, gia_vao=e, rui_ro=u, sl=sl, wpr=w[k],
                                   con_ngay=ex - len(d) + 1, _open=True))
             else:
                 cands.append(dict(he="A", pair=p, side=1, vao=d.index[a], ra=d.index[ex] + pd.Timedelta(hours=23, minutes=59),
-                                  gia_vao=e, gia_ra=c[ex], rui_ro=u, R=(c[ex] - e - sp[a] / 100 * e) / u, wpr=w[k]))
+                                  gia_vao=e, gia_ra=c[ex], rui_ro=u, sl=sl, R=(c[ex] - e - cost) / u, wpr=w[k]))
     out, opn = [], []
     for cd in sorted(cands, key=lambda z: (z["vao"], z["wpr"])):        # cung ngay: qua ban sau nhat truoc
         opn = [z for z in opn if z["ra"] > cd["vao"]]
@@ -376,10 +392,11 @@ def rule_B(data, only_jpy_driven=False):
                 continue
             a = i + 1
             if a >= len(b):
-                PENDING.append(dict(he="B", pair=p, side=1, t_vao=b.index[i] + pd.Timedelta(hours=4), sl=fl[i], nguyen_nhan=cause,
-                                    ghi_chu=f"LONG o gia mo nen 4H ke tiep, SL {fl[i]:.5g} ({cause})"))
+                slp = min(fl[i], c[i] - min_sl(p))
+                PENDING.append(dict(he="B", pair=p, side=1, t_vao=b.index[i] + pd.Timedelta(hours=4), sl=slp, nguyen_nhan=cause,
+                                    ghi_chu=f"LONG o gia mo nen 4H ke tiep, SL {slp:.5g} ({cause})"))
                 continue
-            e, sl = o[a], fl[i]
+            e, sl = o[a], min(fl[i], o[a] - min_sl(p))
             risk = e - sl
             if risk <= 0:
                 continue
@@ -423,7 +440,7 @@ def rule_C(data):
                 PENDING.append(dict(he="C", pair=p, side=-1, t_vao=b.index[i] + pd.Timedelta(hours=4), sl_kc=3 * atr[i],
                                     ghi_chu=f"SHORT o gia mo nen 4H ke tiep, SL = gia vao + {3 * atr[i]:.5g}"))
                 continue
-            e = o[a]; risk = 3 * atr[i]; sl = e + risk; ext = e; xp = None
+            e = o[a]; risk = max(3 * atr[i], min_sl(p)); sl = e + risk; ext = e; xp = None
             for j in range(a, len(b)):
                 if h[j] >= sl:
                     xp = max(o[j], sl) if j > a else sl
@@ -444,23 +461,41 @@ def rule_D(data):
     if F is None:
         need_factors("D"); return []
     P = fx_pairs(data); z = currency_z(F, D_N); idx = z.index; n = len(idx)
-    O, Cl, SP, AT = [], [], [], []
+    O, Cl, SP, AT, HH, LL = [], [], [], [], [], []
+    O3, H3, L3, SP3 = [], [], [], []
     for p in P:
         db = daily_bars(data[p])
         AT.append(pd.Series(atr_ewm(db.High.values, db.Low.values, db.Close.values), db.index).reindex(idx).ffill().values)
         db = db.reindex(idx).ffill()
         O.append(db.Open.values); Cl.append(db.Close.values); SP.append(db.spr_pct.values / 100)
-    O, Cl, SP, AT = (np.column_stack(v) for v in (O, Cl, SP, AT))
+        HH.append(db.High.values); LL.append(db.Low.values)
+        h1 = data[p][data[p].Time.dt.hour >= D_ENTRY_HOUR]; day = h1.Time.dt.normalize()   # tu D_ENTRY_HOUR UTC den het ngay
+        g3 = h1.groupby(day.values)
+        O3.append(g3.Open.first().reindex(idx).values); H3.append(g3.High.max().reindex(idx).values)
+        L3.append(g3.Low.min().reindex(idx).values); SP3.append(g3.spr_pct.first().reindex(idx).values / 100)
+    O, Cl, SP, AT, HH, LL = (np.column_stack(v) for v in (O, Cl, SP, AT, HH, LL))
+    O3, H3, L3, SP3 = (np.column_stack(v) for v in (O3, H3, L3, SP3))
+    O3 = np.where(np.isnan(O3), O, O3); H3 = np.where(np.isnan(H3), HH, H3); L3 = np.where(np.isnan(L3), LL, L3)
+    SP3 = np.where(np.isnan(SP3), SP, SP3)
     ZA = np.column_stack([z[p[:3]].values for p in P]); ZQ = np.column_stack([z[p[3:]].values for p in P]); S = ZA - ZQ
     ccy = [(p[:3], p[3:]) for p in P]; opn = {}; out = []
     for t in range(D_N, n):
+        for j in list(opn):                                               # SL co dinh D_SL_ATR, kiem tra trong ngay
+            q = opn[j]
+            lo_, hi_ = (L3[t, j], H3[t, j]) if t == q["t0"] else (LL[t, j], HH[t, j])    # ngay vao: chi tinh tu gio vao
+            if t >= q["t0"] and ((q["s"] == 1 and lo_ <= q["sl"]) or (q["s"] == -1 and hi_ >= q["sl"])):
+                xp = (min(O[t, j], q["sl"]) if q["s"] == 1 else max(O[t, j], q["sl"])) if t > q["t0"] else q["sl"]; e = q["e"]
+                out.append(dict(he="D", pair=P[j], side=q["s"], vao=idx[q["t0"]] + pd.Timedelta(hours=D_ENTRY_HOUR),
+                                ra=idx[t] + pd.Timedelta(hours=12), gia_vao=e, gia_ra=xp, rui_ro=q["u"], sl=q["sl"],
+                                R=q["s"] * (xp - e) / q["u"] - SP3[q["t0"], j] * e / q["u"]))
+                del opn[j]
         for j in list(opn):
             q = opn[j]; q["age"] += 1
             if abs(S[t, j]) < D_EXIT or q["age"] >= D_MAXAGE:
                 if t + 1 < n:
                     px = O[t + 1, j]; e = q["e"]
-                    out.append(dict(he="D", pair=P[j], side=q["s"], vao=idx[q["t0"]], ra=idx[t + 1], gia_vao=e, gia_ra=px,
-                                    rui_ro=q["u"], R=q["s"] * (px - e) / q["u"] - SP[q["t0"], j] * e / q["u"]))
+                    out.append(dict(he="D", pair=P[j], side=q["s"], vao=idx[q["t0"]] + pd.Timedelta(hours=D_ENTRY_HOUR), ra=idx[t + 1],
+                                    gia_vao=e, gia_ra=px, sl=q["sl"], rui_ro=q["u"], R=q["s"] * (px - e) / q["u"] - SP3[q["t0"], j] * e / q["u"]))
                     del opn[j]
                 else:
                     q["thoat"] = True
@@ -484,14 +519,17 @@ def rule_D(data):
             cnt[a_] = cnt.get(a_, 0) + 1; cnt[q_] = cnt.get(q_, 0) + 1
             if t + 1 >= n:
                 n_pend += 1
-                PENDING.append(dict(he="D", pair=P[j], side=s, t_vao=pd.Timestamp(idx[t]).normalize() + pd.offsets.BDay(1),
-                                    rui_ro=a_unit(AT[t, j], Cl[t, j]), z_tu=ZA[t, j], z_mau=ZQ[t, j],
-                                    ghi_chu=f"{'LONG' if s == 1 else 'SHORT'} o gia mo ngay ke tiep (z {ccy[j][0]} {ZA[t, j]:+.1f}, "
+                PENDING.append(dict(he="D", pair=P[j], side=s, t_vao=pd.Timestamp(idx[t]).normalize() + pd.offsets.BDay(1)
+                                    + pd.Timedelta(hours=D_ENTRY_HOUR),
+                                    rui_ro=a_unit(AT[t, j], Cl[t, j]), sl_kc=D_SL_ATR * a_unit(AT[t, j], Cl[t, j]),
+                                    z_tu=ZA[t, j], z_mau=ZQ[t, j],
+                                    ghi_chu=f"{'LONG' if s == 1 else 'SHORT'} luc {D_ENTRY_HOUR:02d}:00 UTC ngay ke tiep (z {ccy[j][0]} {ZA[t, j]:+.1f}, "
                                             f"z {ccy[j][1]} {ZQ[t, j]:+.1f}), khong SL, thoat khi |z tu - z mau| < {D_EXIT}"))
                 continue
-            opn[j] = dict(s=s, t0=t + 1, e=O[t + 1, j], u=a_unit(AT[t, j], O[t + 1, j]), age=0)
+            e_ = O3[t + 1, j]; u_ = a_unit(AT[t, j], e_)
+            opn[j] = dict(s=s, t0=t + 1, e=e_, u=u_, sl=e_ - s * D_SL_ATR * u_, age=0)
     for j, q in opn.items():
-        OPEN.append(dict(he="D", pair=P[j], side=q["s"], vao=idx[q["t0"]], gia_vao=q["e"], rui_ro=q["u"], do_lech=S[-1, j],
+        OPEN.append(dict(he="D", pair=P[j], side=q["s"], vao=idx[q["t0"]] + pd.Timedelta(hours=D_ENTRY_HOUR), gia_vao=q["e"], rui_ro=q["u"], sl=q["sl"], do_lech=S[-1, j],
                          tuoi=q["age"], thoat=bool(q.get("thoat")),
                          ghi_chu=("THOAT o gia mo ngay ke tiep" if q.get("thoat") else
                                   f"do lech hien tai {S[-1, j]:+.2f} (thoat khi < {D_EXIT}), da giu {q['age']} ngay")))
@@ -509,6 +547,7 @@ def rule_E(data):
         su = pd.Series(extreme_state(z4[A].values, z4[Q].values, E_T, 1.0, E_N // 2), z4.index)
         b4 = bars_4h(data[p]); mean = np.exp(np.log(b4.Close).rolling(E_N).mean())
         b1 = data[p].set_index("Time"); slot = b1.index.floor("4h")
+        nyh = (b1.index + pd.Timedelta(hours=1)).tz_localize("UTC").tz_convert("America/New_York").hour.values   # gio NY cua nen vao
         SU = su.shift(1).reindex(slot, method="ffill").fillna(0).values          # chi dung nen 4H da dong
         TP = mean.shift(1).reindex(slot, method="ffill").values
         o, h, l, c = b1.Open.values, b1.High.values, b1.Low.values, b1.Close.values
@@ -516,10 +555,11 @@ def rule_E(data):
         d, fu, fl = supertrend(h, l, c, 10, 3); busy = -1
         for i in range(1, len(b1)):
             s = int(SU[i])
-            if s == 0 or i <= busy or not (d[i] == s and d[i - 1] == -s):
+            if s == 0 or i <= busy or not (d[i] == s and d[i - 1] == -s) or not (E_NY_HOURS[0] <= nyh[i] < E_NY_HOURS[1]):
                 continue
-            a = i + 1; sl = fl[i] if s == 1 else fu[i]; tp = TP[i]
+            a = i + 1; tp = TP[i]
             ref = o[a] if a < len(b1) else c[i]
+            sl = min(fl[i], ref - min_sl(p)) if s == 1 else max(fu[i], ref + min_sl(p))
             risk = s * (ref - sl)
             if risk <= 0 or np.isnan(tp) or s * (tp - ref) <= 0:
                 continue
@@ -861,6 +901,7 @@ def a_pending(data, require_week_close=False):
         if w[-1] < -80 and c[-1] < s200[-1]:
             note = "" if ok else f"  (nen cuoi {last:%a %d/%m %H:%M}, chua phai dong cua thu Sau)"
             out.append(dict(he="A", pair=p, side=1, t_vao=last.normalize() + pd.offsets.BDay(1), rui_ro=a_unit(atr[-1], c[-1]),
+                            sl_kc=A_SL_ATR * a_unit(atr[-1], c[-1]),
                             wpr=w[-1], ghi_chu=f"WPR-EMA {w[-1]:.1f}, duoi SMA200 -> LONG dau tuan{note}"))
     cnt, keep = {}, []                                   # gioi han theo dong tien, tinh ca lenh A dang mo (con ngay > 1)
     for z in OPEN:

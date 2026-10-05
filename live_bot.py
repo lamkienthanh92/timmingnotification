@@ -396,18 +396,19 @@ def msg_signal(q, last_px, now):
     P.append(f"① <b>Vào:</b> {side} giá thị trường lúc mở nến {fvn(t)}" + (f" (giá hiện tại {px(ref)})" if ref else ""))
     sl_ref = None
     if he in ("A", "D"):
-        P.append("② <b>SL:</b> KHÔNG đặt — thiết kế của hệ (backtest có SL kém hơn). Rủi ro kiểm soát bằng khối lượng theo ATR; "
-                 f"danh mục có ngắt mạch thả nổi {eng.BREAK_FLOAT:g}%.")
-        unit = q.get("rui_ro")
+        k = eng.A_SL_ATR if he == "A" else eng.D_SL_ATR; unit = q.get("rui_ro"); kc = q.get("sl_kc") or k * unit
+        sl_est = (ref - s * kc) if ref else None
+        P.append(f"② <b>SL: giá vào {'−' if s == 1 else '+'} {gap_txt(pair, kc, ref or 1)}</b> ({k:g} ATR ngày, cố định)"
+                 + (f" — với giá hiện tại ≈ <b>{px(sl_est)}</b>" if sl_est else "") + ". Đặt SL ngay khi vào.")
         if he == "A":
             ex = (t + pd.offsets.BDay(eng.A_HOLD_DAYS - 1)).normalize() + pd.Timedelta(days=1)
             P.append(f"③ <b>TP/thoát:</b> không có TP. Đóng ở giá đóng cửa ngày giao dịch thứ {eng.A_HOLD_DAYS}, "
-                     f"tức trước <b>{fvn(ex)}</b>. Bot nhắc 'HÔM NAY ĐÓNG' sáng hôm đó.")
+                     f"tức trước <b>{fvn(ex)}</b> (bot nhắc 'HÔM NAY ĐÓNG'), hoặc khi chạm SL.")
         else:
             P.append(f"③ <b>TP/thoát:</b> không có TP cố định. Đóng khi bot báo <b>THOÁT</b> (độ lệch z hai đồng về dưới "
-                     f"{eng.D_EXIT:g}) — thường vài tuần; muộn nhất <b>{fvn(t + pd.offsets.BDay(eng.D_MAXAGE))}</b>.")
-        P.append(f"④ <b>Khối lượng:</b> {rk}% vốn{money(rk)} ứng với 1 ATR ngày = {px(unit)} ({gap_txt(pair, unit, ref or 1)})."
-                 " Ví dụ giá đi ngược 2 ATR ≈ lỗ " + f"{2 * rk:.2f}% vốn.")
+                     f"{eng.D_EXIT:g}) — thường vài tuần; muộn nhất <b>{fvn(t + pd.offsets.BDay(eng.D_MAXAGE))}</b>; hoặc khi chạm SL.")
+        P.append(f"④ <b>Khối lượng:</b> {rk}% vốn mỗi 1 ATR ngày ({gap_txt(pair, unit, ref or 1)}) → lỗ tối đa khi chạm SL "
+                 f"≈ <b>{rk * k:.2f}% vốn</b>{money(rk * k)}.")
     else:
         sl = q.get("sl")
         if he == "C" and sl is None and ref:
@@ -450,6 +451,8 @@ def msg_signal(q, last_px, now):
 def exit_reason(c):
     he, R = c["he"], c.get("R", 0)
     held = (ts(c["ra"]) - ts(c["vao"])) / pd.Timedelta(days=1)
+    if he in ("A", "D") and c.get("sl") is not None and c["side"] * (c["gia_ra"] - c["sl"]) <= 1e-9:
+        return "chạm SL"
     if he == "A":
         return "hết 8 ngày giao dịch"
     if he == "D":

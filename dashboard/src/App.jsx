@@ -77,7 +77,7 @@ function PositionRow({ p, risk }) {
   if (p.tp != null) detail.push(<span key="tp">TP <b>{price(p.tp)}</b></span>);
   if (p.he === "A") detail.push(<span key="a">Còn {p.con_ngay ?? "?"} ngày, đóng ở giá đóng cửa</span>);
   if (p.he === "D") detail.push(<span key="d">Độ lệch {signed(p.do_lech, 2)} · thoát khi &lt; 1 · đã giữ {p.tuoi ?? 0} ngày</span>);
-  if (p.he === "A" || p.he === "D") detail.push(<span key="n" className="muted">Không SL · 1 ATR ngày = {price(p.rui_ro)}</span>);
+  if (p.he === "A" || p.he === "D") detail.push(<span key="n" className="muted">SL cố định · 1 ATR ngày = {price(p.rui_ro)}</span>);
   const flag = p.he === "D" && p.thoat ? "Đã có tín hiệu thoát — đóng ở giá mở phiên kế tiếp" :
     p.he === "A" && p.con_ngay === 1 ? "Hôm nay là ngày giữ cuối" : null;
   return (
@@ -208,7 +208,7 @@ export default function App() {
         <p>Lấy mẫu: BTC, ETH, SOL, DOGE, vàng mỗi giờ · 25 cặp forex mỗi 4 giờ (07, 11, 15, 19, 23, 03 giờ VN) · chốt tuần 05:00 sáng thứ Bảy.
           Lần chạy gần nhất lấy {state.last_fetch?.symbols?.length ?? 0} mã ({(state.last_fetch?.why || []).join(", ")}).
           Twelve Data hôm nay: {state.credits?.n ?? 0} lượt.</p>
-        <p>Bot không đặt lệnh. Lệnh B, C, E, BB, AQB: đặt SL trên sàn và dời SL khi bot báo. Lệnh A, D không có SL.
+        <p>Bot không đặt lệnh. Mọi lệnh có SL — đặt trên sàn ngay khi vào; B, C, BB, AQB dời SL khi bot báo.
           Giới hạn: rủi ro mở ≤ 4%, crypto ≤ 6 lệnh, A ≤ 2 lệnh/đồng tiền. Ngắt mạch: phần FX lỗ tháng ≥ 1%, phần A ≥ 3%, thả nổi ≥ 3%, sụt giảm ≥ 20%.</p>
       </footer>
     </main>

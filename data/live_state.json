@@ -54,38 +54,6 @@
    "r_now": 0.231,
    "pct_now": 0.081,
    "sl_bao": 188.65549756295627
-  },
-  {
-   "he": "E",
-   "pair": "AUDUSD",
-   "side": 1,
-   "vao": "2026-10-02T13:00:00",
-   "gia_vao": 0.69664,
-   "sl": 0.6921122116576414,
-   "tp": 0.7097111981325057,
-   "rui_ro": 0.004527788342358674,
-   "ghi_chu": "SL 0.69211, TP 0.70971",
-   "id": "E|AUDUSD|1|2026-10-02T13:00:00",
-   "last": 0.69827,
-   "r_now": 0.36,
-   "pct_now": 0.054,
-   "sl_bao": 0.6921122116576414
-  },
-  {
-   "he": "AQB XAU",
-   "pair": "XAUUSD",
-   "side": -1,
-   "vao": "2026-10-02T17:00:00",
-   "gia_vao": 4139.21142,
-   "sl": 4179.099603541145,
-   "rui_ro": 81.60068612637951,
-   "gio_giu": 41,
-   "ghi_chu": "SL hien tai 4179.1, toi da 5 ngay",
-   "id": "AQB XAU|XAUUSD|-1|2026-10-02T17:00:00",
-   "last": 4172.68129,
-   "r_now": -0.41,
-   "pct_now": -0.307,
-   "sl_bao": 4198.287115785428
   }
  ],
  "pending": [
@@ -99,16 +67,6 @@
    "z_tu": -2.2348510376821196,
    "z_mau": 2.1524846054626225,
    "ghi_chu": "LONG luc 03:00 UTC ngay ke tiep (z EUR -2.2, z JPY +2.2), khong SL, thoat khi |z tu - z mau| < 1.0"
-  },
-  {
-   "he": "E",
-   "pair": "NZDUSD",
-   "side": 1,
-   "t_vao": "2026-10-06T12:00:00",
-   "sl": 0.558595095690409,
-   "tp": 0.5710776003270803,
-   "rr": 2.907004225196725,
-   "ghi_chu": "LONG o gia mo nen 1H ke tiep, SL 0.5586, TP 0.57108 (RR ~2.9)"
   }
  ],
  "closed": [
@@ -135,6 +93,18 @@
    "rui_ro": 45.85836844914593,
    "R": -0.8488602055373262,
    "id": "BB ETH|ETHUSD|1|2026-10-05T01:00:00"
+  },
+  {
+   "he": "AQB XAU",
+   "pair": "XAUUSD",
+   "side": -1,
+   "vao": "2026-10-02T17:00:00",
+   "ra": "2026-10-06T13:00:00",
+   "gia_vao": 4139.21142,
+   "gia_ra": 4179.099603541145,
+   "rui_ro": 81.60068612637951,
+   "R": -0.49744495309364045,
+   "id": "AQB XAU|XAUUSD|-1|2026-10-02T17:00:00"
   }
  ],
  "events": [
@@ -273,6 +243,14 @@
   {
    "time": "2026-10-06T12:01:00",
    "text": "🟢 VÀO · NZDUSD LONG · E · lớp phụ 4H→1H | ① Vào: MUA giá thị trường lúc mở nến 19:00 T3 06/10 (giá hiện tại 0.56179) | ② SL: 0.55860 (đường Supertrend 1H lúc vào, cố định) — cách 32 pip. Đặt SL trên sàn ngay khi vào. | ③ TP: 0.57108 (mean SMA120 khung 4H) — cách 93 pip · RR 2.9. Đặt sẵn cả SL và TP, không cần theo dõi; thoát khi chạm một trong hai. | ④ Khối lượng: rủi ro 0.15% vốn nếu chạm SL → khối lượng = 0.15% vốn ÷ 32 pip. | ⑤ Lý do: Bối cảnh 4H: hai đồng lệch cực đoan; Supertrend 1H vừa đảo về phía trung bình"
+  },
+  {
+   "time": "2026-10-06T13:01:00",
+   "text": "Ngừng theo dõi E|AUDUSD|1|2026-10-02T13:00:00 (dữ liệu nguồn thay đổi)"
+  },
+  {
+   "time": "2026-10-06T13:01:00",
+   "text": "❌ ĐÃ CHỐT · XAUUSD SHORT · AQB · vàng | -0.50R (≈ -0.37% vốn) · chạm SL kéo theo | 4139.21 → 4179.10 · giữ 3.8 ngày"
   }
  ],
  "announced": {
@@ -295,7 +273,8 @@
  },
  "seen_closed": {
   "BB BTC|BTCUSD|1|2026-10-05T01:00:00": "2026-10-05T16:01:00",
-  "BB ETH|ETHUSD|1|2026-10-05T01:00:00": "2026-10-05T16:01:00"
+  "BB ETH|ETHUSD|1|2026-10-05T01:00:00": "2026-10-05T16:01:00",
+  "AQB XAU|XAUUSD|-1|2026-10-02T17:00:00": "2026-10-06T13:01:00"
  },
  "last_full_bin": "2026-10-06T12:00:00",
  "week_close_done": "2026-10-02",
@@ -307,10 +286,10 @@
   "NZDUSD"
  ],
  "b_regime": -2.06,
- "last_run": "2026-10-06T12:01:00",
+ "last_run": "2026-10-06T13:01:00",
  "credits": {
   "date": "2026-10-06",
-  "n": 454
+  "n": 474
  },
  "last_summary_date": "2026-10-06",
  "quota_alert_date": "2026-10-05",
@@ -318,54 +297,31 @@
   "A": "2026-10-06T12:01:00",
   "D": "2026-10-06T12:01:00",
   "B": "2026-10-06T12:01:00",
-  "E": "2026-10-06T12:01:00",
-  "BB": "2026-10-06T12:01:00",
-  "AQB": "2026-10-06T12:01:00"
+  "E": "2026-10-06T13:01:00",
+  "BB": "2026-10-06T13:01:00",
+  "AQB": "2026-10-06T13:01:00"
  },
  "last_fetch": {
   "symbols": [
-   "AUDJPY",
    "AUDUSD",
    "BTCUSD",
-   "CADCHF",
-   "CADJPY",
-   "CHFJPY",
    "DOGEUSD",
    "ETHUSD",
-   "EURAUD",
-   "EURCAD",
-   "EURCHF",
-   "EURGBP",
-   "EURJPY",
-   "EURNZD",
-   "EURUSD",
    "GBPAUD",
    "GBPCAD",
-   "GBPCHF",
-   "GBPJPY",
-   "GBPNZD",
-   "GBPUSD",
-   "NZDCAD",
    "NZDCHF",
-   "NZDJPY",
    "NZDUSD",
    "SOLUSD",
-   "USDCAD",
-   "USDCHF",
-   "USDJPY",
    "XAUUSD"
   ],
   "why": [
    "crypto moi gio",
    "vang moi gio",
-   "nen 4H dong"
+   "E theo doi AUDUSD,GBPAUD,GBPCAD,NZDCHF,NZDUSD"
   ],
   "parts": [
-   "A",
-   "B",
    "BB",
    "AQB",
-   "D",
    "E"
   ]
  },
@@ -392,60 +348,41 @@
   "AQB DOGE": 0.25,
   "AQB XAU": 0.75
  },
- "floating_now": -0.656,
+ "floating_now": -0.403,
  "data_end": {
-  "AUDJPY": "2026-10-06T11:00:00",
-  "AUDUSD": "2026-10-06T11:00:00",
-  "CADCHF": "2026-10-06T11:00:00",
-  "CADJPY": "2026-10-06T11:00:00",
-  "CHFJPY": "2026-10-06T11:00:00",
-  "EURAUD": "2026-10-06T11:00:00",
-  "EURCAD": "2026-10-06T11:00:00",
-  "EURCHF": "2026-10-06T11:00:00",
-  "EURGBP": "2026-10-06T11:00:00",
-  "EURJPY": "2026-10-06T11:00:00",
-  "EURNZD": "2026-10-06T11:00:00",
-  "EURUSD": "2026-10-06T11:00:00",
-  "GBPAUD": "2026-10-06T11:00:00",
-  "GBPCAD": "2026-10-06T11:00:00",
-  "GBPCHF": "2026-10-06T11:00:00",
-  "GBPJPY": "2026-10-06T11:00:00",
-  "GBPNZD": "2026-10-06T11:00:00",
-  "GBPUSD": "2026-10-06T11:00:00",
-  "NZDCAD": "2026-10-06T11:00:00",
-  "NZDCHF": "2026-10-06T11:00:00",
-  "NZDJPY": "2026-10-06T11:00:00",
-  "NZDUSD": "2026-10-06T11:00:00",
-  "USDCAD": "2026-10-06T11:00:00",
-  "USDCHF": "2026-10-06T11:00:00",
-  "USDJPY": "2026-10-06T11:00:00",
-  "BTCUSD": "2026-10-06T11:00:00",
-  "ETHUSD": "2026-10-06T11:00:00",
-  "SOLUSD": "2026-10-06T11:00:00",
-  "DOGEUSD": "2026-10-06T11:00:00",
-  "XAUUSD": "2026-10-06T11:00:00"
+  "AUDUSD": "2026-10-06T12:00:00",
+  "GBPAUD": "2026-10-06T12:00:00",
+  "GBPCAD": "2026-10-06T12:00:00",
+  "NZDCHF": "2026-10-06T12:00:00",
+  "NZDUSD": "2026-10-06T12:00:00",
+  "BTCUSD": "2026-10-06T12:00:00",
+  "ETHUSD": "2026-10-06T12:00:00",
+  "SOLUSD": "2026-10-06T12:00:00",
+  "DOGEUSD": "2026-10-06T12:00:00",
+  "XAUUSD": "2026-10-06T12:00:00"
  },
  "blocked_ids": [],
  "risk_state": {
-  "floating": -0.656,
-  "equity": -1.022,
-  "dd": -1.022,
+  "floating": -0.403,
+  "equity": -1.142,
+  "dd": -1.142,
   "month": "2026-10",
   "sleeve_mtd": {
    "A": 0.0,
-   "FX": -0.349
+   "FX": -0.403
   },
   "sleeve_paused": [],
   "dd_stop": false,
   "float_pause_until": null,
-  "open_risk": 1.7,
+  "open_risk": 0.65,
   "crypto_open": 0
  },
  "month_real": {
   "key": "2026-10",
-  "Crypto": -0.3662209707454141
+  "Crypto": -0.3662209707454141,
+  "Vang": -0.37308371482023034
  },
  "eq_peak": 0.0,
  "sleeve_stop": {},
- "realized": -0.3662209707454141
+ "realized": -0.7393046855656444
 }

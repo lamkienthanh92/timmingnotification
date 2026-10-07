@@ -490,7 +490,18 @@ def consume_pending(state, p):
     return None
 
 
-def emit(state, now, notify, msgs, he, txt):
+def acct_tag(state, pid):
+    """TK1 / TK1 + TK2 / TK2 / None (lenh da dong o TK1 va khong co o TK2 -> khong bao nua)."""
+    a = state.get("acct", {}); c1 = pid in set(a.get("tk1_closed", [])); c2 = pid in set(a.get("tk2_ids", []))
+    return "TK2" if (c1 and c2) else "TK1 + TK2" if c2 else None if c1 else "TK1"
+
+
+def emit(state, now, notify, msgs, he, txt, pid=None):
+    if pid is not None:
+        tag = acct_tag(state, pid)
+        if tag is None:
+            add_event(state, now, txt + " (da dong o TK1 truoc do)"); return
+        txt = f"🏦 <b>{tag}</b> · " + txt
     add_event(state, now, txt)
     if notify and want_notify(he):
         msgs.append(txt)
@@ -499,6 +510,12 @@ def emit(state, now, notify, msgs, he, txt):
 def book_close(state, c, now):
     """Ghi nhan lai/lo da chot (% von) vao tong va vao phan cua thang."""
     pct = c.get("R", 0) * eng.RISK.get(c["he"], 0)
+    a = state.setdefault("acct", {})
+    if c["id"] in set(a.get("tk1_closed", [])):                   # TK1 da chot lenh nay (trailing) -> da tinh roi
+        a["tk1_closed"] = [x for x in a["tk1_closed"] if x != c["id"]]
+        a["tk2_ids"] = [x for x in a.get("tk2_ids", []) if x != c["id"]]
+        return
+    a["tk2_ids"] = [x for x in a.get("tk2_ids", []) if x != c["id"]]
     state["realized"] = state.get("realized", 0.0) + pct
     mr = state.setdefault("month_real", {"key": f"{now:%Y-%m}"})
     if mr.get("key") != f"{now:%Y-%m}":
@@ -521,11 +538,14 @@ def process(state, res, data, now, notify, msgs):
             if pid in cur:
                 continue
             c = closed.get(pid)
-            if c is None:
-                add_event(state, now, f"Ngừng theo dõi {pid} (dữ liệu nguồn thay đổi)")
+            if c is None:                                  # khong thay ca dong lan mo: thuong do thieu du lieu -> giu lai
+                miss = p.get("mat_dau", 0) + 1
+                if miss <= 72:
+                    p["mat_dau"] = miss; cur[pid] = p; continue
+                add_event(state, now, f"Ngừng theo dõi {pid} (không thấy trong dữ liệu {miss} lần chạy liên tiếp)")
                 continue
             if pid not in state["seen_closed"]:
-                emit(state, now, notify, msgs, c["he"], msg_close(c))
+                emit(state, now, notify, msgs, c["he"], msg_close(c), pid=pid)
                 state["closed"].append(c); book_close(state, c, now)
             state["seen_closed"][pid] = iso(now)
         # 2) lenh vao va dong giua 2 lan tinh
@@ -537,7 +557,9 @@ def process(state, res, data, now, notify, msgs):
                 state["seen_closed"][cid] = iso(now)
                 if v is not None and v.get("blocked"):
                     blocked.add(cid); continue
-                emit(state, now, notify, msgs, c["he"], msg_close(c, "\n<i>Vào và chốt giữa 2 lần cập nhật</i>"))
+                if v is not None and v.get("tk2"):
+                    state.setdefault("acct", {}).setdefault("tk2_ids", []).append(cid)
+                emit(state, now, notify, msgs, c["he"], msg_close(c, "\n<i>Vào và chốt giữa 2 lần cập nhật</i>"), pid=cid)
                 state["closed"].append(c); book_close(state, c, now)
         # 3) lenh moi mo / doi SL / nhac thoat
         for pid, p in cur.items():
@@ -550,11 +572,15 @@ def process(state, res, data, now, notify, msgs):
                 v = consume_pending(state, p)
                 if v is not None and v.get("blocked"):
                     blocked.add(pid); continue
-                if v is None and last_calc is not None:
+                if v is not None and v.get("tk2"):
+                    state.setdefault("acct", {}).setdefault("tk2_ids", []).append(pid)
+                late = state.setdefault("late_notified", {})
+                if v is None and last_calc is not None and pid not in late:
+                    late[pid] = iso(now)
                     emit(state, now, notify, msgs, p["he"],
                          title("🟢" if p["side"] == 1 else "🔴", "ĐANG MỞ (báo muộn)", p) + "\n"
                          f"Vào {px(p['gia_vao'])} lúc {fvn(p['vao'])} · {p.get('ghi_chu', '')}\n"
-                         f"<i>Tín hiệu xảy ra lúc bot gián đoạn — tạm tính {p['r_now']:+.2f}R</i>")
+                         f"<i>Tín hiệu xảy ra lúc bot gián đoạn — tạm tính {p['r_now']:+.2f}R</i>", pid=pid)
                 continue
             for k in ("sl_bao", "sl_bao_luc", "bao_thoat", "bao_ngay_cuoi"):
                 if k in old:
@@ -565,7 +591,7 @@ def process(state, res, data, now, notify, msgs):
                           now - ts(p["sl_bao_luc"]) >= pd.Timedelta(hours=SL_MOVE_MIN_HOURS.get(p["he"], 0)))
                 if base is not None and gap_ok and abs(p["sl"] - base) >= SL_MOVE_MIN_R[p["he"]] * p["rui_ro"]:
                     emit(state, now, notify, msgs, p["he"], title("↕️", "DỜI SL", p) +
-                         f"\n{px(base)} → <b>{px(p['sl'])}</b> · tạm tính {p['r_now']:+.2f}R")
+                         f"\n{px(base)} → <b>{px(p['sl'])}</b> · tạm tính {p['r_now']:+.2f}R", pid=pid)
                     p["sl_bao"] = p["sl"]; p["sl_bao_luc"] = iso(now)
             if p["he"] == "D" and p.get("thoat") and not p.get("bao_thoat"):
                 p["bao_thoat"] = True
@@ -573,12 +599,12 @@ def process(state, res, data, now, notify, msgs):
                         f"(phiên mở {fvn(now.floor('D'))})")
                 emit(state, now, notify, msgs, "D", title("🔔", "THOÁT", p) +
                      f"\nĐóng ở {when} · độ lệch {p.get('do_lech', 0):+.2f} (hoặc đủ {eng.D_MAXAGE} ngày)\n"
-                     f"Tạm tính <b>{p['r_now']:+.2f}R</b>")
+                     f"Tạm tính <b>{p['r_now']:+.2f}R</b>", pid=pid)
             if p["he"] == "A" and p.get("con_ngay") == 1 and not p.get("bao_ngay_cuoi") and not week_view(now):
                 p["bao_ngay_cuoi"] = True
                 emit(state, now, notify, msgs, "A", title("🔔", "HÔM NAY ĐÓNG", p) +
                      f"\nNgày giữ cuối: đóng ở giá đóng cửa, trước {fvn(now.floor('D') + pd.Timedelta(days=1))}\n"
-                     f"Tạm tính <b>{p['r_now']:+.2f}R</b>")
+                     f"Tạm tính <b>{p['r_now']:+.2f}R</b>", pid=pid)
         # 4) tin hieu cho vao
         for q in snap["pending"]:
             key = f"{q['he']}|{q['pair']}|{q['side']}|{q['t_vao']}"
@@ -592,7 +618,9 @@ def process(state, res, data, now, notify, msgs):
     state["announced"] = dict(sorted(state["announced"].items(), key=lambda kv: kv[1]["time"])[-600:])
     state["seen_closed"] = dict(sorted(state["seen_closed"].items(), key=lambda kv: kv[1])[-1500:])
     state["blocked_ids"] = sorted(blocked)[-3000:]
-    for p in state["positions"]:                          # gia moi nhat cho moi lenh
+    state["late_notified"] = dict(sorted(state.get("late_notified", {}).items(), key=lambda kv: kv[1])[-500:])
+    for p in state["positions"]:
+        p.pop("mat_dau", None) if p["id"] in {q["id"] for snap in res.values() for q in snap["open"]} else None                          # gia moi nhat cho moi lenh
         if p["pair"] in lastp:
             p["last"] = lastp[p["pair"]]; p["r_now"] = round(r_now(p, p["last"]), 3)
             p["pct_now"] = round(p["r_now"] * eng.RISK.get(p["he"], 0), 3)
@@ -603,7 +631,8 @@ def process(state, res, data, now, notify, msgs):
 def breakers(state, now, notify, msgs):
     """Cap nhat von (cong don % da chot + tha noi), kich hoat ngat mach phan / tha noi / sut giam."""
     rs = state.setdefault("risk_state", {})
-    pos = state["positions"]; mk = f"{now:%Y-%m}"
+    c1 = set(state.get("acct", {}).get("tk1_closed", []))
+    pos = [p for p in state["positions"] if p["id"] not in c1]; mk = f"{now:%Y-%m}"
     if state.get("month_real", {}).get("key") != mk:
         state["month_real"] = {"key": mk}
     floating = sum(p.get("pct_now", 0) for p in pos)
@@ -651,7 +680,8 @@ def breakers(state, now, notify, msgs):
 def gate(state, new_signals, data, now, notify, msgs):
     """Moi tin hieu moi phai qua: dung he thong, nghi sau ngat tha noi, ngat phan, tran rui ro mo, tran crypto."""
     lastp = {s: float(df.Close.iloc[-1]) for s, df in data.items() if len(df)}
-    pos = state["positions"]; mk = f"{now:%Y-%m}"
+    c1 = set(state.get("acct", {}).get("tk1_closed", []))
+    pos = [p for p in state["positions"] if p["id"] not in c1]; mk = f"{now:%Y-%m}"
     open_risk = sum(eng.RISK.get(p["he"], 0) for p in pos)
     n_cr = sum(1 for p in pos if p["pair"] in CRYPTO_PAIRS)
     paused = {k for k, v in state.get("sleeve_stop", {}).items() if v == mk}
@@ -675,12 +705,89 @@ def gate(state, new_signals, data, now, notify, msgs):
             if notify and NOTIFY_SKIPPED and want_notify(q["he"]):
                 msgs.append(txt)
             continue
-        state["announced"][key] = {"time": iso(now), "used": False}
+        tk2 = bool(state.get("acct", {}).get("tk2_on"))
+        state["announced"][key] = {"time": iso(now), "used": False, "tk2": tk2}
         open_risk += rk; n_cr += q["pair"] in CRYPTO_PAIRS
-        emit(state, now, notify, msgs, q["he"], msg_signal(q, lastp.get(q["pair"]), now))
+        emit(state, now, notify, msgs, q["he"], f"🏦 <b>{'TK1 + TK2' if tk2 else 'TK1'}</b> · " + msg_signal(q, lastp.get(q["pair"]), now))
     state.setdefault("risk_state", {}).update(open_risk=round(open_risk, 3), crypto_open=n_cr)
     state["pending"] = [q for q in state["pending"] if not state["announced"].get(
         f"{q['he']}|{q['pair']}|{q['side']}|{q['t_vao']}", {}).get("blocked")]
+
+
+# ------------------------------------------------------------------ tai khoan TK1 (trailing) / TK2 (bat tat)
+ACC_BB_N, ACC_BB_K, ACC_WPR_N, ACC_EMA, ACC_OS, ACC_LOW_N = 50, 2.5, 14, 5, -80.0, 5
+
+
+def acct_indicators(hist):
+    e = pd.Series([v for _, v in hist], dtype=float)
+    if len(e) < ACC_BB_N + 5:
+        return None
+    up = e.rolling(ACC_BB_N).mean().iloc[-1] + ACC_BB_K * e.rolling(ACC_BB_N).std().iloc[-1]
+    hh, ll = e.rolling(ACC_WPR_N).max(), e.rolling(ACC_WPR_N).min()
+    wema = (-100 * (hh - e) / (hh - ll).replace(0, np.nan)).ewm(span=ACC_EMA, adjust=False).mean().iloc[-1]
+    return dict(eq=float(e.iloc[-1]), up=float(up), low5=float(e.iloc[-ACC_LOW_N - 1:-1].min()), wema=float(wema))
+
+
+def accounts(state, now, notify, msgs, res=None):
+    """1 lan moi ngay (lan chay dau tien cua ngay UTC): ghi Equity TK1, cap nhat trang thai TK1 va TK2."""
+    a = state.setdefault("acct", {"tk1_armed": False, "tk2_on": False, "tk2_armed": False, "tk1_closed": [], "tk2_ids": []})
+    hist = state.setdefault("eq_hist", [])
+    c1 = set(a.get("tk1_closed", []))
+    eq = state.get("realized", 0.0) + sum(p.get("pct_now", 0) for p in state["positions"] if p["id"] not in c1)
+    day = f"{now:%Y-%m-%d}"
+    if not hist and res:                                   # khoi dong: dung lai lich su gan dung tu lenh da chot
+        cl = [c for snap in res.values() for c in snap["closed"]]
+        if cl:
+            s = pd.Series([c["R"] * eng.RISK.get(c["he"], 0) for c in cl], [ts(c["ra"]).normalize() for c in cl]).groupby(level=0).sum()
+            idx = pd.date_range(now.normalize() - pd.Timedelta(days=150), now.normalize() - pd.Timedelta(days=1))
+            cum = s.reindex(idx, fill_value=0).cumsum(); cum = cum - cum.iloc[-1] + eq
+            hist.extend([[f"{d:%Y-%m-%d}", round(float(v), 4)] for d, v in cum.items()]); a["uoc_tinh"] = True
+    if hist and hist[-1][0] == day:
+        hist[-1][1] = round(eq, 4); return                 # da xu ly hom nay -> chi cap nhat gia tri
+    hist.append([day, round(eq, 4)]); del hist[:-400]
+    k = acct_indicators(hist)
+    if k is None:
+        return
+    a.update(eq=k["eq"], up=k["up"], low5=k["low5"], wema=k["wema"])
+    tk2_open = lambda: [p for p in state["positions"] if p["id"] in set(a.get("tk2_ids", []))]
+    lst = lambda P: "\n".join(f"• {p['he']} {p['pair']} {side_txt(p['side'])} · {p.get('r_now', 0):+.2f}R" for p in P) or "• (không có lệnh mở)"
+    # TK1: luon vao lenh; len dan o band tren, chot het khi thung day 5 ngay
+    if not a.get("tk1_armed") and k["eq"] >= k["up"]:
+        a["tk1_armed"] = True
+        emit(state, now, notify, msgs, "A", f"🎯 <b>TK1 · LÊN ĐẠN</b> · Equity chạm band trên BB(50; 2,5)\n"
+             f"Tiếp tục vào lệnh bình thường. Sẽ CHỐT HẾT TK1 nếu Equity cuối ngày thấp hơn đáy 5 ngày (hiện {k['low5']:+.2f}% vốn).")
+    elif a.get("tk1_armed") and k["eq"] < k["low5"]:
+        P = [p for p in state["positions"] if p["id"] not in c1]
+        emit(state, now, notify, msgs, "A", f"💰 <b>TK1 · CHỐT HẾT</b> · Equity thủng đáy 5 ngày sau khi lên đạn\n"
+             f"<b>Đóng các lệnh đang mở ở TK1:</b>\n{lst(P)}\nTK1 tiếp tục vào lệnh mới bình thường từ bây giờ."
+             + ("\n<i>Lệnh có ở TK2 thì giữ ở TK2 theo quy tắc TK2.</i>" if a.get("tk2_ids") else ""))
+        state["realized"] = state.get("realized", 0.0) + sum(p.get("pct_now", 0) for p in P)
+        a["tk1_closed"] = sorted(c1 | {p["id"] for p in P})[-500:]; a["tk1_armed"] = False
+        only1 = [p["id"] for p in P if p["id"] not in set(a.get("tk2_ids", []))]   # khong co o TK2 -> ngung theo doi
+        if only1:
+            state["blocked_ids"] = sorted(set(state.get("blocked_ids", [])) | set(only1))[-3000:]
+            state["positions"] = [p for p in state["positions"] if p["id"] not in set(only1)]
+    # TK2: bat khi WPR-EMA < -80; len dan o band tren; chot het khi thung day 5 ngay
+    if not a.get("tk2_on"):
+        if k["wema"] < ACC_OS:
+            a.update(tk2_on=True, tk2_armed=False)
+            emit(state, now, notify, msgs, "A", f"🟢 <b>TK2 · BẬT</b> · WPR-EMA Equity TK1 = {k['wema']:.0f} (< −80)\n"
+                 "Từ bây giờ các tin VÀO ghi <b>TK1 + TK2</b>: vào lệnh ở cả hai tài khoản.")
+    else:
+        if not a.get("tk2_armed") and k["eq"] >= k["up"]:
+            a["tk2_armed"] = True
+            emit(state, now, notify, msgs, "A", f"🎯 <b>TK2 · LÊN ĐẠN</b> · Equity TK1 chạm band trên BB(50; 2,5)\n"
+                 f"Sẽ CHỐT HẾT TK2 nếu Equity TK1 cuối ngày thấp hơn {k['low5']:+.2f}% vốn (đáy 5 ngày).")
+        elif a.get("tk2_armed") and k["eq"] < k["low5"]:
+            P = tk2_open()
+            emit(state, now, notify, msgs, "A", f"💰 <b>TK2 · CHỐT HẾT</b> · Equity TK1 thủng đáy 5 ngày\n"
+                 f"<b>Đóng mọi lệnh đang mở ở TK2:</b>\n{lst(P)}\nTK2 TẮT: lệnh mới chỉ vào TK1 cho đến lần BẬT tiếp theo.")
+            gone = [p["id"] for p in P if p["id"] in set(a.get("tk1_closed", []))]
+            a.update(tk2_on=False, tk2_armed=False, tk2_ids=[])
+            if gone:
+                state["blocked_ids"] = sorted(set(state.get("blocked_ids", [])) | set(gone))[-3000:]
+                state["positions"] = [p for p in state["positions"] if p["id"] not in set(gone)]
+                a["tk1_closed"] = [x for x in a["tk1_closed"] if x not in set(gone)]
 
 
 # ------------------------------------------------------------------ tom tat buoi sang
@@ -701,6 +808,13 @@ def summary(state, now):
         L.append("Không có lệnh nào đang mở.")
     if state.get("pending"):
         L.append("Tín hiệu chờ vào: " + ", ".join(f"{q['he']} {q['pair']} {side_txt(q['side'])}" for q in state["pending"]))
+    a = state.get("acct", {})
+    if "eq" in a:
+        t1 = (f"ĐÃ LÊN ĐẠN · chốt hết nếu Equity < {a['low5']:+.2f}%" if a.get("tk1_armed") else "bình thường")
+        t2 = ("TẮT" if not a.get("tk2_on") else (f"BẬT · ĐÃ LÊN ĐẠN (chốt hết nếu Equity TK1 < {a['low5']:+.2f}%)" if a.get("tk2_armed") else "BẬT"))
+        L.append(f"🏦 TK1: {t1} | TK2: {t2}")
+        L.append(f"   Equity TK1 (theo bot) {a['eq']:+.2f}% · band trên BB50 {a['up']:+.2f}% · WPR-EMA {a['wema']:.0f}"
+                 + (" · <i>lịch sử đầu ước tính</i>" if a.get("uoc_tinh") else ""))
     rs = state.get("risk_state", {})
     L.append(f"Rủi ro đang mở {rs.get('open_risk', 0):.2f}% / {eng.MAX_OPEN_RISK:g}% · crypto {rs.get('crypto_open', 0)}/"
              f"{eng.CRYPTO_MAX_OPEN} · thả nổi {rs.get('floating', 0):+.2f}% · từ đỉnh {rs.get('dd', 0):+.2f}%")
@@ -715,6 +829,10 @@ def summary(state, now):
                  + (" — âm, cân nhắc giảm khối lượng B" if br < 0 else ""))
     if d.weekday() == 4:
         L.append("05:00 sáng thứ Bảy (giờ VN) bot chốt tín hiệu A, D, B cho tuần sau.")
+    cache_ok = sum(1 for s_ in FX_PAIRS + CRYPTO_PAIRS + METALS if load_cache(s_) is not None)
+    tot_ = len(FX_PAIRS + CRYPTO_PAIRS + METALS)
+    if cache_ok < tot_:
+        L.append(f"⚠️ Bộ nhớ đệm nến chỉ có {cache_ok}/{tot_} mã — kiểm tra bước 'Khoi phuc bo nho dem' trong GitHub Actions")
     L.append(f"<i>Twelve Data hôm nay: {state['credits'].get('n', 0)} lượt</i>")
     return "\n".join(L)
 
@@ -749,13 +867,14 @@ def run(now=None, fetcher=None, send=True, persist=True):
         parts = list(PARTS)
     else:
         parts = [p for p in ("BB", "AQB") if p in PARTS]
-        if "E" in PARTS and any(s in FX_PAIRS for s in fetched):
-            parts.append("E")
+        if "E" in PARTS and any(s in FX_PAIRS for s in fetched) and all(s in data for s in FX_PAIRS):
+            parts.append("E")                              # E can du 25 cap de tinh suc manh dong tien
     if quota and not boot:
         parts = [p for p in parts if p in ("BB", "AQB", "E")]
     res, extra = engine(data, now, parts) if data else ({}, {})
     new_signals = process(state, res, data, now, notify=not boot, msgs=msgs)
     breakers(state, now, notify=not boot, msgs=msgs)
+    accounts(state, now, notify=not boot, msgs=msgs, res=res)
     state.update({k: v for k, v in extra.items()})
     if full and not quota:
         state["last_full_bin"] = iso(now.floor(f"{FULL_EVERY_HOURS}h"))

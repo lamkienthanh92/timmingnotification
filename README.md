@@ -45,6 +45,23 @@ Sau khi đánh giá lại, muốn chạy tiếp sau tầng "Hệ thống": đặ
 Các ngưỡng nằm trong `portfolio_backtest.py` (`MAX_OPEN_RISK`, `CRYPTO_MAX_OPEN`, `BREAK_*`) — dùng chung cho
 backtest và bot.
 
+## Hai tài khoản TK1 / TK2
+
+Bot tự theo dõi Equity của TK1 (vốn đã chốt + thả nổi của các lệnh bot đã báo, % vốn) và kiểm tra **mỗi ngày lúc 07:02 giờ VN**.
+
+| | TK1 | TK2 |
+|---|---|---|
+| Vào lệnh | **Mọi** tín hiệu, liên tục | Chỉ khi TK2 đang BẬT (tin VÀO ghi **TK1 + TK2**) |
+| Bật | Luôn bật | WPR(14)+EMA(5) trên Equity TK1 < −80 |
+| Lên đạn | Equity TK1 ≥ band trên Bollinger(50; 2,5) | như TK1 |
+| Chốt hết | Equity TK1 < đáy 5 ngày trước → đóng mọi lệnh TK1 đang mở, **vào lệnh mới tiếp ngay** | Equity TK1 < đáy 5 ngày trước → đóng mọi lệnh TK2, **TẮT** đến lần bật sau |
+
+Mọi tin nhắn có nhãn tài khoản: 🏦 **TK1**, 🏦 **TK1 + TK2**, hoặc 🏦 **TK2** (lệnh đã đóng ở TK1 nhưng còn ở TK2).
+Tin riêng: 🎯 LÊN ĐẠN, 💰 CHỐT HẾT (kèm danh sách lệnh cần đóng), 🟢 TK2 BẬT. Tóm tắt sáng ghi trạng thái hai tài khoản.
+Backtest 2011–2026: TK1 có trailing Sharpe ~1,51 (MaxDD −11,4%); TK2 Sharpe ~1,62 (MaxDD −10,6%, có lãi 16/16 năm).
+Khi mới khởi động, bot dựng lại lịch sử Equity gần đúng từ các lệnh đã chốt (ghi "lịch sử đầu ước tính" cho đến khi đủ 55 ngày thật).
+Tự kiểm tra bằng Equity thật: `python tk2_signal.py --equity tk1_equity.csv`; kiểm chứng: `python tk2_backtest.py --data ./data --trades tk1_trades.csv`.
+
 ## Kết quả backtest (09/2011 → 10/2026, có spread, swap, lãi/lỗ thả nổi)
 
 Danh mục thực thi (đã áp trần + ngắt mạch, A và D có SL, E lọc giờ New York): **khoảng 18.4%/năm, Sharpe 1.38,

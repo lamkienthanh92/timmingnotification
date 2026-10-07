@@ -1,5 +1,7 @@
 name: Live bot (moi gio)
 
+# Lich chinh: cron-job.org goi workflow_dispatch moi gio phut :02 (xem README).
+# Lich du phong cua GitHub (hay tre 5-20 phut): moi 2 gio. Chay trung khong sao: bot tu biet da xu ly nen nao.
 on:
   workflow_dispatch: {}
   schedule:
@@ -15,7 +17,7 @@ permissions:
 jobs:
   run:
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    timeout-minutes: 30
     steps:
       - uses: actions/checkout@v4
 
@@ -26,20 +28,49 @@ jobs:
 
       - run: pip install -r requirements.txt
 
+      # Bo nho dem nen H1 (khong commit vao repo): lay ban moi nhat cua lan chay truoc
+      - name: Khoi phuc bo nho dem nen H1
+        uses: actions/cache/restore@v4
+        with:
+          path: data/cache
+          key: h1-cache-${{ github.run_id }}
+          restore-keys: h1-cache-
+
       - name: Chay bot
         env:
           TWELVE_DATA_API_KEY: ${{ secrets.TWELVE_DATA_API_KEY }}
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
-          NOTIFY_ONLY_LEGS: ${{ vars.NOTIFY_ONLY_LEGS }}
+          PARTS: ${{ vars.PARTS }}
+          NOTIFY_ONLY_PARTS: ${{ vars.NOTIFY_ONLY_PARTS }}
+          B_FILTER: ${{ vars.B_FILTER }}
+          NOTIFY_SKIPPED: ${{ vars.NOTIFY_SKIPPED }}
+          RESET_DD: ${{ vars.RESET_DD }}
+          ACCOUNT_EQUITY: ${{ vars.ACCOUNT_EQUITY }}
         run: python live_bot.py
+
+      - name: Luu bo nho dem nen H1
+        if: always()
+        uses: actions/cache/save@v4
+        with:
+          path: data/cache
+          key: h1-cache-${{ github.run_id }}-${{ github.run_attempt }}
 
       - name: Luu trang thai vao repo
         if: always()
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add data/live_state.json || true
-          if git diff --staged --quiet; then echo "Khong co thay doi"; exit 0; fi
-          git commit -m "Cap nhat trang thai $(date -u +'%Y-%m-%d %H:%M') UTC [skip netlify]"
-          for i in 1 2 3; do git pull --rebase && git push && break; sleep 5; done
+          [ -f data/live_state.json ] || { echo "Khong co file trang thai"; exit 0; }
+          cp data/live_state.json /tmp/live_state.json
+          # Luon ghi trang thai MOI NHAT cua lan chay nay (khong bao gio ket vi xung dot)
+          for i in 1 2 3 4 5; do
+            git fetch origin main && git reset --hard origin/main
+            mkdir -p data && cp /tmp/live_state.json data/live_state.json
+            git add data/live_state.json
+            if git diff --staged --quiet; then echo "Khong co thay doi"; exit 0; fi
+            git commit -m "Cap nhat trang thai $(date -u +'%Y-%m-%d %H:%M') UTC [skip netlify]"
+            if git push origin HEAD:main; then echo "Da luu trang thai"; exit 0; fi
+            echo "Push that bai, thu lai ($i)"; sleep 7
+          done
+          echo "::error::Khong luu duoc trang thai sau 5 lan thu"; exit 1

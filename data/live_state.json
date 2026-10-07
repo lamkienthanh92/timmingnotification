@@ -72,67 +72,19 @@
    "sl_bao_luc": "2026-10-07T00:01:00"
   },
   {
-   "he": "E",
-   "pair": "AUDUSD",
-   "side": 1,
-   "vao": "2026-10-02T13:00:00",
-   "gia_vao": 0.69664,
-   "sl": 0.6921122116576414,
-   "tp": 0.7097111981325057,
-   "rui_ro": 0.004527788342358674,
-   "ghi_chu": "SL 0.69211, TP 0.70971",
-   "id": "E|AUDUSD|1|2026-10-02T13:00:00",
-   "last": 0.69812,
-   "r_now": 0.327,
-   "pct_now": 0.049,
-   "sl_bao": 0.6921122116576414
-  },
-  {
-   "he": "E",
-   "pair": "GBPCAD",
-   "side": -1,
-   "vao": "2026-10-06T19:00:00",
-   "gia_vao": 1.88654,
-   "sl": 1.8914457966418294,
-   "tp": 1.8756371199211497,
-   "rui_ro": 0.00490579664182933,
-   "ghi_chu": "SL 1.8914, TP 1.8756",
-   "id": "E|GBPCAD|-1|2026-10-06T19:00:00",
-   "last": 1.88565,
-   "r_now": 0.181,
-   "pct_now": 0.027,
-   "sl_bao": 1.8914457966418294
-  },
-  {
-   "he": "E",
-   "pair": "NZDUSD",
-   "side": 1,
-   "vao": "2026-10-06T12:00:00",
-   "gia_vao": 0.56173,
-   "sl": 0.558595095690409,
-   "tp": 0.5710776003270803,
-   "rui_ro": 0.003134904309590958,
-   "ghi_chu": "SL 0.5586, TP 0.57108",
-   "id": "E|NZDUSD|1|2026-10-06T12:00:00",
-   "last": 0.56232,
-   "r_now": 0.188,
-   "pct_now": 0.028,
-   "sl_bao": 0.558595095690409
-  },
-  {
    "he": "BB SOL",
    "pair": "SOLUSD",
    "side": 1,
    "vao": "2026-10-06T15:00:00",
    "gia_vao": 121.75,
-   "sl": 119.53524245406203,
-   "rui_ro": 2.2923645844551146,
-   "gio_giu": 9,
-   "ghi_chu": "SL hien tai 119.535",
+   "sl": 119.5785382543652,
+   "rui_ro": 2.2923645844547593,
+   "gio_giu": 10,
+   "ghi_chu": "SL hien tai 119.579",
    "id": "BB SOL|SOLUSD|1|2026-10-06T15:00:00",
-   "last": 120.71,
-   "r_now": -0.454,
-   "pct_now": -0.114,
+   "last": 120.58,
+   "r_now": -0.51,
+   "pct_now": -0.128,
    "sl_bao": 119.47215091701987
   }
  ],
@@ -372,6 +324,18 @@
   {
    "time": "2026-10-07T00:01:00",
    "text": "↕️ DỜI SL · CHFJPY LONG · B · xu hướng JPY | 188.655 → 188.873 · tạm tính +0.19R"
+  },
+  {
+   "time": "2026-10-07T01:01:00",
+   "text": "Ngừng theo dõi E|AUDUSD|1|2026-10-02T13:00:00 (dữ liệu nguồn thay đổi)"
+  },
+  {
+   "time": "2026-10-07T01:01:00",
+   "text": "Ngừng theo dõi E|GBPCAD|-1|2026-10-06T19:00:00 (dữ liệu nguồn thay đổi)"
+  },
+  {
+   "time": "2026-10-07T01:01:00",
+   "text": "Ngừng theo dõi E|NZDUSD|1|2026-10-06T12:00:00 (dữ liệu nguồn thay đổi)"
   }
  ],
  "announced": {
@@ -416,10 +380,10 @@
   "NZDUSD"
  ],
  "b_regime": -2.06,
- "last_run": "2026-10-07T00:01:00",
+ "last_run": "2026-10-07T01:01:00",
  "credits": {
   "date": "2026-10-07",
-  "n": 60
+  "n": 80
  },
  "last_summary_date": "2026-10-07",
  "quota_alert_date": "2026-10-06",
@@ -427,54 +391,31 @@
   "A": "2026-10-07T00:01:00",
   "D": "2026-10-07T00:01:00",
   "B": "2026-10-07T00:01:00",
-  "E": "2026-10-07T00:01:00",
-  "BB": "2026-10-07T00:01:00",
-  "AQB": "2026-10-07T00:01:00"
+  "E": "2026-10-07T01:01:00",
+  "BB": "2026-10-07T01:01:00",
+  "AQB": "2026-10-07T01:01:00"
  },
  "last_fetch": {
   "symbols": [
-   "AUDJPY",
    "AUDUSD",
    "BTCUSD",
-   "CADCHF",
-   "CADJPY",
-   "CHFJPY",
    "DOGEUSD",
    "ETHUSD",
-   "EURAUD",
-   "EURCAD",
-   "EURCHF",
-   "EURGBP",
-   "EURJPY",
-   "EURNZD",
-   "EURUSD",
    "GBPAUD",
    "GBPCAD",
-   "GBPCHF",
-   "GBPJPY",
-   "GBPNZD",
-   "GBPUSD",
-   "NZDCAD",
    "NZDCHF",
-   "NZDJPY",
    "NZDUSD",
    "SOLUSD",
-   "USDCAD",
-   "USDCHF",
-   "USDJPY",
    "XAUUSD"
   ],
   "why": [
    "crypto moi gio",
    "vang moi gio",
-   "nen 4H dong"
+   "E theo doi AUDUSD,GBPAUD,GBPCAD,NZDCHF,NZDUSD"
   ],
   "parts": [
-   "A",
-   "B",
    "BB",
    "AQB",
-   "D",
    "E"
   ]
  },
@@ -501,53 +442,33 @@
   "AQB DOGE": 0.25,
   "AQB XAU": 0.75
  },
- "floating_now": 0.244,
+ "floating_now": 0.126,
  "data_end": {
-  "AUDJPY": "2026-10-06T23:00:00",
-  "AUDUSD": "2026-10-06T23:00:00",
-  "CADCHF": "2026-10-06T23:00:00",
-  "CADJPY": "2026-10-06T23:00:00",
-  "CHFJPY": "2026-10-06T23:00:00",
-  "EURAUD": "2026-10-06T23:00:00",
-  "EURCAD": "2026-10-06T23:00:00",
-  "EURCHF": "2026-10-06T23:00:00",
-  "EURGBP": "2026-10-06T23:00:00",
-  "EURJPY": "2026-10-06T23:00:00",
-  "EURNZD": "2026-10-06T23:00:00",
-  "EURUSD": "2026-10-06T23:00:00",
-  "GBPAUD": "2026-10-06T23:00:00",
-  "GBPCAD": "2026-10-06T23:00:00",
-  "GBPCHF": "2026-10-06T23:00:00",
-  "GBPJPY": "2026-10-06T23:00:00",
-  "GBPNZD": "2026-10-06T23:00:00",
-  "GBPUSD": "2026-10-06T23:00:00",
-  "NZDCAD": "2026-10-06T23:00:00",
-  "NZDCHF": "2026-10-06T23:00:00",
-  "NZDJPY": "2026-10-06T23:00:00",
-  "NZDUSD": "2026-10-06T23:00:00",
-  "USDCAD": "2026-10-06T23:00:00",
-  "USDCHF": "2026-10-06T23:00:00",
-  "USDJPY": "2026-10-06T23:00:00",
-  "BTCUSD": "2026-10-06T23:00:00",
-  "ETHUSD": "2026-10-06T23:00:00",
-  "SOLUSD": "2026-10-06T23:00:00",
-  "DOGEUSD": "2026-10-06T23:00:00",
-  "XAUUSD": "2026-10-06T23:00:00"
+  "AUDUSD": "2026-10-07T00:00:00",
+  "GBPAUD": "2026-10-07T00:00:00",
+  "GBPCAD": "2026-10-07T00:00:00",
+  "NZDCHF": "2026-10-07T00:00:00",
+  "NZDUSD": "2026-10-07T00:00:00",
+  "BTCUSD": "2026-10-07T00:00:00",
+  "ETHUSD": "2026-10-07T00:00:00",
+  "SOLUSD": "2026-10-07T00:00:00",
+  "DOGEUSD": "2026-10-07T00:00:00",
+  "XAUUSD": "2026-10-07T00:00:00"
  },
  "blocked_ids": [],
  "risk_state": {
-  "floating": 0.244,
-  "equity": -0.918,
-  "dd": -0.918,
+  "floating": 0.126,
+  "equity": -1.036,
+  "dd": -1.036,
   "month": "2026-10",
   "sleeve_mtd": {
    "A": 0.0,
-   "FX": -0.065
+   "FX": -0.169
   },
   "sleeve_paused": [],
   "dd_stop": false,
   "float_pause_until": null,
-  "open_risk": 1.7,
+  "open_risk": 1.25,
   "crypto_open": 1
  },
  "month_real": {

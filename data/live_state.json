@@ -66,9 +66,9 @@
    "rui_ro": 0.004527788342358674,
    "ghi_chu": "SL 0.69211, TP 0.70971",
    "id": "E|AUDUSD|1|2026-10-02T13:00:00",
-   "last": 0.69747,
-   "r_now": 0.183,
-   "pct_now": 0.027,
+   "last": 0.69578,
+   "r_now": -0.19,
+   "pct_now": -0.028,
    "sl_bao": 0.6921122116576414
   },
   {
@@ -82,20 +82,36 @@
    "rui_ro": 0.00490579664182933,
    "ghi_chu": "SL 1.8914, TP 1.8756",
    "id": "E|GBPCAD|-1|2026-10-06T19:00:00",
-   "last": 1.88397,
-   "r_now": 0.524,
-   "pct_now": 0.079,
+   "last": 1.88307,
+   "r_now": 0.707,
+   "pct_now": 0.106,
    "sl_bao": 1.8914457966418294
-  }
- ],
- "pending": [
+  },
   {
    "he": "BB ETH",
    "pair": "ETHUSD",
    "side": -1,
-   "t_vao": "2026-10-14T13:00:00",
+   "vao": "2026-10-14T13:00:00",
+   "gia_vao": 2476.55,
    "sl": 2522.774906731108,
-   "ghi_chu": "SHORT o gia mo nen 1H ke tiep, SL 2522.77"
+   "rui_ro": 46.224906731107694,
+   "gio_giu": 1,
+   "ghi_chu": "SL hien tai 2522.77",
+   "id": "BB ETH|ETHUSD|-1|2026-10-14T13:00:00",
+   "last": 2452.16,
+   "r_now": 0.528,
+   "pct_now": 0.132,
+   "sl_bao": 2522.774906731108
+  }
+ ],
+ "pending": [
+  {
+   "he": "AQB XAU",
+   "pair": "XAUUSD",
+   "side": -1,
+   "t_vao": "2026-10-14T14:00:00",
+   "sl": 4145.535596566145,
+   "ghi_chu": "SHORT o gia mo nen 1H ke tiep, SL 4145.54 (band, keo theo)"
   }
  ],
  "closed": [
@@ -581,6 +597,10 @@
   {
    "time": "2026-10-14T13:01:00",
    "text": "🏦 TK1 + TK2 · 🔴 VÀO · ETHUSD SHORT · BB · squeeze ETH | ① Vào: BÁN giá thị trường lúc mở nến 20:00 T4 14/10 (giá hiện tại 2476.55) | ② SL: 2522.77 (band Bollinger đối diện) — cách 46.2 = 1.87% giá. Đặt SL trên sàn ngay khi vào. | ③ TP: không có — kéo SL theo band mỗi giờ (bot báo khi dời ≥ 0.5R, tối đa mỗi 4 giờ). Đóng muộn nhất sau 10 ngày giao dịch: 20:00 T7 24/10. | ④ Khối lượng: rủi ro 0.25% vốn nếu chạm SL → khối lượng = 0.25% vốn ÷ 46.2 = 1.87% giá. | ⑤ Lý do: Squeeze Bollinger rồi phá band"
+  },
+  {
+   "time": "2026-10-14T14:01:00",
+   "text": "🏦 TK1 + TK2 · 🔴 VÀO · XAUUSD SHORT · AQB · vàng | ① Vào: BÁN giá thị trường lúc mở nến 21:00 T4 14/10 (giá hiện tại 4089.36) | ② SL: 4145.54 (band phân vị AQB p1/p99) — cách 56.2 = 1.37% giá. Đặt SL trên sàn ngay khi vào. | ③ TP: không có — kéo SL theo band mỗi giờ (bot báo khi dời ≥ 0.5R, tối đa mỗi 4 giờ). Đóng muộn nhất sau 5 ngày giao dịch: 21:00 T4 21/10. | ④ Khối lượng: rủi ro 0.75% vốn nếu chạm SL → khối lượng = 0.75% vốn ÷ 56.2 = 1.37% giá. | ⑤ Lý do: Nén biến động rồi bứt phá vượt phân vị (AQB)"
   }
  ],
  "announced": {
@@ -631,11 +651,16 @@
   },
   "BB ETH|ETHUSD|-1|2026-10-14T10:00:00": {
    "time": "2026-10-14T10:01:00",
-   "used": false,
+   "used": true,
    "tk2": true
   },
   "BB ETH|ETHUSD|-1|2026-10-14T13:00:00": {
    "time": "2026-10-14T13:01:00",
+   "used": false,
+   "tk2": true
+  },
+  "AQB XAU|XAUUSD|-1|2026-10-14T14:00:00": {
+   "time": "2026-10-14T14:01:00",
    "used": false,
    "tk2": true
   }
@@ -658,10 +683,10 @@
   "GBPCAD"
  ],
  "b_regime": -1.71,
- "last_run": "2026-10-14T13:46:00",
+ "last_run": "2026-10-14T14:01:00",
  "credits": {
   "date": "2026-10-14",
-  "n": 215
+  "n": 222
  },
  "last_summary_date": "2026-10-14",
  "quota_alert_date": "2026-10-07",
@@ -669,9 +694,9 @@
   "A": "2026-10-14T12:01:00",
   "D": "2026-10-14T12:01:00",
   "B": "2026-10-14T12:01:00",
-  "E": "2026-10-14T13:46:00",
-  "BB": "2026-10-14T13:46:00",
-  "AQB": "2026-10-14T13:46:00"
+  "E": "2026-10-14T14:01:00",
+  "BB": "2026-10-14T14:01:00",
+  "AQB": "2026-10-14T14:01:00"
  },
  "last_fetch": {
   "symbols": [
@@ -717,10 +742,10 @@
   "AQB DOGE": 0.25,
   "AQB XAU": 0.75
  },
- "floating_now": -0.042,
+ "floating_now": 0.062,
  "data_end": {
   "AUDJPY": "2026-10-14T11:00:00",
-  "AUDUSD": "2026-10-14T12:00:00",
+  "AUDUSD": "2026-10-14T13:00:00",
   "CADCHF": "2026-10-14T11:00:00",
   "CADJPY": "2026-10-14T11:00:00",
   "CHFJPY": "2026-10-14T11:00:00",
@@ -732,7 +757,7 @@
   "EURNZD": "2026-10-14T11:00:00",
   "EURUSD": "2026-10-14T11:00:00",
   "GBPAUD": "2026-10-14T11:00:00",
-  "GBPCAD": "2026-10-14T12:00:00",
+  "GBPCAD": "2026-10-14T13:00:00",
   "GBPCHF": "2026-10-14T11:00:00",
   "GBPJPY": "2026-10-14T11:00:00",
   "GBPNZD": "2026-10-14T11:00:00",
@@ -744,31 +769,31 @@
   "USDCAD": "2026-10-14T11:00:00",
   "USDCHF": "2026-10-14T11:00:00",
   "USDJPY": "2026-10-14T11:00:00",
-  "BTCUSD": "2026-10-14T12:00:00",
-  "ETHUSD": "2026-10-14T12:00:00",
-  "SOLUSD": "2026-10-14T12:00:00",
-  "DOGEUSD": "2026-10-14T12:00:00",
-  "XAUUSD": "2026-10-14T12:00:00"
+  "BTCUSD": "2026-10-14T13:00:00",
+  "ETHUSD": "2026-10-14T13:00:00",
+  "SOLUSD": "2026-10-14T13:00:00",
+  "DOGEUSD": "2026-10-14T13:00:00",
+  "XAUUSD": "2026-10-14T13:00:00"
  },
  "blocked_ids": [
   "B|NZDJPY|1|2026-10-14T08:00:00"
  ],
  "risk_state": {
-  "floating": -0.042,
-  "equity": -2.229,
-  "dd": -2.229,
+  "floating": 0.062,
+  "equity": -2.125,
+  "dd": -2.125,
   "month": "2026-10",
   "sleeve_mtd": {
    "A": -0.216,
-   "FX": -0.913
+   "FX": -0.941
   },
   "sleeve_paused": [
    "FX"
   ],
   "dd_stop": false,
   "float_pause_until": null,
-  "open_risk": 0.85,
-  "crypto_open": 0
+  "open_risk": 1.85,
+  "crypto_open": 1
  },
  "month_real": {
   "key": "2026-10",
@@ -792,7 +817,8 @@
   "tk2_armed": false,
   "tk1_closed": [],
   "tk2_ids": [
-   "A|EURAUD|1|2026-10-12T00:00:00"
+   "A|EURAUD|1|2026-10-12T00:00:00",
+   "BB ETH|ETHUSD|-1|2026-10-14T13:00:00"
   ],
   "uoc_tinh": true,
   "eq": -2.0247,
@@ -1431,7 +1457,7 @@
   ],
   [
    "2026-10-14",
-   -2.2287
+   -2.1247
   ]
  ]
 }

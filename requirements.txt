@@ -1,3 +1,1 @@
-requests>=2.31.0
-pandas>=2.0.0
-numpy>=1.24.0
+# Ban 6 khong can thu vien Python ben ngoai (hai bot chi dung thu vien co san).

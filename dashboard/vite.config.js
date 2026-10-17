@@ -1,6 +1,1 @@
-import { defineConfig } from "vite";
-import react from "@vitejs/plugin-react";
-
-export default defineConfig({
-  plugins: [react()],
-});
+// File cu cua app React (ban 5) - khong con dung. Trang moi nam o dashboard/public/index.html

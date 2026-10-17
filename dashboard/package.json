@@ -1,19 +1,6 @@
 {
-  "name": "portfolio-v4-dashboard",
+  "name": "dashboard",
   "private": true,
-  "version": "1.0.0",
-  "type": "module",
-  "scripts": {
-    "dev": "vite",
-    "build": "vite build",
-    "preview": "vite preview"
-  },
-  "dependencies": {
-    "react": "^18.3.1",
-    "react-dom": "^18.3.1"
-  },
-  "devDependencies": {
-    "@vitejs/plugin-react": "^4.3.1",
-    "vite": "^5.4.0"
-  }
+  "version": "6.0.0",
+  "description": "Ban 6: trang tinh, khong can build"
 }

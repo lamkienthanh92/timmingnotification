@@ -1,10 +1,1 @@
-import React from "react";
-import ReactDOM from "react-dom/client";
-import App from "./App.jsx";
-import "./index.css";
-
-ReactDOM.createRoot(document.getElementById("root")).render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
-);
+// File cu cua app React (ban 5) - khong con dung. Trang moi nam o dashboard/public/index.html

@@ -1,0 +1,52 @@
+name: Crypto MA bot (moi ngay)
+
+# Chay moi ngay luc 00:07 UTC (07:07 gio VN), ngay sau khi nen ngay Binance dong.
+# Lich cua GitHub co the tre 5-20 phut - khong sao voi chien luoc nen ngay. Bam "Run workflow" de chay tay.
+on:
+  workflow_dispatch: {}
+  schedule:
+    - cron: "7 0 * * *"
+
+concurrency:
+  group: crypto-ma-bot
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Chay bot
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+          TONG_TAI_SAN: ${{ secrets.TONG_TAI_SAN }}
+          LOAI_TRU: ${{ secrets.LOAI_TRU }}
+          STATE_FILE: data/crypto_ma_state.json
+        run: |
+          mkdir -p data
+          python crypto_ma_bot.py
+      - name: Luu trang thai vao repo
+        if: always()
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          [ -f data/crypto_ma_state.json ] || { echo "Khong co file trang thai"; exit 0; }
+          cp data/crypto_ma_state.json /tmp/crypto_ma_state.json
+          for i in 1 2 3 4 5; do
+            git fetch origin main && git reset --hard origin/main
+            mkdir -p data && cp /tmp/crypto_ma_state.json data/crypto_ma_state.json
+            git add data/crypto_ma_state.json
+            if git diff --staged --quiet; then echo "Khong co thay doi"; exit 0; fi
+            git commit -m "Crypto MA: cap nhat trang thai $(date -u +'%Y-%m-%d') [skip netlify]"
+            if git push origin HEAD:main; then echo "Da luu trang thai"; exit 0; fi
+            echo "Push that bai, thu lai ($i)"; sleep 7
+          done
+          echo "::error::Khong luu duoc trang thai"; exit 1

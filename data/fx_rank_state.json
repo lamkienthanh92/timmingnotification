@@ -1,0 +1,31 @@
+{
+ "positions": [],
+ "closed": [],
+ "last_signal": {
+  "ngay": "2026-10-16",
+  "xep_hang": {
+   "USD": 2.96,
+   "EUR": -1.23,
+   "GBP": 1.13,
+   "JPY": 2.37,
+   "CHF": -2.29,
+   "CAD": -1.0,
+   "AUD": -0.65,
+   "NZD": -1.28
+  },
+  "phan_tan": 1.906,
+  "nguong": 2.38,
+  "bo_tuan": true,
+  "tam_dung": [],
+  "mua": [
+   "CHF",
+   "NZD"
+  ],
+  "ban": [
+   "USD",
+   "JPY"
+  ]
+ },
+ "last_bar": "",
+ "last_run": "2026-10-17T16:24:36+00:00"
+}

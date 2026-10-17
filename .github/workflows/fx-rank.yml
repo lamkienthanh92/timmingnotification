@@ -1,0 +1,59 @@
+name: FX xep hang luc tien te (moi ngay)
+
+# Chay thu Ba -> thu Bay luc 00:30 UTC (07:30 gio VN), sau khi nen ngay FX dong.
+# Thu Bay: tinh tin hieu tuan moi. Cac ngay khac: ghi nhan gia vao, kiem tra SL/TP.
+# Bam "Run workflow" de chay tay (chon "tuan = true" de ep tinh tin hieu tuan).
+on:
+  workflow_dispatch:
+    inputs:
+      tuan:
+        description: "Ep tinh tin hieu tuan ngay bay gio"
+        type: boolean
+        default: false
+  schedule:
+    - cron: "30 0 * * 2-6"
+
+concurrency:
+  group: fx-rank-bot
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Chay bot FX
+        env:
+          TWELVE_DATA_API_KEY: ${{ secrets.TWELVE_DATA_API_KEY }}
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+          ACCOUNT_EQUITY: ${{ secrets.ACCOUNT_EQUITY }}
+          RISK_PCT: ${{ secrets.RISK_PCT }}
+          STATE_FILE: data/fx_rank_state.json
+        run: |
+          mkdir -p data
+          if [ "${{ github.event.inputs.tuan }}" = "true" ]; then python fx_rank_bot.py --tuan; else python fx_rank_bot.py; fi
+      - name: Luu trang thai vao repo
+        if: always()
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          [ -f data/fx_rank_state.json ] || { echo "Khong co file trang thai"; exit 0; }
+          cp data/fx_rank_state.json /tmp/fx_rank_state.json
+          for i in 1 2 3 4 5; do
+            git fetch origin main && git reset --hard origin/main
+            mkdir -p data && cp /tmp/fx_rank_state.json data/fx_rank_state.json
+            git add data/fx_rank_state.json
+            if git diff --staged --quiet; then echo "Khong co thay doi"; exit 0; fi
+            git commit -m "FX: cap nhat trang thai $(date -u +'%Y-%m-%d') [skip netlify]"
+            if git push origin HEAD:main; then echo "Da luu trang thai"; exit 0; fi
+            echo "Push that bai, thu lai ($i)"; sleep 7
+          done
+          echo "::error::Khong luu duoc trang thai"; exit 1

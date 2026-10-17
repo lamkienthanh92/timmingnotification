@@ -6,8 +6,9 @@ Cong thuc (da kiem tra 2011-2026 tren 28 cap, tinh theo R, da tru spread, chua t
   1. Luc 8 dong (USD EUR GBP JPY CHF CAD AUD NZD) tu gia ngay cua 7 cap voi USD, tong luc = 0.
      Diem = thay doi luc trong 120 phien.
   2. Moi thu Sau sau khi dong nen ngay: MUA 2 dong yeu nhat (khong mua JPY), BAN 2 dong manh nhat -> 4 cap.
-  3. BO QUA TUAN neu do phan tan luc (do lech chuan diem cua 8 dong) thap hon muc phan vi 25% cua cac tuan truoc.
-  4. TAM DUNG dong tien neu tong R cac lenh co dong do dong trong 13 tuan gan nhat <= -6R.
+  3. KHUYEN CAO BO TUAN neu do phan tan luc (do lech chuan diem cua 8 dong) thap hon muc phan vi 25% cua cac tuan truoc.
+     Bot van gui tin hieu (gan nhan) va theo doi rieng; backtest: lenh cua cac tuan nay TB -0.04R so voi +0.14R.
+  4. TAM DUNG dong tien neu tong R cac lenh (tuan binh thuong) co dong do trong 13 tuan gan nhat <= -6R.
   5. Vao o gia mo cua thu Hai. SL = 1 ATR ngay (14). TP = 3 sigma (do lech chuan loi nhuan ngay 60 phien).
      Khoi luong = (von x % rui ro) / khoang cach SL.  1R = so tien mat khi cham SL.
   6. Thu Sau sau: cap van duoc chon thi giu nguyen (khong doi SL/TP); cap roi khoi danh sach -> dong o gia mo thu Hai.
@@ -36,6 +37,7 @@ LOOKBACK, N_SIDE, NO_BUY = 120, 2, {"JPY"}
 SIGMA_WIN, TP_SIGMA, SL_ATR, ATR_N = 60, 3.0, 1.0, 14
 DISP_Q, PAUSE_WEEKS, PAUSE_R = 0.25, 13, -6.0
 HISTORY_DAYS = 1500
+NHAN = " <i>(khuyến cáo bỏ)</i>"
 # ======================================================================
 
 _credits = []                                                   # thoi diem cac luot goi (goi free: 8 luot/phut)
@@ -194,23 +196,23 @@ def cap_nhat_lenh(st, bars, tin):
             continue
         if p["status"] == "cho_dong":                           # dong o gia mo phien dau tuan
             px = b[0][1]; r = p["side"] * (px - p["entry"]) / p["sl_dist"]
-            st["closed"].append(dict(pair=p["pair"], side=p["side"], ccys=p["ccys"], entry_date=p["entry_date"], exit_date=b[0][0], R=round(r, 2), ly_do="het tuan"))
+            st["closed"].append(dict(pair=p["pair"], side=p["side"], ccys=p["ccys"], entry_date=p["entry_date"], exit_date=b[0][0], R=round(r, 2), ly_do="het tuan", kcb=p.get("kcb", False)))
             st["positions"].remove(p)
-            tin.append("⚪ <b>ĐÃ ĐÓNG %s</b> (rời danh sách tuần) ở giá mở %s · %+.2fR" % (p["pair"], fmt(px, p["pair"]), r)); continue
+            tin.append("⚪ <b>ĐÃ ĐÓNG %s</b> (rời danh sách tuần) ở giá mở %s · %+.2fR%s" % (p["pair"], fmt(px, p["pair"]), r, NHAN if p.get("kcb") else "")); continue
         if p["status"] == "cho_vao":
             e = b[0][1]; p["entry"], p["entry_date"], p["status"] = e, b[0][0], "mo"
             p["sl"] = e - p["side"] * p["sl_dist"]; p["tp"] = e * math.exp(p["side"] * p["tp_sigma"] / 100)
-            tin.append("📌 <b>%s %s</b> đã vào ở giá mở %s (%s) · SL %s · TP %s\n<i>Nếu giá khớp thực tế khác, giữ nguyên khoảng cách SL %d pip, TP %d pip.</i>" % (
-                "MUA" if p["side"] == 1 else "BÁN", p["pair"], fmt(e, p["pair"]), b[0][0], fmt(p["sl"], p["pair"]), fmt(p["tp"], p["pair"]),
+            tin.append("📌 <b>%s %s</b>%s đã vào ở giá mở %s (%s) · SL %s · TP %s\n<i>Nếu giá khớp thực tế khác, giữ nguyên khoảng cách SL %d pip, TP %d pip.</i>" % (
+                "MUA" if p["side"] == 1 else "BÁN", p["pair"], NHAN if p.get("kcb") else "", fmt(e, p["pair"]), b[0][0], fmt(p["sl"], p["pair"]), fmt(p["tp"], p["pair"]),
                 round(p["sl_dist"] / pip(p["pair"])), round(abs(p["tp"] - e) / pip(p["pair"]))))
         for day, o, h, l, c in [x for x in b if x[0] >= p["entry_date"] and x[0] > p.get("checked", "")]:
             hit_sl = (p["side"] == 1 and l <= p["sl"]) or (p["side"] == -1 and h >= p["sl"])
             hit_tp = (p["side"] == 1 and h >= p["tp"]) or (p["side"] == -1 and l <= p["tp"])
             if hit_sl or hit_tp:                                    # cung ngay ca hai -> tinh SL (than trong)
                 px = p["sl"] if hit_sl else p["tp"]; r = p["side"] * (px - p["entry"]) / p["sl_dist"]
-                st["closed"].append(dict(pair=p["pair"], side=p["side"], ccys=p["ccys"], entry_date=p["entry_date"], exit_date=day, R=round(r, 2), ly_do="SL" if hit_sl else "TP"))
+                st["closed"].append(dict(pair=p["pair"], side=p["side"], ccys=p["ccys"], entry_date=p["entry_date"], exit_date=day, R=round(r, 2), ly_do="SL" if hit_sl else "TP", kcb=p.get("kcb", False)))
                 st["positions"].remove(p)
-                tin.append("%s <b>%s %s chạm %s</b> ngày %s · %+.2fR" % ("🔴" if hit_sl else "🟢", "MUA" if p["side"] == 1 else "BÁN", p["pair"], "SL" if hit_sl else "TP", day, r))
+                tin.append("%s <b>%s %s chạm %s</b> ngày %s · %+.2fR%s" % ("🔴" if hit_sl else "🟢", "MUA" if p["side"] == 1 else "BÁN", p["pair"], "SL" if hit_sl else "TP", day, r, NHAN if p.get("kcb") else ""))
                 break
             p["checked"] = day
 
@@ -227,16 +229,15 @@ def tin_hieu_tuan(st, tin, last_usd_cache):
     buys = [k for k in order if CCYS[k] not in NO_BUY][:N_SIDE]
     sells = [k for k in reversed(order) if k not in buys][:N_SIDE]
     cutoff = (dt.date.fromisoformat(d0) - dt.timedelta(weeks=PAUSE_WEEKS)).isoformat()
-    paused = {c for c in CCYS if sum(x["R"] for x in st["closed"] if x["exit_date"] > cutoff and c in x["ccys"]) <= PAUSE_R}
+    paused = {c for c in CCYS if sum(x["R"] for x in st["closed"] if x["exit_date"] > cutoff and c in x["ccys"] and not x.get("kcb")) <= PAUSE_R}
     bo_tuan = thr is not None and disp < thr
     plan = []
-    if not bo_tuan:
-        for x in buys:
-            for y in sells:
-                a, b = CCYS[x], CCYS[y]
-                if a in paused or b in paused:
-                    continue
-                sym, side = ten_cap(a, b); plan.append((sym, side, [a, b]))
+    for x in buys:
+        for y in sells:
+            a, b = CCYS[x], CCYS[y]
+            if a in paused or b in paused:
+                continue
+            sym, side = ten_cap(a, b); plan.append((sym, side, [a, b]))
     keep = {(p["pair"], p["side"]) for p in st["positions"] if p["status"] in ("mo", "cho_vao")}
     want = {(sym, side) for sym, side, _ in plan}
     for p in st["positions"]:
@@ -253,9 +254,9 @@ def tin_hieu_tuan(st, tin, last_usd_cache):
         a, sd = atr_sigma(pb[sym][-80:]); slp = SL_ATR * a; ref = pb[sym][-1][4]
         lots, risk_usd = lot(slp, sym, last_usd)
         st["positions"].append(dict(pair=sym, side=side, ccys=cc, signal_date=d0, status="cho_vao", sl_dist=slp, tp_sigma=TP_SIGMA * sd,
-                                    entry=None, entry_date="", sl=None, tp=None, lots=round(lots, 2)))
+                                    entry=None, entry_date="", sl=None, tp=None, lots=round(lots, 2), kcb=bo_tuan))
         tpd = ref * (math.exp(TP_SIGMA * sd / 100) - 1)
-        lines.append("%s <b>%s %s</b> · %.2f lot\n   SL %d pip (1 ATR ngày) · TP %d pip (3σ) · RR 1:%.1f\n   <i>Tham khảo theo giá đóng cửa thứ Sáu %s: SL %s · TP %s</i>" % (
+        lines.append(("⚠️ " if bo_tuan else "") + "%s <b>%s %s</b> · %.2f lot\n   SL %d pip (1 ATR ngày) · TP %d pip (3σ) · RR 1:%.1f\n   <i>Tham khảo theo giá đóng cửa thứ Sáu %s: SL %s · TP %s</i>" % (
             "🟢" if side == 1 else "🔴", "MUA" if side == 1 else "BÁN", sym, lots, round(slp / pip(sym)), round(tpd / pip(sym)), tpd / slp,
             fmt(ref, sym), fmt(ref - side * slp, sym), fmt(ref + side * tpd, sym)))
     giu = [p["pair"] + (" MUA" if p["side"] == 1 else " BÁN") for p in st["positions"] if p["status"] in ("mo", "cho_vao") and (p["pair"], p["side"]) in keep]
@@ -264,12 +265,15 @@ def tin_hieu_tuan(st, tin, last_usd_cache):
     head = "📅 <b>TÍN HIỆU TUẦN</b> (dữ liệu đến thứ Sáu %s)\nLực 120 phiên (yếu → mạnh): %s\nĐộ phân tán %.2f%s" % (
         d0, rank, disp, (" · ngưỡng %.2f" % thr) if thr is not None else "")
     if bo_tuan:
-        head += "\n⏸ <b>BỎ TUẦN NÀY</b>: tín hiệu yếu (độ phân tán thấp hơn ngưỡng). Không vào lệnh mới."
+        head += ("\n⚠️ <b>KHUYẾN CÁO BỎ TUẦN NÀY</b>: tín hiệu yếu (độ phân tán thấp hơn ngưỡng)."
+                 "\n<i>Backtest 2012–2026: lệnh của những tuần như vậy trung bình −0,04R (thắng 38%), so với +0,14R (thắng 44%) ở tuần bình thường."
+                 " Công thức gốc: không vào lệnh mới và đóng các lệnh đang giữ. Tín hiệu dưới đây để tham khảo nếu bạn vẫn muốn giao dịch;"
+                 " bot theo dõi riêng kết quả các lệnh này.</i>")
     if paused:
         head += "\n⏸ Tạm dừng đồng: <b>%s</b> (13 tuần gần nhất ≤ %gR)" % (", ".join(sorted(paused)), PAUSE_R)
-    body = "\n\n<b>VÀO LỆNH khi thị trường mở (thứ Hai)</b> — rủi ro %.2g%% = %s USD/lệnh:\n%s" % (RISK_PCT, format(round(ACCOUNT_EQUITY * RISK_PCT / 100), ","), "\n".join(lines)) if lines else ""
+    body = "\n\n<b>%s khi thị trường mở (thứ Hai)</b> — rủi ro %.2g%% = %s USD/lệnh:\n%s" % ("TÍN HIỆU THAM KHẢO (khuyến cáo bỏ)" if bo_tuan else "VÀO LỆNH", RISK_PCT, format(round(ACCOUNT_EQUITY * RISK_PCT / 100), ","), "\n".join(lines)) if lines else ""
     if giu:
-        body += "\n\n<b>Giữ nguyên</b> (vẫn trong danh sách, không đổi SL/TP): " + ", ".join(giu)
+        body += "\n\n<b>Giữ nguyên</b> (vẫn trong danh sách, không đổi SL/TP): " + ", ".join(giu) + (" <i>— công thức gốc khuyến cáo đóng</i>" if bo_tuan else "")
     if dong:
         body += "\n\n<b>ĐÓNG khi thị trường mở (thứ Hai)</b>: " + ", ".join(dong)
     if not lines and not giu and not dong:
@@ -293,14 +297,16 @@ def chay(send=True, ep_tuan=False):
     op = [p for p in st["positions"] if p["status"] == "mo"]
     if op or today.weekday() == 5 or tin:
         cut = (today - dt.timedelta(weeks=PAUSE_WEEKS)).isoformat()
-        r13 = sum(x["R"] for x in st["closed"] if x["exit_date"] > cut)
+        r13 = sum(x["R"] for x in st["closed"] if x["exit_date"] > cut and not x.get("kcb"))
+        r13k = [x["R"] for x in st["closed"] if x["exit_date"] > cut and x.get("kcb")]
         dong = []
         for p in op:
             b = bars.get(p["pair"])
             now = (" · tạm tính %+.2fR" % (p["side"] * (b[-1][4] - p["entry"]) / p["sl_dist"])) if b else ""
-            dong.append("• %s %s từ %s%s" % ("MUA" if p["side"] == 1 else "BÁN", p["pair"], p["entry_date"], now))
-        tin.append("📋 <b>FX tóm tắt %s</b>\nĐang mở %d lệnh%s\n%s\nKết quả 13 tuần gần nhất: %+.1fR · rủi ro mỗi lệnh %.2g%% vốn" % (
-            today.isoformat(), len(op), ":" if op else "", "\n".join(dong) or "(không có)", r13, RISK_PCT))
+            dong.append("• %s %s từ %s%s%s" % ("MUA" if p["side"] == 1 else "BÁN", p["pair"], p["entry_date"], now, NHAN if p.get("kcb") else ""))
+        tin.append("📋 <b>FX tóm tắt %s</b>\nĐang mở %d lệnh%s\n%s\nKết quả 13 tuần gần nhất: %+.1fR (tuần bình thường)%s · rủi ro mỗi lệnh %.2g%% vốn" % (
+            today.isoformat(), len(op), ":" if op else "", "\n".join(dong) or "(không có)", r13,
+            (" · %+.1fR (%d lệnh khuyến cáo bỏ)" % (sum(r13k), len(r13k))) if r13k else "", RISK_PCT))
     st["last_run"] = dt.datetime.now(dt.timezone.utc).isoformat(timespec="seconds")
     luu(st)
     for t in tin:

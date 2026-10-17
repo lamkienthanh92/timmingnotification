@@ -34,15 +34,15 @@ const f5=(x,p)=>x==null?"?":(p&&p.endsWith("JPY")?x.toFixed(3):x.toFixed(5));
 function fx(st){
   if(!st) return "<p class='muted'>Bot FX chưa chạy lần nào.</p>";
   let h=""; const s=st.last_signal;
-  if(s){ h+=`<p>Tín hiệu tuần <b>${s.ngay}</b>${s.bo_tuan?" · <b>bỏ tuần</b> (tín hiệu yếu)":""}${(s.tam_dung||[]).length?" · tạm dừng "+s.tam_dung.join(", "):""}</p>`;
+  if(s){ h+=`<p>Tín hiệu tuần <b>${s.ngay}</b>${s.bo_tuan?" · <b>⚠️ khuyến cáo bỏ</b> (tín hiệu yếu)":""}${(s.tam_dung||[]).length?" · tạm dừng "+s.tam_dung.join(", "):""}</p>`;
     h+="<p>"+Object.entries(s.xep_hang).sort((a,b)=>a[1]-b[1]).map(([c,v])=>`<span class="tag">${c} ${sg(v,1)}</span>`).join("")+"</p>"; }
   const ps=st.positions||[];
   h+="<div class='wrap'><table><tr><th>Cặp</th><th>Chiều</th><th>Trạng thái</th><th>Vào</th><th>SL</th><th>TP</th><th>Lot</th></tr>";
-  h+=ps.map(p=>`<tr><td>${p.pair}</td><td>${p.side==1?"MUA":"BÁN"}</td><td>${{mo:"đang mở",cho_vao:"chờ vào thứ Hai",cho_dong:"chờ đóng thứ Hai"}[p.status]||p.status}</td><td>${f5(p.entry,p.pair)}</td><td>${f5(p.sl,p.pair)}</td><td>${f5(p.tp,p.pair)}</td><td>${p.lots??""}</td></tr>`).join("")||"<tr><td colspan=7 class='muted'>Không có lệnh</td></tr>";
+  h+=ps.map(p=>`<tr><td>${p.kcb?"⚠️ ":""}${p.pair}</td><td>${p.side==1?"MUA":"BÁN"}</td><td>${{mo:"đang mở",cho_vao:"chờ vào thứ Hai",cho_dong:"chờ đóng thứ Hai"}[p.status]||p.status}</td><td>${f5(p.entry,p.pair)}</td><td>${f5(p.sl,p.pair)}</td><td>${f5(p.tp,p.pair)}</td><td>${p.lots??""}</td></tr>`).join("")||"<tr><td colspan=7 class='muted'>Không có lệnh</td></tr>";
   h+="</table></div>";
   const cl=(st.closed||[]).slice(-10).reverse(), tot=(st.closed||[]).reduce((a,x)=>a+x.R,0);
   h+=`<p class="muted">Tổng ${ (st.closed||[]).length } lệnh đã đóng: ${sg(tot,1)}R</p><div class='wrap'><table><tr><th>Cặp</th><th>Chiều</th><th>Vào</th><th>Ra</th><th>Lý do</th><th>R</th></tr>`;
-  h+=cl.map(x=>`<tr><td>${x.pair}</td><td>${x.side==1?"MUA":"BÁN"}</td><td>${x.entry_date}</td><td>${x.exit_date}</td><td>${x.ly_do}</td><td class="${cls(x.R)}">${sg(x.R)}</td></tr>`).join("")+"</table></div>";
+  h+=cl.map(x=>`<tr><td>${x.kcb?"⚠️ ":""}${x.pair}</td><td>${x.side==1?"MUA":"BÁN"}</td><td>${x.entry_date}</td><td>${x.exit_date}</td><td>${x.ly_do}</td><td class="${cls(x.R)}">${sg(x.R)}</td></tr>`).join("")+"</table></div>";
   return h;
 }
 function cr(st){

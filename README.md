@@ -8,8 +8,8 @@ Hai bot độc lập, chạy tự động trên GitHub Actions, gửi tin Telegr
 |---|---|
 | Lực tiền tệ | 8 đồng (USD EUR GBP JPY CHF CAD AUD NZD) từ giá ngày của 7 cặp với USD; điểm = thay đổi lực 120 phiên |
 | Chọn lệnh | Mỗi thứ Sáu: **mua 2 đồng yếu nhất** (không mua JPY), **bán 2 đồng mạnh nhất** → 4 cặp |
-| Bỏ tuần | Độ phân tán lực thấp hơn mức 25% của các tuần trước → không vào lệnh mới |
-| Tạm dừng | Đồng tiền có tổng R 13 tuần gần nhất ≤ −6R → bỏ các cặp có đồng đó |
+| Khuyến cáo bỏ tuần | Độ phân tán lực thấp hơn mức 25% của các tuần trước → vẫn gửi tín hiệu nhưng gắn nhãn ⚠️ **KHUYẾN CÁO BỎ** (backtest: lệnh các tuần này TB −0,04R so với +0,14R). Bot theo dõi riêng kết quả các lệnh này |
+| Tạm dừng | Đồng tiền có tổng R 13 tuần gần nhất (chỉ tính tuần bình thường) ≤ −6R → bỏ các cặp có đồng đó |
 | Vào / thoát | Vào giá mở thứ Hai · **SL 1 ATR ngày** · **TP 3σ** · cặp rời danh sách thì đóng giá mở thứ Hai |
 | Khối lượng | (vốn × % rủi ro) ÷ khoảng cách SL; bot tính sẵn số lot |
 
@@ -52,18 +52,10 @@ Biến môi trường Netlify: `TELEGRAM_BOT_TOKEN`, `TELEGRAM_CHAT_ID`, `TG_WEB
 
 Lệnh: **fx**, **crypto**, **lệnh** (cả hai), **giúp**.
 
-## 4. Chuyển từ bản 5 (tải lên 1 lần, ghi đè toàn bộ)
-Gói này giữ đúng mọi đường dẫn file cũ nhưng thay bằng nội dung rỗng an toàn, nên chỉ cần tải lên một lần:
-- File Python cũ, app React cũ, `requirements.txt`: thành file chú thích, không ảnh hưởng gì.
-- `.github/workflows/live-bot.yml`: workflow cũ **đã tắt** (không còn lịch, gọi vào cũng chỉ in một dòng).
-- Hai lịch mới: `.github/workflows/fx-rank.yml` và `.github/workflows/crypto-ma.yml`.
-
-Sau khi tải lên: vào tab **Actions**, phải thấy 3 workflow: *FX xep hang luc tien te*, *Crypto MA bot*, *Live bot cu (DA TAT)*.
-Nếu thiếu hai workflow mới (thư mục `.github` bị bỏ sót khi tải), tạo bằng **Add file → Create new file**, gõ đúng tên
-`.github/workflows/fx-rank.yml` (hoặc `crypto-ma.yml`) rồi dán nội dung tương ứng.
-
-**cron-job.org**: tắt hoặc xoá job gọi `live-bot.yml`. Hai bot mới tự chạy theo lịch GitHub.
-
-Các file rỗng có thể xoá dần bất kỳ lúc nào (nút thùng rác khi mở file trên GitHub).
+## 4. Chuyển từ bản 5 (bỏ hệ thống cũ)
+1. Xoá các file cũ: `live_bot.py`, `config.py`, `portfolio_backtest.py`, `simulate_live.py`, `tk2_backtest.py`, `tk2_signal.py`, `twelvedata_client.py`, `requirements.txt`, `.github/workflows/live-bot.yml`, thư mục `dashboard/src`, `dashboard/package.json`, `dashboard/vite.config.js`, `dashboard/index.html`, `dashboard/public/data`.
+2. Tải lên các file mới của bản này (giữ nguyên đường dẫn thư mục).
+3. **cron-job.org**: tắt hoặc xoá job gọi `live-bot.yml` (workflow cũ không còn). Hai bot mới tự chạy theo lịch GitHub, không cần cron-job.
+4. File `data/live_state.json` cũ có thể xoá.
 
 *Phân tích dữ liệu quá khứ, không phải lời khuyên đầu tư.*

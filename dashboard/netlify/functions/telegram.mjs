@@ -52,7 +52,7 @@ async function fxText(st) {
   const s = st.last_signal;
   if (s) {
     const rank = Object.entries(s.xep_hang).sort((a, b) => a[1] - b[1]).map(([c, v]) => `${c} ${sg(v, 1)}`).join("  ");
-    L.push(`📅 <b>Tín hiệu tuần ${s.ngay}</b>${s.bo_tuan ? " · ⏸ bỏ tuần (tín hiệu yếu)" : ""}`);
+    L.push(`📅 <b>Tín hiệu tuần ${s.ngay}</b>${s.bo_tuan ? " · ⚠️ khuyến cáo bỏ (tín hiệu yếu)" : ""}`);
     L.push(`Yếu → mạnh: ${rank}`);
     if ((s.tam_dung || []).length) L.push(`Tạm dừng: ${s.tam_dung.join(", ")}`);
   }
@@ -63,16 +63,18 @@ async function fxText(st) {
     const price = live[p.pair];
     const r = price != null ? (p.side * (price - p.entry)) / p.sl_dist : null;
     if (r != null) tot += r;
-    L.push(`• ${p.side === 1 ? "MUA" : "BÁN"} ${p.pair} ${p.lots ?? ""} lot · vào ${fx5(p.entry, p.pair)} · SL ${fx5(p.sl, p.pair)} · TP ${fx5(p.tp, p.pair)}${r != null ? ` · <b>${sg(r)}R</b>` : ""}`);
+    L.push(`• ${p.kcb ? "⚠️ " : ""}${p.side === 1 ? "MUA" : "BÁN"} ${p.pair} ${p.lots ?? ""} lot · vào ${fx5(p.entry, p.pair)} · SL ${fx5(p.sl, p.pair)} · TP ${fx5(p.tp, p.pair)}${r != null ? ` · <b>${sg(r)}R</b>` : ""}`);
   }
   if (!mo.length) L.push("(không có)");
   if (mo.length && Object.keys(live).length) L.push(`Thả nổi: <b>${sg(tot)}R</b> ≈ ${sg(tot * risk)}% vốn${eq > 0 ? ` ≈ ${sg((eq * tot * risk) / 100, 0)} USD` : ""}`);
-  if (cho.length) L.push(`Chờ thứ Hai: ${cho.map((p) => `${p.status === "cho_vao" ? "vào" : "đóng"} ${p.pair}`).join(", ")}`);
+  if (cho.length) L.push(`Chờ thứ Hai: ${cho.map((p) => `${p.status === "cho_vao" ? "vào" : "đóng"} ${p.pair}${p.kcb ? " (khuyến cáo bỏ)" : ""}`).join(", ")}`);
   const cl = (st.closed || []).slice(-5).reverse();
-  if (cl.length) L.push(`\n<b>5 lệnh đóng gần nhất</b>\n` + cl.map((x) => `• ${x.pair} ${x.side === 1 ? "MUA" : "BÁN"} ${x.exit_date} · ${x.ly_do} · ${sg(x.R)}R`).join("\n"));
+  if (cl.length) L.push(`\n<b>5 lệnh đóng gần nhất</b>\n` + cl.map((x) => `• ${x.kcb ? "⚠️ " : ""}${x.pair} ${x.side === 1 ? "MUA" : "BÁN"} ${x.exit_date} · ${x.ly_do} · ${sg(x.R)}R`).join("\n"));
   const cut = new Date(Date.now() - 91 * 864e5).toISOString().slice(0, 10);
-  const r13 = (st.closed || []).filter((x) => x.exit_date > cut).reduce((a, x) => a + x.R, 0);
-  L.push(`\n13 tuần gần nhất: ${sg(r13, 1)}R · rủi ro ${risk}%/lệnh`);
+  const c13 = (st.closed || []).filter((x) => x.exit_date > cut);
+  const r13 = c13.filter((x) => !x.kcb).reduce((a, x) => a + x.R, 0), k13 = c13.filter((x) => x.kcb);
+  L.push(`\n13 tuần gần nhất: ${sg(r13, 1)}R (tuần bình thường)${k13.length ? ` · ${sg(k13.reduce((a, x) => a + x.R, 0), 1)}R (${k13.length} lệnh khuyến cáo bỏ)` : ""} · rủi ro ${risk}%/lệnh`);
+  L.push(`<i>⚠️ = lệnh thuộc tuần khuyến cáo bỏ</i>`);
   return L.join("\n");
 }
 

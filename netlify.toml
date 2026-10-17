@@ -1,11 +1,6 @@
-# Duong dan publish/functions tinh TU thu muc base ("dashboard").
+# Trang tinh (khong can build). Ham Netlify: doc trang thai + tra loi lenh Telegram.
 [build]
   base = "dashboard"
-  command = "npm run build"
-  publish = "dist"
+  publish = "public"
   functions = "netlify/functions"
-
-[[redirects]]
-  from = "/*"
-  to = "/index.html"
-  status = 200
+  command = "echo khong can build"

@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Bảng lệnh FX + Crypto</title>
+<style>
+  :root { --bg:#f6f7f9; --card:#ffffff; --text:#1c2430; --muted:#6b7686; --line:#e3e7ec; --pos:#13804a; --neg:#c23a3a; --acc:#2a5bd7;
+          box-sizing:border-box; padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px); }
+  @media (prefers-color-scheme: dark) { :root { --bg:#12161c; --card:#1a2028; --text:#e6eaf0; --muted:#97a3b3; --line:#2a323d; --pos:#3cc37f; --neg:#ef6a6a; --acc:#7aa2ff; color-scheme:dark; } }
+  *,*::before,*::after { box-sizing:inherit; }
+  body { margin:0; background:var(--bg); color:var(--text); font:15px/1.5 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif; }
+  main { max-width:960px; margin:0 auto; padding:16px; }
+  h1 { font-size:20px; margin:8px 0 4px; } h2 { font-size:16px; margin:0 0 8px; }
+  .muted { color:var(--muted); font-size:13px; }
+  .card { background:var(--card); border:1px solid var(--line); border-radius:10px; padding:14px; margin:12px 0; }
+  .wrap { overflow-x:auto; } table { border-collapse:collapse; width:100%; font-size:14px; }
+  th,td { text-align:left; padding:6px 8px; border-bottom:1px solid var(--line); white-space:nowrap; } th { color:var(--muted); font-weight:600; }
+  .pos { color:var(--pos); } .neg { color:var(--neg); } .tag { display:inline-block; padding:1px 8px; border-radius:99px; border:1px solid var(--line); font-size:12px; margin:2px; }
+  button { font:inherit; padding:6px 12px; border-radius:8px; border:1px solid var(--line); background:var(--card); color:var(--text); cursor:pointer; }
+</style>
+</head>
+<body>
+<main>
+  <h1>Bảng lệnh FX + Crypto</h1>
+  <div class="muted" id="upd">Đang tải…</div>
+  <div class="card"><h2>FX · xếp hạng lực tiền tệ</h2><div id="fx"></div></div>
+  <div class="card"><h2>Crypto Spot · top 10 MA10/MA30</h2><div id="cr"></div></div>
+  <button onclick="load()">Tải lại</button>
+</main>
+<script>
+const sg=(x,d=2)=>(x>=0?"+":"")+x.toFixed(d), cls=x=>x>=0?"pos":"neg";
+const f5=(x,p)=>x==null?"?":(p&&p.endsWith("JPY")?x.toFixed(3):x.toFixed(5));
+function fx(st){
+  if(!st) return "<p class='muted'>Bot FX chưa chạy lần nào.</p>";
+  let h=""; const s=st.last_signal;
+  if(s){ h+=`<p>Tín hiệu tuần <b>${s.ngay}</b>${s.bo_tuan?" · <b>bỏ tuần</b> (tín hiệu yếu)":""}${(s.tam_dung||[]).length?" · tạm dừng "+s.tam_dung.join(", "):""}</p>`;
+    h+="<p>"+Object.entries(s.xep_hang).sort((a,b)=>a[1]-b[1]).map(([c,v])=>`<span class="tag">${c} ${sg(v,1)}</span>`).join("")+"</p>"; }
+  const ps=st.positions||[];
+  h+="<div class='wrap'><table><tr><th>Cặp</th><th>Chiều</th><th>Trạng thái</th><th>Vào</th><th>SL</th><th>TP</th><th>Lot</th></tr>";
+  h+=ps.map(p=>`<tr><td>${p.pair}</td><td>${p.side==1?"MUA":"BÁN"}</td><td>${{mo:"đang mở",cho_vao:"chờ vào thứ Hai",cho_dong:"chờ đóng thứ Hai"}[p.status]||p.status}</td><td>${f5(p.entry,p.pair)}</td><td>${f5(p.sl,p.pair)}</td><td>${f5(p.tp,p.pair)}</td><td>${p.lots??""}</td></tr>`).join("")||"<tr><td colspan=7 class='muted'>Không có lệnh</td></tr>";
+  h+="</table></div>";
+  const cl=(st.closed||[]).slice(-10).reverse(), tot=(st.closed||[]).reduce((a,x)=>a+x.R,0);
+  h+=`<p class="muted">Tổng ${ (st.closed||[]).length } lệnh đã đóng: ${sg(tot,1)}R</p><div class='wrap'><table><tr><th>Cặp</th><th>Chiều</th><th>Vào</th><th>Ra</th><th>Lý do</th><th>R</th></tr>`;
+  h+=cl.map(x=>`<tr><td>${x.pair}</td><td>${x.side==1?"MUA":"BÁN"}</td><td>${x.entry_date}</td><td>${x.exit_date}</td><td>${x.ly_do}</td><td class="${cls(x.R)}">${sg(x.R)}</td></tr>`).join("")+"</table></div>";
+  return h;
+}
+function cr(st){
+  if(!st) return "<p class='muted'>Bot crypto chưa chạy lần nào.</p>";
+  let h=`<p>Top 10 tháng ${st.thang||"?"}: `+(st.top10||[]).map(c=>`<span class="tag">${c}</span>`).join("")+"</p>";
+  const g=Object.entries(st.dang_giu||{}).sort();
+  h+="<div class='wrap'><table><tr><th>Coin</th><th>Ngày mua</th><th>Giá mua</th></tr>"+(g.map(([c,p])=>`<tr><td>${c}</td><td>${p.ngay_vao}</td><td>${p.gia_vao}</td></tr>`).join("")||"<tr><td colspan=3 class='muted'>Không giữ coin nào</td></tr>")+"</table></div>";
+  const ls=(st.lich_su||[]).slice(-10).reverse();
+  h+="<p class='muted'>Lệnh bán gần nhất</p><div class='wrap'><table><tr><th>Coin</th><th>Vào</th><th>Ra</th><th>Lãi</th></tr>"+ls.map(x=>`<tr><td>${x.coin}</td><td>${x.vao}</td><td>${x.ra}</td><td class="${cls(x.lai_pct)}">${sg(x.lai_pct,1)}%</td></tr>`).join("")+"</table></div>";
+  return h;
+}
+async function load(){
+  try{ const j=await (await fetch("/.netlify/functions/state",{cache:"no-store"})).json();
+    if(j.error) throw new Error(j.error);
+    document.getElementById("fx").innerHTML=fx(j.fx); document.getElementById("cr").innerHTML=cr(j.crypto);
+    document.getElementById("upd").textContent="Cập nhật lúc "+new Date().toLocaleString("vi-VN");
+  }catch(e){ document.getElementById("upd").textContent="Lỗi: "+e.message; }
+}
+load();
+</script>
+</body>
+</html>

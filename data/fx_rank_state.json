@@ -8,15 +8,16 @@
     "USD"
    ],
    "signal_date": "2026-10-16",
-   "status": "cho_vao",
+   "status": "mo",
    "sl_dist": 0.005377438379576214,
    "tp_sigma": 1.3627499310718134,
-   "entry": null,
-   "entry_date": "",
-   "sl": null,
-   "tp": null,
+   "entry": 0.82639,
+   "entry_date": "2026-10-19",
+   "sl": 0.8317674383795761,
+   "tp": 0.8152047573868539,
    "lots": 0.08,
-   "kcb": true
+   "kcb": true,
+   "checked": "2026-10-19"
   },
   {
    "pair": "CHF/JPY",
@@ -26,15 +27,16 @@
     "JPY"
    ],
    "signal_date": "2026-10-16",
-   "status": "cho_vao",
+   "status": "mo",
    "sl_dist": 1.2829889402768655,
    "tp_sigma": 1.623830197211047,
-   "entry": null,
-   "entry_date": "",
-   "sl": null,
-   "tp": null,
+   "entry": 191.22718,
+   "entry_date": "2026-10-19",
+   "sl": 189.94419105972315,
+   "tp": 194.35773334032598,
    "lots": 0.06,
-   "kcb": true
+   "kcb": true,
+   "checked": "2026-10-19"
   },
   {
    "pair": "NZD/USD",
@@ -44,15 +46,16 @@
     "USD"
    ],
    "signal_date": "2026-10-16",
-   "status": "cho_vao",
+   "status": "mo",
    "sl_dist": 0.004578965029737704,
    "tp_sigma": 1.3765327300951629,
-   "entry": null,
-   "entry_date": "",
-   "sl": null,
-   "tp": null,
+   "entry": 0.56616,
+   "entry_date": "2026-10-19",
+   "sl": 0.5615810349702622,
+   "tp": 0.5740072638718381,
    "lots": 0.11,
-   "kcb": true
+   "kcb": true,
+   "checked": "2026-10-19"
   },
   {
    "pair": "NZD/JPY",
@@ -62,15 +65,16 @@
     "JPY"
    ],
    "signal_date": "2026-10-16",
-   "status": "cho_vao",
+   "status": "mo",
    "sl_dist": 0.7101212125230797,
    "tp_sigma": 1.5351880105690394,
-   "entry": null,
-   "entry_date": "",
-   "sl": null,
-   "tp": null,
+   "entry": 89.46345,
+   "entry_date": "2026-10-19",
+   "sl": 88.75332878747692,
+   "tp": 90.84747869731086,
    "lots": 0.11,
-   "kcb": true
+   "kcb": true,
+   "checked": "2026-10-19"
   }
  ],
  "closed": [],
@@ -100,5 +104,5 @@
   ]
  },
  "last_bar": "",
- "last_run": "2026-10-17T16:41:37+00:00"
+ "last_run": "2026-10-20T05:02:40+00:00"
 }

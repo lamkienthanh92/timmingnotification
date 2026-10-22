@@ -12,7 +12,12 @@
   "SUI",
   "UNI"
  ],
- "dang_giu": {},
+ "dang_giu": {
+  "NEAR": {
+   "ngay_vao": "2026-10-22",
+   "gia_vao": 5.262
+  }
+ },
  "lich_su": [],
- "ngay_xu_ly": "2026-10-20"
+ "ngay_xu_ly": "2026-10-21"
 }

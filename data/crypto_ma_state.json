@@ -12,12 +12,16 @@
   "SUI",
   "UNI"
  ],
- "dang_giu": {
-  "NEAR": {
-   "ngay_vao": "2026-10-22",
-   "gia_vao": 5.262
+ "dang_giu": {},
+ "lich_su": [
+  {
+   "coin": "NEAR",
+   "vao": "2026-10-22",
+   "ra": "2026-10-22",
+   "gia_vao": 5.262,
+   "gia_ra": 4.884,
+   "lai_pct": -7.18
   }
- },
- "lich_su": [],
- "ngay_xu_ly": "2026-10-21"
+ ],
+ "ngay_xu_ly": "2026-10-22"
 }

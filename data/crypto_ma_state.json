@@ -12,12 +12,7 @@
   "DOGE",
   "UNI"
  ],
- "dang_giu": {
-  "ZEC": {
-   "ngay_vao": "2026-10-31",
-   "gia_vao": 1269.94
-  }
- },
+ "dang_giu": {},
  "lich_su": [
   {
    "coin": "NEAR",
@@ -26,7 +21,15 @@
    "gia_vao": 5.262,
    "gia_ra": 4.884,
    "lai_pct": -7.18
+  },
+  {
+   "coin": "ZEC",
+   "vao": "2026-10-31",
+   "ra": "2026-11-01",
+   "gia_vao": 1269.94,
+   "gia_ra": 1234.56,
+   "lai_pct": -2.79
   }
  ],
- "ngay_xu_ly": "2026-10-31"
+ "ngay_xu_ly": "2026-11-01"
 }

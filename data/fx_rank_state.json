@@ -17,7 +17,61 @@
    "tp": 89.49038559094654,
    "lots": 0.1,
    "kcb": true,
-   "checked": "2026-11-12"
+   "checked": "2026-11-13"
+  },
+  {
+   "pair": "NZD/USD",
+   "side": 1,
+   "ccys": [
+    "NZD",
+    "USD"
+   ],
+   "signal_date": "2026-11-13",
+   "status": "cho_vao",
+   "sl_dist": 0.0048398260384278,
+   "tp_sigma": 1.4024998016792438,
+   "entry": null,
+   "entry_date": "",
+   "sl": null,
+   "tp": null,
+   "lots": 0.1,
+   "kcb": false
+  },
+  {
+   "pair": "USD/CHF",
+   "side": -1,
+   "ccys": [
+    "CHF",
+    "USD"
+   ],
+   "signal_date": "2026-11-13",
+   "status": "cho_vao",
+   "sl_dist": 0.005917226904807104,
+   "tp_sigma": 1.1647775886643528,
+   "entry": null,
+   "entry_date": "",
+   "sl": null,
+   "tp": null,
+   "lots": 0.07,
+   "kcb": false
+  },
+  {
+   "pair": "CHF/JPY",
+   "side": 1,
+   "ccys": [
+    "CHF",
+    "JPY"
+   ],
+   "signal_date": "2026-11-13",
+   "status": "cho_vao",
+   "sl_dist": 1.144029591916074,
+   "tp_sigma": 1.3875509191284463,
+   "entry": null,
+   "entry_date": "",
+   "sl": null,
+   "tp": null,
+   "lots": 0.07,
+   "kcb": false
   }
  ],
  "closed": [
@@ -179,30 +233,30 @@
   }
  ],
  "last_signal": {
-  "ngay": "2026-11-06",
+  "ngay": "2026-11-13",
   "xep_hang": {
-   "USD": 2.51,
-   "EUR": -1.56,
-   "GBP": 1.9,
-   "JPY": 2.95,
-   "CHF": -1.92,
-   "CAD": 0.26,
-   "AUD": -1.26,
-   "NZD": -2.89
+   "USD": 4.03,
+   "EUR": -1.59,
+   "GBP": 2.19,
+   "JPY": 3.71,
+   "CHF": -3.18,
+   "CAD": 0.69,
+   "AUD": -1.82,
+   "NZD": -4.03
   },
-  "phan_tan": 2.229,
-  "nguong": 2.329,
-  "bo_tuan": true,
+  "phan_tan": 3.103,
+  "nguong": 2.296,
+  "bo_tuan": false,
   "tam_dung": [],
   "mua": [
    "NZD",
    "CHF"
   ],
   "ban": [
-   "JPY",
-   "USD"
+   "USD",
+   "JPY"
   ]
  },
  "last_bar": "",
- "last_run": "2026-11-13T06:58:23+00:00"
+ "last_run": "2026-11-14T06:48:21+00:00"
 }

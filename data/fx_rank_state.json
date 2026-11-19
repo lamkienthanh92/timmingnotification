@@ -17,26 +17,7 @@
    "tp": 0.8291853675716876,
    "lots": 0.07,
    "kcb": false,
-   "checked": "2026-11-17"
-  },
-  {
-   "pair": "CHF/JPY",
-   "side": 1,
-   "ccys": [
-    "CHF",
-    "JPY"
-   ],
-   "signal_date": "2026-11-13",
-   "status": "mo",
-   "sl_dist": 1.144029591916074,
-   "tp_sigma": 1.3875509191284463,
-   "entry": 190.27008,
-   "entry_date": "2026-11-16",
-   "sl": 189.12605040808393,
-   "tp": 192.92857558064344,
-   "lots": 0.07,
-   "kcb": false,
-   "checked": "2026-11-17"
+   "checked": "2026-11-18"
   }
  ],
  "closed": [
@@ -221,6 +202,19 @@
    "R": -1.0,
    "ly_do": "SL",
    "kcb": false
+  },
+  {
+   "pair": "CHF/JPY",
+   "side": 1,
+   "ccys": [
+    "CHF",
+    "JPY"
+   ],
+   "entry_date": "2026-11-16",
+   "exit_date": "2026-11-18",
+   "R": -1.0,
+   "ly_do": "SL",
+   "kcb": false
   }
  ],
  "last_signal": {
@@ -249,5 +243,5 @@
   ]
  },
  "last_bar": "",
- "last_run": "2026-11-18T07:44:21+00:00"
+ "last_run": "2026-11-19T07:40:30+00:00"
 }

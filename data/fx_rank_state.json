@@ -7,8 +7,8 @@
     "CHF",
     "USD"
    ],
-   "signal_date": "2026-11-13",
-   "status": "mo",
+   "signal_date": "2026-11-20",
+   "status": "cho_dong",
    "sl_dist": 0.005917226904807104,
    "tp_sigma": 1.1647775886643528,
    "entry": 0.8389,
@@ -17,7 +17,79 @@
    "tp": 0.8291853675716876,
    "lots": 0.07,
    "kcb": false,
-   "checked": "2026-11-19"
+   "checked": "2026-11-20"
+  },
+  {
+   "pair": "AUD/JPY",
+   "side": 1,
+   "ccys": [
+    "AUD",
+    "JPY"
+   ],
+   "signal_date": "2026-11-20",
+   "status": "cho_vao",
+   "sl_dist": 0.9949722498719556,
+   "tp_sigma": 1.5497622537845406,
+   "entry": null,
+   "entry_date": "",
+   "sl": null,
+   "tp": null,
+   "lots": 0.08,
+   "kcb": false
+  },
+  {
+   "pair": "AUD/USD",
+   "side": 1,
+   "ccys": [
+    "AUD",
+    "USD"
+   ],
+   "signal_date": "2026-11-20",
+   "status": "cho_vao",
+   "sl_dist": 0.0054092161299616566,
+   "tp_sigma": 1.3497270311578862,
+   "entry": null,
+   "entry_date": "",
+   "sl": null,
+   "tp": null,
+   "lots": 0.09,
+   "kcb": false
+  },
+  {
+   "pair": "NZD/JPY",
+   "side": 1,
+   "ccys": [
+    "NZD",
+    "JPY"
+   ],
+   "signal_date": "2026-11-20",
+   "status": "cho_vao",
+   "sl_dist": 0.7752712624026804,
+   "tp_sigma": 1.5718996285262485,
+   "entry": null,
+   "entry_date": "",
+   "sl": null,
+   "tp": null,
+   "lots": 0.1,
+   "kcb": false
+  },
+  {
+   "pair": "NZD/USD",
+   "side": 1,
+   "ccys": [
+    "NZD",
+    "USD"
+   ],
+   "signal_date": "2026-11-20",
+   "status": "cho_vao",
+   "sl_dist": 0.004513127848976329,
+   "tp_sigma": 1.3691468259386803,
+   "entry": null,
+   "entry_date": "",
+   "sl": null,
+   "tp": null,
+   "lots": 0.11,
+   "kcb": false
   }
  ],
  "closed": [
@@ -218,30 +290,30 @@
   }
  ],
  "last_signal": {
-  "ngay": "2026-11-13",
+  "ngay": "2026-11-20",
   "xep_hang": {
-   "USD": 4.03,
-   "EUR": -1.59,
-   "GBP": 2.19,
-   "JPY": 3.71,
-   "CHF": -3.18,
-   "CAD": 0.69,
-   "AUD": -1.82,
-   "NZD": -4.03
+   "USD": 3.19,
+   "EUR": -1.73,
+   "GBP": 1.28,
+   "JPY": 4.32,
+   "CHF": -2.01,
+   "CAD": 0.44,
+   "AUD": -3.01,
+   "NZD": -2.48
   },
-  "phan_tan": 3.103,
-  "nguong": 2.296,
+  "phan_tan": 2.751,
+  "nguong": 2.29,
   "bo_tuan": false,
   "tam_dung": [],
   "mua": [
-   "NZD",
-   "CHF"
+   "AUD",
+   "NZD"
   ],
   "ban": [
-   "USD",
-   "JPY"
+   "JPY",
+   "USD"
   ]
  },
  "last_bar": "",
- "last_run": "2026-11-20T07:31:52+00:00"
+ "last_run": "2026-11-21T07:28:19+00:00"
 }
